@@ -5,21 +5,21 @@ use Carbon\Carbon;
     <div class="col-md-12">
         <div class="panel no-border">
             <div class="panel-title">
-                <div class="panel-head font-size-20">Enter details of the subscription</div>
+                <div class="panel-head font-size-20">Informe os detalhes da assinatura</div>
             </div>
 
             <div class="panel-body">
                 <div class="row">
                     <div class="col-sm-5">
-                        {!! Form::label('plan_0','Plan') !!}
+                        {!! Form::label('plan_0','Plano') !!}
                     </div>
 
                     <div class="col-sm-3">
-                        {!! Form::label('start_date_0','Start Date') !!}
+                        {!! Form::label('start_date_0','Data de Início') !!}
                     </div>
 
                     <div class="col-sm-3">
-                        {!! Form::label('end_date_0','End Date') !!}
+                        {!! Form::label('end_date_0','Data de Término') !!}
                     </div>
 
                     <div class="col-sm-1">
@@ -47,7 +47,7 @@ use Carbon\Carbon;
 
                         <div class="col-sm-3">
                             <div class="form-group plan-start-date">
-                                {!! Form::text('plan[0][start_date]',Carbon::today()->format('Y-m-d'),['class'=>'form-control datepicker-startdate childStartDate', 'id' => 'start_date_0', 'data-row-id' => '0']) !!}
+                                {!! Form::text('plan[0][start_date]',Carbon::today()->format('d/m/Y'),['class'=>'form-control datepicker-startdate childStartDate', 'id' => 'start_date_0', 'data-row-id' => '0']) !!}
                             </div>
                         </div>
 
@@ -59,9 +59,9 @@ use Carbon\Carbon;
 
                         <div class="col-sm-1">
                             <div class="form-group">
-							<span class="btn btn-sm btn-danger pull-right hide remove-service">
-							  <i class="fa fa-times"></i>
-							</span>
+                            <span class="btn btn-sm btn-danger pull-right hide remove-service">
+                              <i class="fa fa-times"></i>
+                            </span>
                             </div>
                         </div>
                     </div> <!-- / Row -->
@@ -69,7 +69,7 @@ use Carbon\Carbon;
                 <div class="row">
                     <div class="col-sm-2 pull-right">
                         <div class="form-group">
-                            <span class="btn btn-sm btn-primary pull-right" id="addSubscription">Add</span>
+                            <span class="btn btn-sm btn-primary pull-right" id="addSubscription">Adicionar</span>
                         </div>
                     </div>
                 </div>

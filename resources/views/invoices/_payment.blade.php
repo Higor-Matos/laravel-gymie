@@ -2,26 +2,25 @@
     <div class="col-md-12">
         <div class="panel no-border ">
             <div class="panel-title">
-                <div class="panel-head font-size-20">Payment transaction details of invoice</div>
+                <div class="panel-head font-size-20">Detalhes da transação de pagamento da fatura</div>
             </div>
             <div class="panel-body">
                 <table id="_payment" class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th>Amount Recieved</th>
-                        <th>As</th>
-                        <th>On</th>
+                        <th>Valor Recebido</th>
+                        <th>Modo de Pagamento</th>
+                        <th>Data e Hora</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        @foreach ($invoice->payment_details as $payment_detail)
-                            <td>{{ $payment_detail->payment_amount }}</td>
+                    @foreach ($invoice->payment_details as $payment_detail)
+                        <tr>
+                            <td>R$ {{ $payment_detail->payment_amount }}</td>
                             <td>{{ Utilities::getPaymentMode ($payment_detail->mode) }}</td>
-                            <td>{{ $payment_detail->created_at->toDayDateTimeString() }}</td>
-                    </tr>
+                            <td>{{ $payment_detail->created_at->format('d/m/Y H:i:s') }}</td>
+                        </tr>
                     @endforeach
-
                     </tbody>
                 </table>
             </div><!-- / Panel-Body -->

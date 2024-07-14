@@ -6,17 +6,17 @@
         <!-- BEGIN PAGE HEADING -->
         <div class="page-head bg-grey-100 padding-top-15 no-padding-bottom">
             @include('flash::message')
-            <h1 class="page-title no-line-height">Services
+            <h1 class="page-title no-line-height">Serviços
                 @permission(['manage-gymie','manage-services','add-service'])
-                <a href="{{ action('ServicesController@create') }}" class="page-head-btn btn-sm btn-primary active" role="button">Add New</a>
-                <small>Details of all gym services</small>
+                <a href="{{ action('ServicesController@create') }}" class="page-head-btn btn-sm btn-primary active" role="button">Adicionar Novo</a>
+                <small>Detalhes de todos os serviços da academia</small>
             </h1>
             @permission(['manage-gymie','pagehead-stats'])
             <h1 class="font-size-30 text-right color-blue-grey-600 animated fadeInDown total-count pull-right"><span data-toggle="counter" data-start="0"
                                                                                                                      data-from="0" data-to="{{ $count }}"
                                                                                                                      data-speed="600"
                                                                                                                      data-refresh-interval="10"></span>
-                <small class="color-blue-grey-600 display-block margin-top-5 font-size-14">Total Services</small>
+                <small class="color-blue-grey-600 display-block margin-top-5 font-size-14">Total de Serviços</small>
             </h1>
             @endpermission
             @endpermission
@@ -33,7 +33,7 @@
                                 <div class="col-xs-12 col-md-3 pull-right">
                                     {!! Form::Open(['method' => 'GET']) !!}
                                     <div class="btn-inline pull-right">
-                                        <input name="search" id="search" type="text" class="form-control padding-right-35" placeholder="Search...">
+                                        <input name="search" id="search" type="text" class="form-control padding-right-35" placeholder="Pesquisar...">
                                         <button class="btn btn-link no-shadow bg-transparent no-padding-top padding-right-10" type="button"><i
                                                     class="ion-search"></i></button>
                                     </div>
@@ -43,15 +43,15 @@
                             </div>
 
                             @if($services->count() == 0)
-                                <h4 class="text-center padding-top-15">Sorry! No records found</h4>
+                                <h4 class="text-center padding-top-15">Desculpe! Nenhum registro encontrado</h4>
                             @else
 
                                 <table id="services" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
-                                        <th class="text-center">Service Name</th>
-                                        <th class="text-center">Service Description</th>
-                                        <th class="text-center">Actions</th>
+                                        <th class="text-center">Nome do Serviço</th>
+                                        <th class="text-center">Descrição do Serviço</th>
+                                        <th class="text-center">Ações</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -61,7 +61,7 @@
                                             <td class="text-center">{{ $service->description}}</td>
                                             <td class="text-center">
                                                 <div class="btn-group">
-                                                    <button type="button" class="btn btn-info">Actions</button>
+                                                    <button type="button" class="btn btn-info">Ações</button>
                                                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                                         <span class="caret"></span>
                                                         <span class="sr-only">Toggle Dropdown</span>
@@ -70,7 +70,7 @@
                                                         @permission(['manage-gymie','manage-services','edit-service'])
                                                         <li>
                                                             <a href="{{ action('ServicesController@edit',['id' => $service->id]) }}">
-                                                                Edit details
+                                                                Editar detalhes
                                                             </a>
                                                         </li>
                                                         @endpermission
@@ -82,10 +82,10 @@
                                                             <a href="#"
                                                                class="delete-record"
                                                                data-dependency="{{ $dependency }}"
-                                                               data-dependency-message="You have plans assigned to this service, either delete them or assign them to new service"
+                                                               data-dependency-message="Você tem planos atribuídos a este serviço, ou exclua-os ou atribua-os a um novo serviço"
                                                                data-delete-url="{{ url('plans/services/'.$service->id.'/delete') }}"
                                                                data-record-id="{{$service->id}}">
-                                                                Delete Service
+                                                                Excluir Serviço
                                                             </a>
                                                         </li>
                                                         @endpermission
@@ -98,11 +98,11 @@
 
                                 </table>
 
-                                <!-- Pagination -->
+                                <!-- Paginação -->
                                 <div class="row">
                                     <div class="col-xs-6">
                                         <div class="gymie_paging_info">
-                                            Showing page {{ $services->currentPage() }} of {{ $services->lastPage() }}
+                                            Mostrando página {{ $services->currentPage() }} de {{ $services->lastPage() }}
                                         </div>
                                     </div>
 
@@ -126,4 +126,4 @@
             gymie.deleterecord();
         });
     </script>
-@stop 
+@stop

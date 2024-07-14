@@ -6,8 +6,8 @@
         <!-- BEGIN PAGE HEADING -->
         <div class="page-head bg-grey-100">
             @include('flash::message')
-            <h1 class="page-title">Roles</h1>
-            <a href="{{ action('AclController@createRole') }}" class="btn btn-primary active pull-right" role="button"> Add</a></h1>
+            <h1 class="page-title">Funções</h1>
+            <a href="{{ action('AclController@createRole') }}" class="btn btn-primary active pull-right" role="button"> Adicionar</a></h1>
         </div>
 
         <div class="container-fluid">
@@ -21,10 +21,10 @@
                             <table id="staffs" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    <th class="text-center">Name</th>
-                                    <th class="text-center">Display name</th>
-                                    <th class="text-center">Description</th>
-                                    <th class="text-center">Actions</th>
+                                    <th class="text-center">Nome</th>
+                                    <th class="text-center">Nome de Exibição</th>
+                                    <th class="text-center">Descrição</th>
+                                    <th class="text-center">Ações</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -37,20 +37,20 @@
 
                                         <td class="text-center">
                                             <div class="btn-group">
-                                                <button type="button" class="btn btn-info">Actions</button>
+                                                <button type="button" class="btn btn-info">Ações</button>
                                                 <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                                     <span class="caret"></span>
-                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                    <span class="sr-only">Alternar Dropdown</span>
                                                 </button>
                                                 <ul class="dropdown-menu" role="menu">
                                                     <li>
                                                         <a href="{{ action('AclController@editRole',['id' => $role->id]) }}">
-                                                            Edit details
+                                                            Editar detalhes
                                                         </a>
                                                     </li>
                                                     <li>
                                                         <a data-toggle="modal" data-target="#deleteModal-{{$role->id}}" data-id="{{$role->id}}">
-                                                            Delete role
+                                                            Deletar função
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -64,15 +64,15 @@
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                        <h4 class="modal-title">Confirm</h4>
+                                                        <h4 class="modal-title">Confirmar</h4>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p>Are you sure you want to delete it?</p>
+                                                        <p>Você tem certeza que deseja deletar?</p>
                                                     </div>
                                                     <div class="modal-footer">
                                                         {!! Form::Open(['action'=>['AclController@deleteRole',$role->id],'method' => 'POST','id'=>'deleteform-'.$role->id]) !!}
-                                                        <input type="submit" class="btn btn-danger" value="Yes" id="btn-{{ $role->id }}"/>
-                                                        <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                                                        <input type="submit" class="btn btn-danger" value="Sim" id="btn-{{ $role->id }}"/>
+                                                        <button type="button" class="btn btn-info" data-dismiss="modal">Cancelar</button>
                                                         {!! Form::Close() !!}
                                                     </div>
                                                 </div>

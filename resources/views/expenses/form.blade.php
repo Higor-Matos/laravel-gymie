@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-sm-6">
         <div class="form-group">
-            {!! Form::label('name','Name') !!}
+            {!! Form::label('name','Nome') !!}
             {!! Form::text('name',null,['class'=>'form-control','id'=>'name']) !!}
         </div>
     </div>
@@ -12,7 +12,7 @@
     <div class="col-sm-6">
         <div class="form-group">
             <?php $expenseCategories = App\ExpenseCategory::where('status', '=', '1')->lists('name', 'id'); ?>
-            {!! Form::label('category_id','Category') !!}
+            {!! Form::label('category_id','Categoria') !!}
             {!! Form::select('category_id',$expenseCategories,null,['class'=>'form-control selectpicker show-tick show-menu-arrow','id'=>'category_id','data-live-search'=> 'true']) !!}
         </div>
     </div>
@@ -21,8 +21,8 @@
 <div class="row">
     <div class="col-sm-6">
         <div class="form-group">
-            {!! Form::label('due_date','Due date / Payment date') !!}
-            {!! Form::text('due_date',(isset($expense->due_date) ? $expense->due_date->format('Y-m-d') : Carbon::today()->format('Y-m-d')),['class'=>'form-control datepicker-default','id'=>'due_date']) !!}
+            {!! Form::label('due_date','Data de Vencimento / Data de Pagamento') !!}
+            {!! Form::text('due_date',(isset($expense->due_date) ? $expense->due_date->format('d/m/Y') : Carbon::today()->format('d/m/Y')),['class'=>'form-control datepicker-default','id'=>'due_date']) !!}
         </div>
     </div>
 </div>
@@ -30,9 +30,9 @@
 <div class="row">
     <div class="col-sm-6">
         <div class="form-group">
-        {!! Form::label('repeat','Repeat') !!}
+        {!! Form::label('repeat','Repetir') !!}
         <!--0 for inactive , 1 for active-->
-            {!! Form::select('repeat',array('0' => 'Never repeat', '1' => 'Every Day', '2' => 'Every Week', '3' => 'Every Month', '4' => 'Every Year'),null,['class' => 'form-control selectpicker show-tick show-menu-arrow', 'id' => 'repeat']) !!}
+            {!! Form::select('repeat',array('0' => 'Nunca repetir', '1' => 'Todo Dia', '2' => 'Toda Semana', '3' => 'Todo Mês', '4' => 'Todo Ano'),null,['class' => 'form-control selectpicker show-tick show-menu-arrow', 'id' => 'repeat']) !!}
         </div>
     </div>
 </div>
@@ -40,7 +40,7 @@
 <div class="row">
     <div class="col-sm-6">
         <div class="form-group">
-            {!! Form::label('note','Note') !!}
+            {!! Form::label('note','Nota') !!}
             {!! Form::text('note',null,['class'=>'form-control','id'=>'note']) !!}
         </div>
     </div>
@@ -49,9 +49,9 @@
 <div class="row">
     <div class="col-sm-6">
         <div class="form-group">
-            {!! Form::label('amount','Amount') !!}
+            {!! Form::label('amount','Valor') !!}
             <div class="input-group">
-                <div class="input-group-addon"><i class="fa fa-inr"></i></div>
+                <div class="input-group-addon"><i class="fa fa-money"></i></div>
                 {!! Form::text('amount',null,['class'=>'form-control','id'=>'amount']) !!}
             </div>
         </div>
@@ -65,3 +65,4 @@
         </div>
     </div>
 </div>
+

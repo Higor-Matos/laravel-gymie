@@ -7,7 +7,7 @@
                 <div class="col-md-12">
                     <div class="panel no-border">
                         <div class="panel-title">
-                            <div class="panel-head font-size-20">Enter details of the payment</div>
+                            <div class="panel-head font-size-20">Digite os detalhes do pagamento</div>
                         </div>
 
                         {!! Form::Open(['url' => 'payments','id' => 'paymentsform']) !!}
@@ -17,20 +17,19 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <?php  $invoiceList = App\Invoice::lists('invoice_number', 'id'); ?>
-                                        {!! Form::label('invoice_id','Invoice Number') !!}
+                                        <?php $invoiceList = App\Invoice::lists('invoice_number', 'id'); ?>
+                                        {!! Form::label('invoice_id','Número da Fatura') !!}
                                         {!! Form::select('invoice_id',$invoiceList,$payment_detail->invoice_id,['class'=>'form-control selectpicker show-tick', 'id' => 'invoice_id', 'data-live-search'=> 'true']) !!}
                                     </div>
                                 </div>
                             </div>
 
-
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        {!! Form::label('payment_amount','Amount') !!}
+                                        {!! Form::label('payment_amount','Valor') !!}
                                         <div class="input-group">
-                                            <div class="input-group-addon"><i class="fa fa-inr"></i></div>
+                                            <div class="input-group-addon"><i class="fa fa-brl"></i></div>
                                             {!! Form::text('payment_amount',$payment_detail->invoice->pending_amount,['class'=>'form-control', 'id' => 'payment_amount']) !!}
                                         </div>
                                     </div>
@@ -40,8 +39,8 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        {!! Form::label('mode','Mode') !!}
-                                        {!! Form::select('mode',array('1' => 'Cash', '0' => 'Cheque'),1,['class'=>'form-control selectpicker show-tick show-menu-arrow', 'id' => 'mode']) !!}
+                                        {!! Form::label('mode','Modo de Pagamento') !!}
+                                        {!! Form::select('mode',array('1' => 'Dinheiro', '0' => 'Cheque'),1,['class'=>'form-control selectpicker show-tick show-menu-arrow', 'id' => 'mode']) !!}
                                     </div>
                                 </div>
                             </div>
@@ -50,7 +49,7 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            {!! Form::label('number','Cheque number') !!}
+                                            {!! Form::label('number','Número do Cheque') !!}
                                             {!! Form::text('number',null,['class'=>'form-control', 'id' => 'number']) !!}
                                         </div>
                                     </div>
@@ -59,7 +58,7 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            {!! Form::label('date','Cheque date') !!}
+                                            {!! Form::label('date','Data do Cheque') !!}
                                             {!! Form::text('date',null,['class'=>'form-control datepicker-default', 'id' => 'date']) !!}
                                         </div>
                                     </div>
@@ -69,32 +68,29 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        {!! Form::submit('Accept Payment', ['class' => 'btn btn-primary pull-right']) !!}
+                                        {!! Form::submit('Aceitar Pagamento', ['class' => 'btn btn-primary pull-right']) !!}
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-
                         {!! Form::Close() !!}
-
-
                     </div>
                 </div>
             </div>
         </div>
 
+@stop
 
-        @stop
-        @section('footer_scripts')
-            <script src="{{ URL::asset('assets/js/payment.js') }}" type="text/javascript"></script>
-        @stop
+@section('footer_scripts')
+    <script src="{{ URL::asset('assets/js/payment.js') }}" type="text/javascript"></script>
+@stop
 
-        @section('footer_script_init')
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    gymie.loaddatepicker();
-                    gymie.chequedetails();
-                });
-            </script>
+@section('footer_script_init')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            gymie.loaddatepicker();
+            gymie.chequedetails();
+        });
+    </script>
 @stop

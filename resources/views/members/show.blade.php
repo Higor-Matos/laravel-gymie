@@ -13,17 +13,17 @@
                 <div class="col-md-12"><!-- Main Col -->
                     <div class="panel no-border ">
                         <div class="panel-title">
-                            <div class="panel-head font-size-20">Member Detail</div>
+                            <div class="panel-head font-size-20">Detalhes do Membro</div>
                             <div class="pull-right no-margin">
                                 @permission(['manage-gymie','manage-members','edit-member'])
                                 <a class="btn btn-primary" href="{{ action('MembersController@edit',['id' => $member->id]) }}">
-                                    <span>Edit</span>
+                                    <span>Editar</span>
                                 </a>
                                 @endpermission
 
                                 @permission(['manage-gymie','manage-members','delete-member'])
                                 <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal-{{$member->id}}" data-id="{{$member->id}}">
-                                    <span>Delete</span>
+                                    <span>Deletar</span>
                                 </button>
                                 @endpermission
 
@@ -35,15 +35,15 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="modal-title">Confirm</h4>
+                                                <h4 class="modal-title">Confirmar</h4>
                                             </div>
                                             <div class="modal-body">
-                                                <p>Are you sure you want to delete it?</p>
+                                                <p>Você tem certeza que deseja deletar?</p>
                                             </div>
                                             <div class="modal-footer">
                                                 {!! Form::Open(['action'=>['MembersController@archive',$member->id],'method' => 'POST','id'=>'archiveform-'.$member->id]) !!}
-                                                <input type="submit" class="btn btn-danger" value="Yes" id="btn-{{ $member->id }}"/>
-                                                <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                                                <input type="submit" class="btn btn-danger" value="Sim" id="btn-{{ $member->id }}"/>
+                                                <button type="button" class="btn btn-info" data-dismiss="modal">Cancelar</button>
                                                 {!! Form::Close() !!}
                                             </div>
                                         </div>
@@ -82,7 +82,7 @@
 
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <label>Name</label>
+                                                    <label>Nome</label>
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <span class="show-data">{{$member->name}}</span>
@@ -93,7 +93,7 @@
 
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <label>Member Code</label>
+                                                    <label>Código do Membro</label>
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <span class="show-data">{{$member->member_code}}</span>
@@ -103,7 +103,7 @@
 
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <label>Date Of Birth</label>
+                                                    <label>Data de Nascimento</label>
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <span class="show-data">{{$member->DOB}}</span>
@@ -112,7 +112,7 @@
                                             <hr class="margin-top-0 margin-bottom-10">
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <label>Gender</label>
+                                                    <label>Gênero</label>
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <span class="show-data">{{Utilities::getGender($member->gender)}}</span>
@@ -122,7 +122,7 @@
 
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <label>Contact Number</label>
+                                                    <label>Número de Contato</label>
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <span class="show-data">{{$member->contact}}</span>
@@ -142,16 +142,16 @@
                                             <hr class="margin-top-0 margin-bottom-10">
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <label>Member Since</label>
+                                                    <label>Membro Desde</label>
                                                 </div>
                                                 <div class="col-sm-8">
-                                                    <span class="show-data">{{$member->created_at->toFormattedDateString()}}</span>
+                                                    <span class="show-data">{{$member->created_at->format('d/m/Y')}}</span>
                                                 </div>
                                             </div>
                                             <hr class="margin-top-0 margin-bottom-10">
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <label>Emergency Contact</label>
+                                                    <label>Contato de Emergência</label>
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <span class="show-data">{{$member->emergency_contact}}</span>
@@ -169,9 +169,9 @@
                                             <div class="panel bg-grey-50">
                                                 <div class="panel-title bg-transparent">
                                                     <div class="panel-head"><strong><span class="fa-stack">
-							  <i class="fa fa-circle-thin fa-stack-2x"></i>
-							  <i class="fa fa-ellipsis-h fa-stack-1x"></i>
-							</span> Additional Details</strong></div>
+                              <i class="fa fa-circle-thin fa-stack-2x"></i>
+                              <i class="fa fa-ellipsis-h fa-stack-1x"></i>
+                            </span> Detalhes Adicionais</strong></div>
                                                 </div>
                                                 <div class="panel-body">
 
@@ -184,7 +184,7 @@
                                                         }
                                                         ?>
                                                         <div class="col-sm-4">
-                                                            <label>Plan name</label>
+                                                            <label>Nome do Plano</label>
                                                         </div>
                                                         <div class="col-sm-8">
                                                             <span class="show-data">{{implode(",",$plansArray)}}</span>
@@ -203,7 +203,7 @@
                                                     <hr class="margin-top-0 margin-bottom-10">
                                                     <div class="row">
                                                         <div class="col-sm-4">
-                                                            <label>Aim</label>
+                                                            <label>Objetivo</label>
                                                         </div>
                                                         <div class="col-sm-8">
                                                             <span class="show-data">{{Utilities::getAim ($member->aim)}}</span>
@@ -212,7 +212,7 @@
                                                     <hr class="margin-top-0 margin-bottom-10">
                                                     <div class="row">
                                                         <div class="col-sm-4">
-                                                            <label>ID Proof</label>
+                                                            <label>Documento de Identidade</label>
                                                         </div>
                                                         <div class="col-sm-8">
                                                             <span class="show-data">{{$member->proof_name}}</span>
@@ -221,7 +221,7 @@
                                                     <hr class="margin-top-0 margin-bottom-10">
                                                     <div class="row">
                                                         <div class="col-sm-4">
-                                                            <label>Address</label>
+                                                            <label>Endereço</label>
                                                         </div>
                                                         <div class="col-sm-8">
                                                             <span class="show-data">{{$member->address}}</span>
@@ -230,7 +230,7 @@
                                                     <hr class="margin-top-0 margin-bottom-10">
                                                     <div class="row">
                                                         <div class="col-sm-4">
-                                                            <label>Health Issues</label>
+                                                            <label>Problemas de Saúde</label>
                                                         </div>
                                                         <div class="col-sm-8">
                                                             <span class="show-data">{{$member->health_issues}}</span>
@@ -250,23 +250,23 @@
                 </div>
             </div>
 
-            <!--######################### Subscription history for the member ################################# -->
+            <!--######################### Histórico de assinaturas do membro ################################# -->
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel no-border ">
                         <div class="panel-title">
-                            <div class="panel-head font-size-20">Subscription history for the member</div>
+                            <div class="panel-head font-size-20">Histórico de assinaturas do membro</div>
                         </div>
                         <div class="panel-body">
                             <table id="_payment" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    <th>Invoice Number</th>
-                                    <th>Plan Name</th>
-                                    <th>Start Date</th>
-                                    <th>End Date</th>
+                                    <th>Número da Fatura</th>
+                                    <th>Nome do Plano</th>
+                                    <th>Data de Início</th>
+                                    <th>Data de Término</th>
                                     <th>Status</th>
-                                    <th>Payment Status</th>
+                                    <th>Status do Pagamento</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -276,8 +276,8 @@
                                             <a href="{{ action('InvoicesController@show',['id' => $subscription->invoice_id]) }}">{{ $subscription->invoice->invoice_number }}</a>
                                         </td>
                                         <td>{{ $subscription->plan->plan_name }}</td>
-                                        <td>{{ $subscription->start_date->format('Y-m-d') }}</td>
-                                        <td>{{ $subscription->end_date->format('Y-m-d') }}</td>
+                                        <td>{{ $subscription->start_date->format('d/m/Y') }}</td>
+                                        <td>{{ $subscription->end_date->format('d/m/Y') }}</td>
                                         <td>
                                             <span class="{{ Utilities::getSubscriptionLabel ($subscription->status) }}">{{ Utilities::getSubscriptionStatus ($subscription->status) }}</span>
                                         </td>

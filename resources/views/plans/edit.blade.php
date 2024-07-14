@@ -8,12 +8,12 @@
                 <div class="col-md-12">
                     <div class="panel no-border">
                         <div class="panel-title">
-                            <div class="panel-head font-size-20">Enter details of the plan</div>
+                            <div class="panel-head font-size-20">Digite os detalhes do plano</div>
                         </div>
 
                         {!! Form::model($plan, ['method' => 'POST','action' => ['PlansController@update',$plan->id],'id'=>'plansform']) !!}
 
-                        @include('plans.form',['submitButtonText' => 'Update'])
+                        @include('plans.form',['submitButtonText' => 'Atualizar'])
 
                         {!! Form::Close() !!}
 
@@ -24,7 +24,7 @@
             </div>
         </div>
 
-        @stop
-        @section('footer_scripts')
-            <script src="{{ URL::asset('assets/js/plan.js') }}" type="text/javascript"></script>
+@stop
+@section('footer_scripts')
+    <script src="{{ URL::asset('assets/js/plan.js') }}" type="text/javascript"></script>
 @stop

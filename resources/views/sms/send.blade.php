@@ -7,11 +7,11 @@
 
         @include('flash::message')
 
-        <!-- Error Log -->
+        <!-- Log de Erros -->
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                    <strong>Ops!</strong> Houve alguns problemas com sua entrada.<br><br>
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -24,7 +24,7 @@
                 <div class="col-md-12">
                     <div class="panel no-border">
                         <div class="panel-title">
-                            <div class="panel-head font-size-20">Enter details of the message</div>
+                            <div class="panel-head font-size-20">Insira os detalhes da mensagem</div>
                         </div>
 
                         {!! Form::Open(['url' => 'sms/shoot','id'=>'sendform']) !!}
@@ -37,30 +37,30 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        {!! Form::label('send_to','Send To') !!} </br>
+                                        {!! Form::label('send_to','Enviar Para') !!} </br>
                                         <div class="checkbox checkbox-theme display-inline-block">
                                             <input type="checkbox" name="send[]" id="activeMembers" value="0">
-                                            <label for="activeMembers" class="padding-left-30">Active members</label>
+                                            <label for="activeMembers" class="padding-left-30">Membros ativos</label>
                                         </div>
 
                                         <div class="checkbox checkbox-theme display-inline-block">
                                             <input type="checkbox" name="send[]" id="inactiveMembers" value="1">
-                                            <label for="inactiveMembers" class="padding-left-30">Inactive members</label>
+                                            <label for="inactiveMembers" class="padding-left-30">Membros inativos</label>
                                         </div>
 
                                         <div class="checkbox checkbox-theme display-inline-block margin-right-5">
                                             <input type="checkbox" name="send[]" id="leadEnquiries" value="2">
-                                            <label for="leadEnquiries" class="padding-left-30">Lead enquiries</label>
+                                            <label for="leadEnquiries" class="padding-left-30">Consultas de leads</label>
                                         </div>
 
                                         <div class="checkbox checkbox-theme display-inline-block margin-right-11">
                                             <input type="checkbox" name="send[]" id="lostEnquiries" value="3">
-                                            <label for="lostEnquiries" class="padding-left-30">Lost enquiries</label>
+                                            <label for="lostEnquiries" class="padding-left-30">Consultas perdidas</label>
                                         </div>
 
                                         <div class="checkbox checkbox-theme display-inline-block margin-right-5">
                                             <input type="checkbox" name="send[]" id="custom" value="4">
-                                            <label for="custom" class="padding-left-30">Custom</label>
+                                            <label for="custom" class="padding-left-30">Personalizado</label>
                                         </div>
                                     </div>
                                 </div>
@@ -75,7 +75,7 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="sender_id">Sender Id</label>
+                                            <label for="sender_id">ID do Remetente</label>
                                             <select id="sender_id" name="sender_id" class="form-control selectpicker show-tick">
                                                 @foreach($senderIds as $senderId)
                                                     <option value="{{ $senderId }}">{{ $senderId }}</option>
@@ -90,8 +90,8 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group" id="customcontactsdiv">
-                                        {!! Form::label('customcontacts','Contact numbers') !!}
-                                        {!! Form::text('customcontacts',null,['class'=>'form-control tokenfield', 'id' => 'customcontacts', 'placeholder' => 'Type 10 digit contact numbers and hit enter']) !!}
+                                        {!! Form::label('customcontacts','Números de contato') !!}
+                                        {!! Form::text('customcontacts',null,['class'=>'form-control tokenfield', 'id' => 'customcontacts', 'placeholder' => 'Digite números de contato de 10 dígitos e pressione Enter']) !!}
                                     </div>
                                 </div>
                             </div>
@@ -99,7 +99,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        {!! Form::label('message','Message text') !!}
+                                        {!! Form::label('message','Texto da mensagem') !!}
                                         {!! Form::textarea('message',null,['class'=>'form-control', 'id' => 'message','rows' => '5']) !!}
                                     </div>
                                 </div>
@@ -108,7 +108,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        {!! Form::submit('Send Now', ['class' => 'btn btn-primary pull-right']) !!}
+                                        {!! Form::submit('Enviar Agora', ['class' => 'btn btn-primary pull-right']) !!}
                                     </div>
                                 </div>
                             </div>
@@ -121,7 +121,6 @@
             </div>
         </div>
     </div>
-
 
 @stop
 
@@ -136,4 +135,4 @@
             gymie.customsendmessage();
         });
     </script>
-@stop     
+@stop

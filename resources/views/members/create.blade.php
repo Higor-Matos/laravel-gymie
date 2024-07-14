@@ -5,11 +5,11 @@
     <div class="rightside bg-grey-100">
         <div class="container-fluid">
 
-            <!-- Error Log -->
+            <!-- Log de Erros -->
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                    <strong>Opa!</strong> Houve alguns problemas com os seus dados.<br><br>
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -18,14 +18,14 @@
                 </div>
             @endif
 
-            {!! Form::Open(['url' => 'members','id'=>'membersform','files'=>'true']) !!}
+            {!! Form::open(['url' => 'members','id'=>'membersform','files'=>'true']) !!}
 
-        <!-- Member Details -->
+            <!-- Detalhes do Membro -->
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel no-border">
                         <div class="panel-title">
-                            <div class="panel-head font-size-20">Enter details of the member</div>
+                            <div class="panel-head font-size-20">Informe os detalhes do membro</div>
                         </div>
                         <div class="panel-body">
                             @include('members.form')
@@ -36,33 +36,34 @@
 
 
             @if(Request::is('members/create'))
-            <!-- Subscription Details -->
+                <!-- Detalhes da Assinatura -->
                 @include('members._subscription')
 
-            <!-- Invoice Details -->
+                <!-- Detalhes da Fatura -->
                 @include('members._invoice')
 
-            <!-- Payment Details -->
+                <!-- Detalhes do Pagamento -->
                 @include('members._payment')
 
-            <!-- Submit Button Row -->
+                <!-- Botão de Envio -->
                 <div class="row">
                     <div class="col-sm-2 pull-right">
                         <div class="form-group">
-                            {!! Form::submit('Create', ['class' => 'btn btn-primary pull-right']) !!}
+                            {!! Form::submit('Criar', ['class' => 'btn btn-primary pull-right']) !!}
                         </div>
                     </div>
                 </div>
 
             @endif
 
-            {!! Form::Close() !!}
+            {!! Form::close() !!}
 
-        </div> <!-- content -->
-    </div> <!-- rightside -->
+        </div> <!-- conteúdo -->
+    </div> <!-- direita -->
 
 
 @stop
+
 @section('footer_scripts')
     <script src="{{ URL::asset('assets/js/member.js') }}" type="text/javascript"></script>
 @stop
@@ -75,4 +76,4 @@
             gymie.subscription();
         });
     </script>
-@stop        
+@stop

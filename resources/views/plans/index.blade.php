@@ -6,10 +6,10 @@
         <!-- BEGIN PAGE HEADING -->
         <div class="page-head bg-grey-100 padding-top-15 no-padding-bottom">
             @include('flash::message')
-            <h1 class="page-title no-line-height">Plans
+            <h1 class="page-title no-line-height">Planos
                 @permission(['manage-gymie','manage-plans','add-plan'])
-                <a href="{{ action('PlansController@create') }}" class="page-head-btn btn-sm btn-primary active" role="button">Add New</a>
-                <small>Details of all gym plans</small>
+                <a href="{{ action('PlansController@create') }}" class="page-head-btn btn-sm btn-primary active" role="button">Adicionar Novo</a>
+                <small>Detalhes de todos os planos da academia</small>
             </h1>
             @permission(['manage-gymie','pagehead-stats'])
             <h1 class="font-size-30 text-right color-blue-grey-600 animated fadeInDown total-count pull-right">
@@ -17,14 +17,14 @@
                       data-from="0" data-to="{{ $count }}"
                       data-speed="600"
                       data-refresh-interval="10"></span>
-                <small class="color-blue-grey-600 display-block margin-top-5 font-size-14">Total Plans</small>
+                <small class="color-blue-grey-600 display-block margin-top-5 font-size-14">Total de Planos</small>
             </h1>
             @endpermission
             @endpermission
         </div><!-- / PageHead -->
 
         <div class="container-fluid">
-            <!-- Main row -->
+            <!-- Linha principal -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel no-border ">
@@ -33,7 +33,7 @@
                                 <div class="col-xs-12 col-md-3 pull-right">
                                     {!! Form::Open(['method' => 'GET']) !!}
                                     <div class="btn-inline pull-right">
-                                        <input name="search" id="search" type="text" class="form-control padding-right-35" placeholder="Search...">
+                                        <input name="search" id="search" type="text" class="form-control padding-right-35" placeholder="Pesquisar...">
                                         <button class="btn btn-link no-shadow bg-transparent no-padding-top padding-right-10" type="button">
                                             <i class="ion-search"></i></button>
                                     </div>
@@ -43,20 +43,20 @@
                             </div>
 
                             @if($plans->count() == 0)
-                                <h4 class="text-center padding-top-15">Sorry! No records found</h4>
+                                <h4 class="text-center padding-top-15">Desculpe! Nenhum registro encontrado</h4>
                             @else
 
                                 <table id="plans" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
-                                        <th>Plan Code</th>
-                                        <th>Plan Name</th>
-                                        <th>Service Name</th>
-                                        <th>Plan Details</th>
-                                        <th>Days</th>
-                                        <th>Amount</th>
+                                        <th>Código do Plano</th>
+                                        <th>Nome do Plano</th>
+                                        <th>Nome do Serviço</th>
+                                        <th>Detalhes do Plano</th>
+                                        <th>Dias</th>
+                                        <th>Valor</th>
                                         <th>Status</th>
-                                        <th class="text-center">Actions</th>
+                                        <th class="text-center">Ações</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -67,23 +67,23 @@
                                             <td>{{ $plan->service->name}}</td>
                                             <td>{{ $plan->plan_details}}</td>
                                             <td>{{ $plan->days}}</td>
-                                            <td>{{ $plan->amount}}</td>
+                                            <td>{{ 'R$ ' . number_format($plan->amount, 2, ',', '.') }}</td>
                                             <td>
                                                 <span class="{{ Utilities::getActiveInactive ($plan->status) }}">{{ Utilities::getStatusValue ($plan->status) }}</span>
                                             </td>
 
                                             <td class="text-center">
                                                 <div class="btn-group">
-                                                    <button type="button" class="btn btn-info">Actions</button>
+                                                    <button type="button" class="btn btn-info">Ações</button>
                                                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                                         <span class="caret"></span>
-                                                        <span class="sr-only">Toggle Dropdown</span>
+                                                        <span class="sr-only">Alternar Dropdown</span>
                                                     </button>
                                                     <ul class="dropdown-menu" role="menu">
                                                         <li>
                                                             @permission(['manage-gymie','manage-plans','edit-plan'])
                                                             <a href="{{ action('PlansController@edit',['id' => $plan->id]) }}">
-                                                                Edit details
+                                                                Editar detalhes
                                                             </a>
                                                             @endpermission
                                                         </li>
@@ -95,10 +95,10 @@
                                                             <a href="#"
                                                                class="delete-record"
                                                                data-dependency="{{ $dependency }}"
-                                                               data-dependency-message="You have members assigned to this plan, either delete them or assign them to new plan"
+                                                               data-dependency-message="Você tem membros atribuídos a este plano, exclua-os ou atribua-os a um novo plano"
                                                                data-delete-url="{{ url('plans/'.$plan->id.'/archive') }}"
                                                                data-record-id="{{$plan->id}}">
-                                                                Delete plan
+                                                                Excluir plano
                                                             </a>
                                                             @endpermission
                                                         </li>
@@ -112,11 +112,11 @@
 
                                 </table>
 
-                                <!-- Pagination -->
+                                <!-- Paginação -->
                                 <div class="row">
                                     <div class="col-xs-6">
                                         <div class="gymie_paging_info">
-                                            Showing page {{ $plans->currentPage() }} of {{ $plans->lastPage() }}
+                                            Mostrando página {{ $plans->currentPage() }} de {{ $plans->lastPage() }}
                                         </div>
                                     </div>
 
@@ -140,4 +140,4 @@
             gymie.deleterecord();
         });
     </script>
-@stop 
+@stop

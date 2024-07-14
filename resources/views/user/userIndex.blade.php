@@ -6,8 +6,8 @@
         <!-- BEGIN PAGE HEADING -->
         <div class="page-head bg-grey-100">
             @include('flash::message')
-            <h1 class="page-title">Users</h1>
-            <a href="{{ action('AclController@createUser') }}" class="btn btn-primary active pull-right" role="button"> Add</a></h1>
+            <h1 class="page-title">Usuários</h1>
+            <a href="{{ action('AclController@createUser') }}" class="btn btn-primary active pull-right" role="button"> Adicionar</a></h1>
         </div>
 
         <div class="container-fluid">
@@ -21,11 +21,11 @@
                             <table id="staffs" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    <th class="text-center">Photo</th>
-                                    <th class="text-center">Name</th>
+                                    <th class="text-center">Foto</th>
+                                    <th class="text-center">Nome</th>
                                     <th class="text-center">Email</th>
-                                    <th class="text-center">Role</th>
-                                    <th class="text-center">Actions</th>
+                                    <th class="text-center">Função</th>
+                                    <th class="text-center">Ações</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -43,21 +43,21 @@
 
                                         <td class="text-center">
                                             <div class="btn-group">
-                                                <button type="button" class="btn btn-info">Actions</button>
+                                                <button type="button" class="btn btn-info">Ações</button>
                                                 <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                                     <span class="caret"></span>
-                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                    <span class="sr-only">Alternar Dropdown</span>
                                                 </button>
                                                 <ul class="dropdown-menu" role="menu">
                                                     <li>
                                                         <a href="{{ action('AclController@editUser',['id' => $user->id]) }}">
-                                                            Edit details
+                                                            Editar detalhes
                                                         </a>
                                                     </li>
                                                     @if(Auth::user()->id != $user->id)
                                                         <li>
                                                             <a href="#" class="delete-record" data-delete-url="{{ url('user/'.$user->id.'/delete') }}"
-                                                               data-record-id="{{ $user->id }}">Delete user</a>
+                                                               data-record-id="{{ $user->id }}">Deletar usuário</a>
                                                         </li>
                                                     @endif
                                                 </ul>

@@ -4,36 +4,36 @@
 
     <div class="rightside bg-grey-100">
 
-        <!-- BEGIN PAGE HEADING -->
+        <!-- CABEÇALHO DA PÁGINA -->
         <div class="page-head bg-grey-100 padding-top-15 no-padding-bottom">
             @include('flash::message')
-            <h1 class="page-title no-line-height">Inactive Members
-                <small>Details of all inactive gym members</small>
+            <h1 class="page-title no-line-height">Membros Inativos
+                <small>Detalhes de todos os membros inativos da academia</small>
             </h1>
             @permission(['manage-gymie','pagehead-stats'])
             <h1 class="font-size-30 text-right color-blue-grey-600 animated fadeInDown total-count pull-right"><span data-toggle="counter" data-start="0"
                                                                                                                      data-from="0" data-to="{{ $count }}"
                                                                                                                      data-speed="600"
                                                                                                                      data-refresh-interval="10"></span>
-                <small class="color-blue-grey-600 display-block margin-top-5 font-size-14">Inactive Members</small>
+                <small class="color-blue-grey-600 display-block margin-top-5 font-size-14">Membros Inativos</small>
             </h1>
             @endpermission
-        </div><!-- / PageHead -->
+        </div><!-- / CABEÇALHO DA PÁGINA -->
 
         <div class="container-fluid">
-            <div class="row"><!-- Main row -->
-                <div class="col-lg-12"><!-- Main Col -->
+            <div class="row"><!-- Linha Principal -->
+                <div class="col-lg-12"><!-- Coluna Principal -->
                     <div class="panel no-border ">
                         <div class="panel-title bg-blue-grey-50">
                             <div class="panel-head font-size-15">
 
                                 <div class="row">
                                     <div class="col-sm-12 no-padding">
-                                        {!! Form::Open(['method' => 'GET']) !!}
+                                        {!! Form::open(['method' => 'GET']) !!}
 
                                         <div class="col-sm-3">
 
-                                            {!! Form::label('member-daterangepicker','Date range') !!}
+                                            {!! Form::label('member-daterangepicker','Período') !!}
 
                                             <div id="member-daterangepicker"
                                                  class="gymie-daterangepicker btn bg-grey-50 daterange-padding no-border color-grey-600 hidden-xs no-shadow">
@@ -47,27 +47,27 @@
                                         </div>
 
                                         <div class="col-sm-2">
-                                            {!! Form::label('sort_field','Sort By') !!}
-                                            {!! Form::select('sort_field',array('created_at' => 'Date','name' => 'Name', 'member_code' => 'Member code', 'plan_name' => 'Plan name', 'status' => 'Status'),old('sort_field'),['class' => 'form-control selectpicker show-tick show-menu-arrow', 'id' => 'sort_field']) !!}
+                                            {!! Form::label('sort_field','Ordenar por') !!}
+                                            {!! Form::select('sort_field',array('created_at' => 'Data','name' => 'Nome', 'member_code' => 'Código do membro', 'plan_name' => 'Plano', 'status' => 'Status'),old('sort_field'),['class' => 'form-control selectpicker show-tick show-menu-arrow', 'id' => 'sort_field']) !!}
                                         </div>
 
                                         <div class="col-sm-2">
-                                            {!! Form::label('sort_direction','Order') !!}
-                                            {!! Form::select('sort_direction',array('desc' => 'Descending','asc' => 'Ascending'),old('sort_direction'),['class' => 'form-control selectpicker show-tick show-menu-arrow', 'id' => 'sort_direction']) !!}</span>
+                                            {!! Form::label('sort_direction','Ordem') !!}
+                                            {!! Form::select('sort_direction',array('desc' => 'Decrescente','asc' => 'Crescente'),old('sort_direction'),['class' => 'form-control selectpicker show-tick show-menu-arrow', 'id' => 'sort_direction']) !!}</span>
                                         </div>
 
                                         <div class="col-xs-3">
-                                            {!! Form::label('search','Keyword') !!}
+                                            {!! Form::label('search','Palavra-chave') !!}
                                             <input value="{{ old('search') }}" name="search" id="search" type="text" class="form-control padding-right-35"
-                                                   placeholder="Search...">
+                                                   placeholder="Buscar...">
                                         </div>
 
                                         <div class="col-xs-2">
                                             {!! Form::label('&nbsp;') !!} <br/>
-                                            <button type="submit" class="btn btn-primary active no-border">GO</button>
+                                            <button type="submit" class="btn btn-primary active no-border">IR</button>
                                         </div>
 
-                                        {!! Form::Close() !!}
+                                        {!! Form::close() !!}
                                     </div>
                                 </div>
 
@@ -77,19 +77,19 @@
                         <div class="panel-body bg-white">
 
                             @if($members->count() == 0)
-                                <h4 class="text-center padding-top-15">Sorry! No records found</h4>
+                                <h4 class="text-center padding-top-15">Desculpe! Nenhum registro encontrado</h4>
                             @else
                                 <table id="members" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
-                                        <th>Photo</th>
-                                        <th>Code</th>
-                                        <th>Name</th>
-                                        <th>Contact</th>
-                                        <th>Plan name</th>
-                                        <th>Member since</th>
+                                        <th>Foto</th>
+                                        <th>Código</th>
+                                        <th>Nome</th>
+                                        <th>Contato</th>
+                                        <th>Plano</th>
+                                        <th>Membro desde</th>
                                         <th>Status</th>
-                                        <th class="text-center">Actions</th>
+                                        <th class="text-center">Ações</th>
                                     </tr>
                                     </thead>
 
@@ -110,32 +110,32 @@
                                             <td><a href="{{ action('MembersController@show',['id' => $member->id]) }}">{{ $member->name}}</a></td>
                                             <td>{{ $member->contact}}</td>
                                             <td>{{ implode(",",$plansArray) }}</td>
-                                            <td>{{ $member->created_at->format('Y-m-d')}}</td>
+                                            <td>{{ $member->created_at->format('d/m/Y')}}</td>
                                             <td>
                                                 <span class="{{ Utilities::getActiveInactive ($member->status) }}">{{ Utilities::getStatusValue ($member->status) }}</span>
                                             </td>
                                             <td class="text-center">
                                                 <div class="btn-group">
-                                                    <button type="button" class="btn btn-info">Actions</button>
+                                                    <button type="button" class="btn btn-info">Ações</button>
                                                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                                         <span class="caret"></span>
-                                                        <span class="sr-only">Toggle Dropdown</span>
+                                                        <span class="sr-only">Alternar Dropdown</span>
                                                     </button>
                                                     <ul class="dropdown-menu" role="menu">
                                                         <li>
                                                             @permission(['manage-gymie','manage-members','view-member'])
-                                                            <a href="{{ action('MembersController@show',['id' => $member->id]) }}">View details</a>
+                                                            <a href="{{ action('MembersController@show',['id' => $member->id]) }}">Ver detalhes</a>
                                                             @endpermission
                                                         </li>
                                                         <li>
                                                             @permission(['manage-gymie','manage-members','edit-member'])
-                                                            <a href="{{ action('MembersController@edit',['id' => $member->id]) }}">Edit details</a>
+                                                            <a href="{{ action('MembersController@edit',['id' => $member->id]) }}">Editar detalhes</a>
                                                             @endpermission
                                                         </li>
                                                         <li>
                                                             @permission(['manage-gymie','manage-members','delete-member'])
                                                             <a href="#" class="delete-record" data-delete-url="{{ url('members/'.$member->id.'/archive') }}"
-                                                               data-record-id="{{$member->id}}">Delete member</a>
+                                                               data-record-id="{{$member->id}}">Excluir membro</a>
                                                             @endpermission
                                                         </li>
                                                     </ul>
@@ -149,7 +149,7 @@
                                 <div class="row">
                                     <div class="col-xs-6">
                                         <div class="gymie_paging_info">
-                                            Showing page {{ $members->currentPage() }} of {{ $members->lastPage() }}
+                                            Mostrando página {{ $members->currentPage() }} de {{ $members->lastPage() }}
                                         </div>
                                     </div>
                                     <div class="col-xs-6">
@@ -159,13 +159,13 @@
                                     </div>
                                 </div>
 
-                        </div><!-- / Panel Body -->
+                        </div><!-- / Corpo do Painel -->
                         @endif
-                    </div><!-- / Panel-no-border -->
-                </div><!-- / Main Col -->
-            </div><!-- / Main Row -->
+                    </div><!-- / Painel-sem-borda -->
+                </div><!-- / Coluna Principal -->
+            </div><!-- / Linha Principal -->
         </div><!-- / Container -->
-    </div><!-- / RightSide -->
+    </div><!-- / Lado Direito -->
 @stop
 @section('footer_script_init')
     <script type="text/javascript">

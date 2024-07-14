@@ -5,11 +5,11 @@
     <div class="rightside bg-grey-100">
         <div class="container-fluid">
 
-            <!-- Error Log -->
+            <!-- Log de Erros -->
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                    <strong>Opa!</strong> Houve alguns problemas com sua entrada.<br><br>
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -22,12 +22,12 @@
                 <div class="col-md-12">
                     <div class="panel no-border">
                         <div class="panel-title">
-                            <div class="panel-head font-size-20">Enter details of the service</div>
+                            <div class="panel-head font-size-20">Insira os detalhes do serviço</div>
                         </div>
 
                         {!! Form::Open(['url' => 'plans/services','id'=>'servicesform']) !!}
 
-                        @include('services.form',['submitButtonText' => 'Add'])
+                        @include('services.form',['submitButtonText' => 'Adicionar'])
 
                         {!! Form::Close() !!}
 
@@ -36,7 +36,6 @@
             </div>
         </div>
     </div>
-
 
 @stop
 @section('footer_scripts')

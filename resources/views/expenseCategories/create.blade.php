@@ -4,11 +4,11 @@
 
     <div class="rightside bg-grey-100">
         <div class="container-fluid">
-            <!-- Error Log -->
+            <!-- Log de Erros -->
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                    <strong>Opa!</strong> Houve alguns problemas com a sua entrada.<br><br>
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -20,14 +20,14 @@
                 <div class="col-md-12">
                     <div class="panel no-border">
                         <div class="panel-title">
-                            <div class="panel-head font-size-20">Enter details of the expense category</div>
+                            <div class="panel-head font-size-20">Digite os detalhes da categoria de despesa</div>
                         </div>
                         <div class="panel-body">
-                            {!! Form::Open(['url' => 'expenses/categories', 'id' => 'expensecategoriesform']) !!}
+                            {!! Form::open(['url' => 'expenses/categories', 'id' => 'expensecategoriesform']) !!}
 
-                            @include('expenseCategories.form',['submitButtonText' => 'Add'])
+                            @include('expenseCategories.form',['submitButtonText' => 'Adicionar'])
 
-                            {!! Form::Close() !!}
+                            {!! Form::close() !!}
                         </div>
                     </div>
                 </div>
@@ -37,6 +37,7 @@
 
 
 @stop
+
 @section('footer_scripts')
     <script src="{{ URL::asset('assets/js/expenseCategory.js') }}" type="text/javascript"></script>
 @stop

@@ -12,17 +12,16 @@
                                   data-start="0" data-from="0"
                                   data-to="403" data-speed="600"
                                   data-refresh-interval="10"></span>
-                            <small class="color-blue-grey-600 display-block margin-top-5 font-size-20">Forbidden Access</small>
+                            <small class="color-blue-grey-600 display-block margin-top-5 font-size-20">Acesso Proibido</small>
                         </h1>
-                        <p class="padding-30 color-grey-700 animated fadeInLeft">We're sorry but you dont have the required permissions<br/>You are not
-                            authorised to access this resource.</p>
+                        <p class="padding-30 color-grey-700 animated fadeInLeft">Desculpe, você não possui as permissões necessárias<br/>Você não está autorizado a acessar este recurso.</p>
 
                     </div>
                     <div class="panel-footer padding-md bg-transparent animated fadeInUp">
                         <a href="{{ action('DashboardController@index') }}" class="btn btn-dark bg-light-green-500 color-white margin-right-15">
-                            <span class="glyphicon glyphicon-home margin-right-10"></span> Back to home </a>
+                            <span class="glyphicon glyphicon-home margin-right-10"></span> Voltar para a página inicial </a>
                         <a href="http://www.lubus.in" class="btn btn-dark bg-light-blue-600 color-white margin-right-10">
-                            <span class="glyphicon glyphicon-envelope margin-right-10"></span> Contact Support </a>
+                            <span class="glyphicon glyphicon-envelope margin-right-10"></span> Contato com o Suporte </a>
                     </div>
                 </div><!-- /.panel -->
             </div><!-- /.wrapper -->

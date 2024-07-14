@@ -4,8 +4,8 @@
         <!-- BEGIN PAGE HEADING -->
         <div class="page-head bg-grey-100 padding-top-15 no-padding-bottom">
             @include('flash::message')
-            <h1 class="page-title">SMS Log
-                <small>Complete sms log</small>
+            <h1 class="page-title">Registro de SMS
+                <small>Registro completo de SMS</small>
             </h1>
         </div>
 
@@ -18,12 +18,12 @@
                             <div class="row margin-top-15 margin-bottom-15">
                                 <div class="col-xs-6">
                                     <a href="{{ action('SmsController@logRefresh') }}" class="btn btn-labeled btn-info"><span class="btn-label"><i
-                                                    class="glyphicon glyphicon-refresh"></i></span>Refresh</a>
+                                                    class="glyphicon glyphicon-refresh"></i></span>Atualizar</a>
                                 </div>
                                 <div class="col-xs-6 col-md-3 pull-right">
                                     {!! Form::Open(['method' => 'GET']) !!}
                                     <div class="btn-inline pull-right">
-                                        <input name="search" id="search" type="text" class="form-control padding-right-35" placeholder="Search...">
+                                        <input name="search" id="search" type="text" class="form-control padding-right-35" placeholder="Pesquisar...">
                                         <button class="btn btn-link no-shadow bg-transparent no-padding-top padding-right-10" type="button"><i
                                                     class="ion-search"></i></button>
                                     </div>
@@ -32,16 +32,16 @@
                             </div>
 
                             @if($smslogs->count() == 0)
-                                <h4 class="text-center padding-top-15">Sorry! No records found</h4>
+                                <h4 class="text-center padding-top-15">Desculpe! Nenhum registro encontrado</h4>
                             @else
 
                                 <table id="smslogs" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
-                                        <th>Number</th>
-                                        <th>Message</th>
+                                        <th>Número</th>
+                                        <th>Mensagem</th>
                                         <th>Status</th>
-                                        <th>Send Time</th>
+                                        <th>Hora de Envio</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -56,11 +56,11 @@
                                     </tbody>
                                 </table>
 
-                                <!-- Pagination -->
+                                <!-- Paginação -->
                                 <div class="row">
                                     <div class="col-xs-6">
                                         <div class="gymie_paging_info">
-                                            Showing page {{ $smslogs->currentPage() }} of {{ $smslogs->lastPage() }}
+                                            Exibindo página {{ $smslogs->currentPage() }} de {{ $smslogs->lastPage() }}
                                         </div>
                                     </div>
 

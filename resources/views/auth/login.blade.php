@@ -38,7 +38,7 @@
         </div>
         @if (count($errors) > 0)
             <div class="alert alert-danger">
-                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                <strong>Ops!</strong> Houve alguns problemas com sua entrada.<br><br>
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -55,20 +55,20 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="password" name="password" class="form-control input-lg" placeholder="Password"/>
+                    <input type="password" name="password" class="form-control input-lg" placeholder="Senha"/>
                 </div>
 
                 <div class="form-group margin-top-20">
                     <div class="checkbox checkbox-theme">
                         <input type="checkbox" id="remember" name="remember">
-                        <label for="remember">Remember Me</label>
+                        <label for="remember">Lembrar-me</label>
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-dark bg-light-green-500 padding-10 btn-block color-white"><i class="ion-log-in"></i> Sign in</button>
+                <button type="submit" class="btn btn-dark bg-light-green-500 padding-10 btn-block color-white"><i class="ion-log-in"></i> Entrar</button>
             </div>
         </form>
-        <div class="panel-footer padding-md no-margin no-border bg-grey-900 text-center color-white">&copy; 2016 Gymie by LUBUS</div>
+        <div class="panel-footer padding-md no-margin no-border bg-grey-900 text-center color-white">&copy; 2016 Gymie por LUBUS</div>
     </div>
 </div>
 

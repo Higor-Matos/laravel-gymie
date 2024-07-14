@@ -11,7 +11,7 @@
 
                     <div class="panel no-border">
                         <div class="panel-title">
-                            <div class="panel-head font-size-20">Enter details of the member</div>
+                            <div class="panel-head font-size-20">Informe os detalhes do membro</div>
                         </div>
                         <div class="panel-body">
 
@@ -22,12 +22,12 @@
                     <div class="row">
                         <div class="col-sm-2 pull-right">
                             <div class="form-group">
-                                {!! Form::submit('Update', ['class' => 'btn btn-primary pull-right']) !!}
+                                {!! Form::submit('Atualizar', ['class' => 'btn btn-primary pull-right']) !!}
                             </div>
                         </div>
                     </div>
 
-                    {!! Form::Close() !!}
+                    {!! Form::close() !!}
 
                 </div><!-- / Main Col -->
             </div><!-- / Main Row -->
