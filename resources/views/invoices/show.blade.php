@@ -79,7 +79,7 @@
                                             </tr>
                                         @endforeach
                                         <tr>
-                                            <td>Imposto</td>
+                                            <td>Adicional</td>
                                             <td class="text-right">{{ $invoice->tax}}</td>
                                         </tr>
                                         @if($invoice->additional_fees != 0)

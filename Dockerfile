@@ -31,8 +31,12 @@ RUN apt-get update && apt-get install -y \
 # Clean up the apt cache to reduce the image size
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install necessary PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd tokenizer ctype json xml
+# Install necessary PHP extensions with JPEG support for GD
+RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && docker-php-ext-install gd
+
+# Install additional PHP extensions
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath tokenizer ctype json xml
 
 # Install and enable the Imagick extension
 RUN pecl install imagick && docker-php-ext-enable imagick

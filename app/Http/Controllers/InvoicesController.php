@@ -152,7 +152,7 @@ class InvoicesController extends Controller
 
         JavaScript::put([
             'taxes' => \Utilities::getSetting('taxes'),
-            'gymieToday' => Carbon::today()->format('Y-m-d'),
+            'gymieToday' => Carbon::today()->format('d/m/Y'),
             'servicesCount' => Service::count(),
         ]);
 

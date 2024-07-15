@@ -1,72 +1,68 @@
-$(document).ready(function() {
-				$('#plansform').bootstrapValidator({
-					fields: {
-						plan_code: {
-							validators: {
-								notEmpty: {
-									message: 'The id is required and can\'t be empty'
-								},
-								stringLength: {
-			                        max: 50,
-			                        message: 'It must be less than 50 characters'
-			                    }
-							}
-						},
-						plan_name: {
-							validators: {
-								notEmpty: {
-									message: 'The name is required and can\'t be empty'
-								},
-								stringLength: {
-			                        max: 50,
-			                        message: 'It must be less than 50 characters'
-			                    }
-							}
-						},
-						status:{
-							validators: {
-								notEmpty: {
-									message: 'The status is required and can\'t be empty'
-								}
-							}
-						},
-						plan_details:{
-							validators: {
-								notEmpty: {
-									message: 'The details are required and can\'t be empty'
-								},
-								stringLength: {
-			                        max: 50,
-			                        message: 'It must be less than 50 characters'
-			                    }
-							}
-						},
-						days:{
-							validators: {
-								notEmpty: {
-									message: 'The number of days are required and can\'t be empty'
-								},
-							
-							regexp: {
-									regexp: /^[0-9]+$/,
-									message: 'Enter valid number of days'
-								}
-							}
-						},
-						amount:{
-							validators: {
-								notEmpty: {
-									message: 'The amount is required and can\'t be empty'
-								},
-							
-							regexp: {
-									regexp: /^[0-9\.]+$/,
-									message: 'Enter valid amount'
-								}
-							}
-						}
-					
-				}
-			});
-	});
-
+$(document).ready(function () {
+  $("#plansform").bootstrapValidator({
+    fields: {
+      plan_code: {
+        validators: {
+          notEmpty: {
+            message: "O código é obrigatório e não pode estar vazio",
+          },
+          stringLength: {
+            max: 50,
+            message: "Deve ter menos de 50 caracteres",
+          },
+        },
+      },
+      plan_name: {
+        validators: {
+          notEmpty: {
+            message: "O nome é obrigatório e não pode estar vazio",
+          },
+          stringLength: {
+            max: 50,
+            message: "Deve ter menos de 50 caracteres",
+          },
+        },
+      },
+      status: {
+        validators: {
+          notEmpty: {
+            message: "O status é obrigatório e não pode estar vazio",
+          },
+        },
+      },
+      plan_details: {
+        validators: {
+          notEmpty: {
+            message: "Os detalhes são obrigatórios e não podem estar vazios",
+          },
+          stringLength: {
+            max: 50,
+            message: "Deve ter menos de 50 caracteres",
+          },
+        },
+      },
+      days: {
+        validators: {
+          notEmpty: {
+            message: "O número de dias é obrigatório e não pode estar vazio",
+          },
+          regexp: {
+            regexp: /^[0-9]+$/,
+            message: "Insira um número válido de dias",
+          },
+        },
+      },
+      amount: {
+        validators: {
+          notEmpty: {
+            message: "O valor é obrigatório e não pode estar vazio",
+          },
+          regexp: {
+            regexp: /^[0-9\.]+$/,
+            message: "Insira um valor válido",
+          },
+        },
+      },
+    },
+  });
+});

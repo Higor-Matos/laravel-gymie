@@ -77,7 +77,7 @@ class ExpensesController extends Controller
         $expense->updatedBy()->associate(Auth::user());
         $expense->save();
 
-        if ($request->due_date <= Carbon::today()->format('Y-m-d')) {
+        if ($request->due_date <= Carbon::today()->format('d/m/Y')) {
             $expense->paid = \constPaymentStatus::Paid;
         } else {
             $expense->paid = \constPaymentStatus::Unpaid;

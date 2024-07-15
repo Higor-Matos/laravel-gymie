@@ -1,23 +1,23 @@
-$(document).ready(function() {
-                $('#usersform').bootstrapValidator({
-                    fields: {
-                        name: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'The name is required and can\'t be empty'
-                                }
-                            }
-                        },
-                        email: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'The email address is required and can\'t be empty'
-                                },
-                                emailAddress: {
-                                    message: 'The input is not a valid email address'
-                                }
-                            }
-                        }
-                    }
-            });
-            });
+$(document).ready(function () {
+  $("#usersform").bootstrapValidator({
+    fields: {
+      name: {
+        validators: {
+          notEmpty: {
+            message: "O nome é obrigatório e não pode estar vazio",
+          },
+        },
+      },
+      email: {
+        validators: {
+          notEmpty: {
+            message: "O endereço de email é obrigatório e não pode estar vazio",
+          },
+          emailAddress: {
+            message: "A entrada não é um endereço de email válido",
+          },
+        },
+      },
+    },
+  });
+});

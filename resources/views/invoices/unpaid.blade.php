@@ -37,7 +37,7 @@
                                             <div id="invoice-daterangepicker"
                                                  class="gymie-daterangepicker btn bg-grey-50 daterange-padding no-border color-grey-600 hidden-xs no-shadow">
                                                 <i class="ion-calendar margin-right-10"></i>
-                                                <span>{{$drp_placeholder}}</span>
+                                                <span>Selecione uma data</span>
                                                 <i class="ion-ios-arrow-down margin-left-5"></i>
                                             </div>
 

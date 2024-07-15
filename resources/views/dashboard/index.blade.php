@@ -128,9 +128,9 @@
                 <div class="col-lg-6">
                     <div class="panel">
                         <div class="panel-title">
-                            <div class="panel-head"><i class="fa fa-inr"></i><a href="{{ action('ExpensesController@index') }}">Despesas</a></div>
+                            <div class="panel-head"><i class="fa fa-money"></i><a href="{{ action('ExpensesController@index') }}">Despesas</a></div>
                             <div class="pull-right"><a href="{{ action('ExpensesController@create') }}" class="btn-sm btn-primary active" role="button">
-                                    <i class="fa fa-inr"></i> Adicionar</a>
+                                    <i class="fa fa-money"></i> Adicionar</a>
                             </div>
                         </div>
 

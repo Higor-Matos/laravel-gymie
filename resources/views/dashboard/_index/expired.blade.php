@@ -24,7 +24,7 @@
                 $daysGone = Carbon::today()->diffInDays($expired->end_date);
                 ?>
                 <td>
-                    <span class="table-sub-data">{{ $expired->end_date->format('Y-m-d') }}<br></span>
+                    <span class="table-sub-data">{{ $expired->end_date->format('d/m/Y') }}<br></span>
                     <span class="table-sub-data">{{ Carbon::today()->subDays($daysGone)->diffForHumans() }}</span>
                 </td>
 

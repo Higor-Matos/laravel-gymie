@@ -1,27 +1,27 @@
-$(document).ready(function() {
-				$('#subscriptionschangeform').bootstrapValidator({
-					fields: {
-						end_date: {
-							validators: {
-								notEmpty: {
-									message: 'The end date is required and can\'t be empty'
-								}
-							}
-						},
-						date: {
-							  validators: {
-								  notEmpty: {
-									message: 'The cheque date is required and can\'t be empty'
-								}
-							}
-						},
-						number: {
-							  validators: {
-								  notEmpty: {
-									message: 'The cheque number is required and can\'t be empty'
-								}
-							}
-						},
-					}
-				});
-			});
+$(document).ready(function () {
+  $("#subscriptionschangeform").bootstrapValidator({
+    fields: {
+      end_date: {
+        validators: {
+          notEmpty: {
+            message: "A data de término é obrigatória e não pode estar vazia",
+          },
+        },
+      },
+      date: {
+        validators: {
+          notEmpty: {
+            message: "A data do cheque é obrigatória e não pode estar vazia",
+          },
+        },
+      },
+      number: {
+        validators: {
+          notEmpty: {
+            message: "O número do cheque é obrigatório e não pode estar vazio",
+          },
+        },
+      },
+    },
+  });
+});

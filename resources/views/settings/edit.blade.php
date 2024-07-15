@@ -199,7 +199,7 @@
                                             <div class="form-group">
                                                 {!! Form::label('admission_fee','Taxa de Admissão') !!}
                                                 <div class="input-group">
-                                                    <div class="input-group-addon"><i class="fa fa-inr"></i></div>
+                                                    <div class="input-group-addon"><i class="fa fa-money"></i></div>
                                                     {!! Form::text('admission_fee', number_format($settings['admission_fee'], 2, ',', '.'),['class'=>'form-control', 'id' => 'admission_fee']) !!}
                                                 </div>
                                             </div>
@@ -207,7 +207,7 @@
 
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                {!! Form::label('taxes','Impostos') !!}
+                                                {!! Form::label('taxes','Adicionals') !!}
                                                 <div class="input-group">
                                                     {!! Form::text('taxes', number_format($settings['taxes'], 2, ',', '.'),['class'=>'form-control', 'id' => 'taxes']) !!}
                                                     <div class="input-group-addon"><i class="fa fa-percent"></i></div>

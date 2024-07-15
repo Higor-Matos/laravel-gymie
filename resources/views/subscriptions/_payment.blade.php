@@ -11,7 +11,7 @@
                         <div class="form-group">
                             {!! Form::label('payment_amount','Valor Recebido') !!}
                             <div class="input-group">
-                                <div class="input-group-addon"><i class="fa fa-inr"></i></div>
+                                <div class="input-group-addon"><i class="fa fa-money"></i></div>
                                 {!! Form::text('payment_amount',null,['class'=>'form-control', 'id' => 'payment_amount', 'data-amounttotal' => '0']) !!}
                             </div>
                         </div>
@@ -21,7 +21,7 @@
                         <div class="form-group">
                             {!! Form::label('payment_amount_pending','Valor Pendente') !!}
                             <div class="input-group">
-                                <div class="input-group-addon"><i class="fa fa-inr"></i></div>
+                                <div class="input-group-addon"><i class="fa fa-money"></i></div>
                                 {!! Form::text('payment_amount_pending',null,['class'=>'form-control', 'id' => 'payment_amount_pending', 'readonly']) !!}
                             </div>
                         </div>
@@ -30,7 +30,13 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             {!! Form::label('mode','Modo') !!}
-                            {!! Form::select('mode',array('1' => 'Dinheiro', '0' => 'Cheque'),1,['class'=>'form-control selectpicker show-tick show-menu-arrow', 'id' => 'mode']) !!}
+                            {!! Form::select('mode',array(
+                                '1' => 'Dinheiro',
+                                '0' => 'Cheque',
+                                '2' => 'PIX',
+                                '3' => 'Cartão de Crédito',
+                                '4' => 'Cartão de Débito'
+                            ),1,['class'=>'form-control selectpicker show-tick show-menu-arrow', 'id' => 'mode']) !!}
                         </div>
                     </div>
 

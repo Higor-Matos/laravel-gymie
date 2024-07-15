@@ -58,15 +58,53 @@
         </div> <!-- content -->
     </div> <!-- rightside -->
 @stop
+
 @section('footer_scripts')
     <script src="{{ URL::asset('assets/js/subscription.js') }}" type="text/javascript"></script>
+    <script src="{{ URL::asset('assets/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.min.js') }}" charset="UTF-8"></script>
 @stop
+
 @section('footer_script_init')
     <script type="text/javascript">
         $(document).ready(function () {
             gymie.loaddatepickerstart();
             gymie.chequedetails();
             gymie.subscription();
+
+            // Date Range Picker
+            $('#enquiry-daterangepicker').daterangepicker({
+                locale: {
+                    format: 'DD/MM/YYYY',
+                    applyLabel: 'Aplicar',
+                    cancelLabel: 'Cancelar',
+                    fromLabel: 'De',
+                    toLabel: 'Até',
+                    customRangeLabel: 'Personalizado',
+                    daysOfWeek: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+                    monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                    firstDay: 0
+                }
+            });
+
+            // Single Date Picker
+            $('.datepicker, .datepicker-default, .datepicker-startdate').datepicker({
+                format: 'dd/mm/yyyy',
+                language: 'pt-BR',
+                autoclose: true,
+                todayHighlight: true
+            });
+
+            // Bootstrap Select
+            $.fn.selectpicker.defaults = {
+                noneSelectedText: 'Nada selecionado',
+                noneResultsText: 'Nenhum resultado encontrado {0}',
+                countSelectedText: '{0} selecionados',
+                maxOptionsText: ['Limite atingido ({n} {var} max)', 'Limite do grupo atingido ({n} {var} max)', ['itens', 'item']],
+                selectAllText: 'Selecionar todos',
+                deselectAllText: 'Desmarcar todos',
+                multipleSeparator: ', '
+            };
+            $('.selectpicker').selectpicker();
         });
     </script>
 @stop

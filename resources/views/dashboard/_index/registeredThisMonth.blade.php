@@ -18,7 +18,7 @@ $count = App\Member::whereMonth('created_at','=',Carbon::today()->month)->count(
             <div class="clearfix"></div>
 
             <div class="pull-left">
-                <div class="display-block color-teal-50 font-weight-600">Monthly Joinings</div>
+                <div class="display-block color-teal-50 font-weight-600">Admissões Mensais</div>
             </div>
         </div>
     </div>

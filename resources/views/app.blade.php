@@ -8,7 +8,7 @@
     <meta content="" name="description"/>
     <meta content="" name="author"/>
 
-    <title>Gymie</title>
+    <title>The Black's Thai</title>
 
     <!-- BEGIN CORE FRAMEWORK -->
     <link href="{{ URL::asset('assets/plugins/bootstrap/css/bootstrap.css') }}" rel="stylesheet"/>
@@ -47,7 +47,7 @@
 <body class="fixed-leftside fixed-header">
 <!-- BEGIN HEADER -->
 <header class="hidden-print">
-    <span class="logo">Gymie</span>
+    <span class="logo">The Black's Thai</span>
     <nav class="navbar navbar-static-top">
         <a href="#" class="navbar-btn sidebar-toggle">
             <span class="icon-bar"></span>
@@ -66,16 +66,23 @@
             <div class="nav-profile">
                 <div class="thumb">
                     <?php
-                    $media = Auth::user()->getMedia();
-                    $image = ($media->isEmpty() ? 'https://placeholdit.imgix.net/~text?txtsize=18&txt=NA&w=50&h=50' : url($media[0]->getUrl('thumb')));
+                    $user = Auth::user();
+                    if ($user) {
+                        $media = method_exists($user, 'getMedia') ? $user->getMedia() : collect();
+                        $image = ($media->isEmpty() ? 'https://placeholdit.imgix.net/~text?txtsize=18&txt=NA&w=50&h=50' : url($media[0]->getUrl('thumb')));
+                    } else {
+                        $image = 'https://placeholdit.imgix.net/~text?txtsize=18&txt=NA&w=50&h=50';
+                    }
                     ?>
                     <img src="{{ $image }}" class="img-circle" alt=""/>
                 </div>
                 <div class="info">
                     <span class="color-grey-400">{{Utilities::getGreeting()}},</span><br/>
-                    <a>{{Auth::user()->name}}</a>
+                    <a>{{ $user ? $user->name : 'Guest' }}</a>
                 </div>
-                <a href="{{url('auth/logout')}}" class="button"><i class="ion-log-out"></i></a>
+                @if($user)
+                    <a href="{{url('auth/logout')}}" class="button"><i class="ion-log-out"></i></a>
+                @endif
             </div>
             <!-- END RPOFILE -->
             <!-- BEGIN NAV -->

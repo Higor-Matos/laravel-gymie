@@ -11,13 +11,13 @@
                      data-speed="500" data-refresh-interval="10"></div>
             </div>
             <div class="pull-right">
-                <i class="font-size-24 color-green-100 fa fa-inr"></i>
+                <i class="font-size-24 color-green-100 fa fa-university"></i>
             </div>
 
             <div class="clearfix"></div>
 
             <div class="pull-left">
-                <div class="display-block color-green-50 font-weight-600">Monthly Collection</div>
+                <div class="display-block color-green-50 font-weight-600">Arrecadação Mensal</div>
             </div>
         </div>
     </div>

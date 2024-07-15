@@ -1,23 +1,23 @@
-$(document).ready(function() {
-				$('#loginform').bootstrapValidator({
-					fields: {
-						email: {
-							validators: {
-								notEmpty: {
-									message: 'The email address is required and can\'t be empty'
-								},
-								emailAddress: {
-									message: 'The input is not a valid email address'
-								}
-							}
-						},
-						 password: {
-            				validators: {
-            					notEmpty: {
-									message: 'The password is required and can\'t be empty'
-								},
-           					 }
-       					 },
-					}
-			});
-			});
+$(document).ready(function () {
+  $("#loginform").bootstrapValidator({
+    fields: {
+      email: {
+        validators: {
+          notEmpty: {
+            message: "O endereço de email é obrigatório e não pode estar vazio",
+          },
+          emailAddress: {
+            message: "A entrada não é um endereço de email válido",
+          },
+        },
+      },
+      password: {
+        validators: {
+          notEmpty: {
+            message: "A senha é obrigatória e não pode estar vazia",
+          },
+        },
+      },
+    },
+  });
+});

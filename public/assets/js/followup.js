@@ -1,13 +1,13 @@
-$(document).ready(function() {
-				$('#followupform').bootstrapValidator({
-					fields: {
-						outcome: {
-							validators: {
-								notEmpty: {
-									message: 'The outcome is required and can\'t be empty'
-								}
-							}
-						}
-					}
-				})
-			});
+$(document).ready(function () {
+  $("#followupform").bootstrapValidator({
+    fields: {
+      outcome: {
+        validators: {
+          notEmpty: {
+            message: "O resultado é obrigatório e não pode estar vazio",
+          },
+        },
+      },
+    },
+  });
+});

@@ -13,7 +13,7 @@
             <div class="clearfix"></div>
 
             <div class="pull-left">
-                <div class="display-block color-light-blue-50 font-weight-600">Total Members</div>
+                <div class="display-block color-light-blue-50 font-weight-600">Total de Membros</div>
             </div>
         </div>
     </div>

@@ -87,13 +87,13 @@
 
                                         <div class="col-sm-3">
                                             <div class="form-group plan-start-date">
-                                                {!! Form::text("plan[$x][start_date]",$startDate->format('Y-m-d'),['class'=>'form-control datepicker-startdate childStartDate', 'id' => "start_date_$x", 'data-row-id' => "$x"]) !!}
+                                                {!! Form::text("plan[$x][start_date]",$startDate->format('d/m/Y'),['class'=>'form-control datepicker-startdate childStartDate', 'id' => "start_date_$x", 'data-row-id' => "$x"]) !!}
                                             </div>
                                         </div>
 
                                         <div class="col-sm-3">
                                             <div class="form-group plan-end-date">
-                                                {!! Form::text("plan[$x][end_date]",$endDate->format('Y-m-d'),['class'=>'form-control childEndDate', 'id' => "end_date_$x", 'readonly' => 'readonly','data-row-id' => "$x"]) !!}
+                                                {!! Form::text("plan[$x][end_date]",$endDate->format('d/m/Y'),['class'=>'form-control childEndDate', 'id' => "end_date_$x", 'readonly' => 'readonly','data-row-id' => "$x"]) !!}
                                             </div>
                                         </div>
 
@@ -154,9 +154,9 @@
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        {!! Form::label('taxes_amount',sprintf('Imposto @ %s %%',Utilities::getSetting('taxes'))) !!}
+                                        {!! Form::label('taxes_amount',sprintf('Adicional',Utilities::getSetting('taxes'))) !!}
                                         <div class="input-group">
-                                            <div class="input-group-addon"><i class="fa fa-inr"></i></div>
+                                            <div class="input-group-addon"><i class="fa fa-money"></i></div>
                                             {!! Form::text('taxes_amount',0,['class'=>'form-control', 'id' => 'taxes_amount','readonly' => 'readonly']) !!}
                                         </div>
                                     </div>
@@ -184,7 +184,7 @@
                                     <div class="form-group">
                                         {!! Form::label('discount_amount','Valor do Desconto') !!}
                                         <div class="input-group">
-                                            <div class="input-group-addon"><i class="fa fa-inr"></i></div>
+                                            <div class="input-group-addon"><i class="fa fa-money"></i></div>
                                             {!! Form::text('discount_amount',null,['class'=>'form-control', 'id' => 'discount_amount','readonly' => 'readonly']) !!}
                                         </div>
                                     </div>
@@ -223,7 +223,13 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         {!! Form::label('mode','Modo') !!}
-                                        {!! Form::select('mode',array('1' => 'Dinheiro', '0' => 'Cheque'),1,['class'=>'form-control selectpicker show-tick', 'id' => 'mode']) !!}
+                                        {!! Form::select('mode',array(
+                                            '1' => 'Dinheiro',
+                                            '0' => 'Cheque',
+                                            '2' => 'PIX',
+                                            '3' => 'Cartão de Crédito',
+                                            '4' => 'Cartão de Débito'
+                                        ),1,['class'=>'form-control selectpicker show-tick show-menu-arrow', 'id' => 'mode']) !!}
                                     </div>
                                 </div>
 

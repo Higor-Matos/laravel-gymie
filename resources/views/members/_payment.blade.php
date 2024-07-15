@@ -30,7 +30,13 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             {!! Form::label('mode','Modo') !!}
-                            {!! Form::select('mode',array('1' => 'Dinheiro', '0' => 'Cheque'),1,['class'=>'form-control selectpicker show-tick show-menu-arrow', 'id' => 'mode']) !!}
+                            {!! Form::select('mode',array(
+                                '1' => 'Dinheiro',
+                                '0' => 'Cheque',
+                                '2' => 'PIX',
+                                '3' => 'Cartão de Crédito',
+                                '4' => 'Cartão de Débito'
+                            ),1,['class'=>'form-control selectpicker show-tick show-menu-arrow', 'id' => 'mode']) !!}
                         </div>
                     </div>
                 </div> <!-- /Row -->

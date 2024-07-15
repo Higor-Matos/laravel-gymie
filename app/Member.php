@@ -46,7 +46,7 @@ class Member extends Model implements HasMediaConversions
 
     public function getDobAttribute($value)
     {
-        return (new Carbon($value))->format('Y-m-d');
+        return (new Carbon($value))->format('d/m/Y');
     }
 
     // Media i.e. Image size conversion

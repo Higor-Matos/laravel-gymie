@@ -42,7 +42,7 @@
                                             <div id="subscription-daterangepicker"
                                                  class="gymie-daterangepicker btn bg-grey-50 daterange-padding no-border color-grey-600 hidden-xs no-shadow">
                                                 <i class="ion-calendar margin-right-10"></i>
-                                                <span>{{$drp_placeholder}}</span>
+                                                <span>Selecione uma data</span>
                                                 <i class="ion-ios-arrow-down margin-left-5"></i>
                                             </div>
 
@@ -122,8 +122,8 @@
                                                 <a href="{{ action('MembersController@show',['id' => $subscription->member->id]) }}">{{ $subscription->member->name}}</a>
                                             </td>
                                             <td>{{ $subscription->plan_name}}</td>
-                                            <td>{{ $subscription->start_date->format('Y-m-d')}}</td>
-                                            <td>{{ $subscription->end_date->format('Y-m-d')}}</td>
+                                            <td>{{ $subscription->start_date->format('d/m/Y')}}</td>
+                                            <td>{{ $subscription->end_date->format('d/m/Y')}}</td>
                                             <td>
                                                 <span class="{{ Utilities::getSubscriptionLabel ($subscription->status) }}">{{ Utilities::getSubscriptionStatus($subscription->status) }}</span>
                                             </td>

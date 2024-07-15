@@ -40,7 +40,7 @@
                                         <div id="enquiry-daterangepicker"
                                              class="gymie-daterangepicker btn bg-grey-50 daterange-padding no-border color-grey-600 hidden-xs no-shadow">
                                             <i class="ion-calendar margin-right-10"></i>
-                                            <span>{{$drp_placeholder}}</span>
+                                            <span>Selecione uma data</span>
                                             <i class="ion-ios-arrow-down margin-left-5"></i>
                                         </div>
                                         {!! Form::text('drp_start',null,['class'=>'hidden', 'id' => 'drp_start']) !!}
@@ -182,6 +182,31 @@
 <script type="text/javascript">
     $(document).ready(function () {
         gymie.markEnquiryAs();
+
+        // Configuração do daterangepicker
+        $('#enquiry-daterangepicker').daterangepicker({
+            locale: {
+                format: 'DD/MM/YYYY',
+                separator: ' - ',
+                applyLabel: 'Aplicar',
+                cancelLabel: 'Cancelar',
+                fromLabel: 'De',
+                toLabel: 'Até',
+                customRangeLabel: 'Personalizado',
+                daysOfWeek: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                firstDay: 1
+            },
+            ranges: {
+               'Hoje': [moment(), moment()],
+               'Ontem': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+               'Últimos 7 Dias': [moment().subtract(6, 'days'), moment()],
+               'Últimos 30 Dias': [moment().subtract(29, 'days'), moment()],
+               'Este Mês': [moment().startOf('month'), moment().endOf('month')],
+               'Mês Passado': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+               'Intervalo Personalizado': []
+            }
+        });
     });
 </script>
 @stop

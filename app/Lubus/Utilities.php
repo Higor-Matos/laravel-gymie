@@ -393,14 +393,19 @@ class Utilities
     public static function getPaymentMode($status)
     {
         switch ($status) {
-        case '0':
-            return 'Cheque';
-            break;
-
-        default:
-            return 'Cash';
-            break;
-    }
+            case '0':
+                return 'Cheque';
+            case '1':
+                return 'Dinheiro';
+            case '2':
+                return 'PIX';
+            case '3':
+                return 'Cartão de Crédito';
+            case '4':
+                return 'Cartão de Débito';
+            default:
+                return 'Desconhecido';
+        }
     }
 
     // Cheque status
@@ -477,16 +482,16 @@ class Utilities
         $time = Carbon::now()->hour;
         /* If the time is less than 1200 hours, show good morning */
         if ($time < '12') {
-            echo 'Good morning';
+            echo 'Bom Dia :)';
         } elseif /* If the time is grater than or equal to 1200 hours, but less than 1700 hours, so good afternoon */
     ($time >= '12' && $time < '17') {
-            echo 'Good afternoon';
+            echo 'Boa Tarde :)';
         } elseif /* Should the time be between or equal to 1700 and 1900 hours, show good evening */
     ($time >= '17' && $time < '22') {
-            echo 'Good evening';
+            echo 'Boa Noite :)';
         } elseif /* Finally, show good night if the time is greater than or equal to 2200 hours */
     ($time >= '22') {
-            echo 'Good night';
+            echo 'Boa Madrugada :)';
         }
     }
 

@@ -24,7 +24,7 @@
                     <?php
                     $daysGone = Carbon::today()->diffInDays($recent->created_at);
                     ?>
-                    <span class="table-sub-data">{{ $recent->created_at->format('Y-m-d') }}<br></span>
+                    <span class="table-sub-data">{{ $recent->created_at->format('d/m/Y') }}<br></span>
                     <span class="table-sub-data">{{ Carbon::today()->subDays($daysGone)->diffForHumans() }}</span>
                 </td>
             </tr>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Setting;
 use Illuminate\Http\Request;
+use Intervention\Image\ImageManager;
 
 class SettingsController extends Controller
 {
@@ -31,18 +32,34 @@ class SettingsController extends Controller
         // Get All Inputs Except '_Token' to loop through and save
         $settings = $request->except('_token');
 
+        // Create an instance of ImageManager with GD driver
+        $manager = new ImageManager(['driver' => 'gd']);
+
         // Update All Settings
         foreach ($settings as $key => $value) {
-            if ($key == 'gym_logo') {
-                \Utilities::uploadFile($request, '', $key, 'gym_logo', \constPaths::GymLogo); // Upload File
-                $value = $key.'.jpg'; // Image Name For DB
+            if ($key == 'gym_logo' && $request->hasFile('gym_logo')) {
+                $file = $request->file('gym_logo');
+                
+                try {
+                    // Process the image
+                    $image = $manager->make($file->getRealPath());
+                    
+                    // Save the image
+                    $image->encode('jpg', 75)->save(public_path('/assets/img/gym/gym_logo.jpg'));
+
+                    // Set the value to the file name for the database
+                    $value = 'gym_logo.jpg';
+                } catch (\Exception $e) {
+                    return back()->withErrors(['gym_logo' => 'Erro ao processar a imagem: ' . $e->getMessage()]);
+                }
             }
 
             Setting::where('key', '=', $key)->update(['value' => $value]);
         }
 
-        flash()->success('Setting was successfully updated');
+        flash()->success('Configurações foram atualizadas com sucesso');
 
         return redirect('settings/edit');
     }
+
 }

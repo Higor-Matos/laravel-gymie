@@ -10,7 +10,7 @@
                     <a href="{{ action('ExpensesController@edit',['id' => $outstanding->id]) }}">{{ $outstanding->amount }}</a>
                 </td>
                 <td>
-                    <a href="{{ action('ExpensesController@edit',['id' => $outstanding->id]) }}">{{ $outstanding->due_date->format('Y-m-d') }}</a>
+                    <a href="{{ action('ExpensesController@edit',['id' => $outstanding->id]) }}">{{ $outstanding->due_date->format('d/m/Y') }}</a>
                 </td>
                 <td><a class="btn btn-info btn-xs btn pull-right"
                        href="{{ action('ExpensesController@paid',['id' => $outstanding->id]) }}">Pay</a></td>

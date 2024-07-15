@@ -1,49 +1,50 @@
-$(document).ready(function() {
-				$('#usersform').bootstrapValidator({
-					fields: {
-						name: {
-							validators: {
-								notEmpty: {
-									message: 'The name is required and can\'t be empty'
-								}
-							}
-						},
-						email: {
-							validators: {
-								notEmpty: {
-									message: 'The email address is required and can\'t be empty'
-								},
-								emailAddress: {
-									message: 'The input is not a valid email address'
-								}
-							}
-						},
-						 password: {
-            				validators: {
-            					notEmpty: {
-									message: 'The password is required and can\'t be empty'
-								},
-								stringLength: {
-			                        min: 6,
-			                        message: 'The password must be atleast of 6 characters'
-			                    },
-                				identical: {
-                   				 field: 'password_confirmation',
-                   				 message: 'The password and its confirm are not the same'
-               					 }
-           					 }
-       					 },
-						password_confirmation: {
-           					 validators: {
-           					 	notEmpty: {
-									message: 'Password confirmation is required and can\'t be empty'
-								},
-               					 identical: {
-                   					field: 'password',
-                   					message: 'The password and its confirm are not the same'
-               				    }
-            				}
-        				}
-					}
-			});
-			});
+$(document).ready(function () {
+  $("#usersform").bootstrapValidator({
+    fields: {
+      name: {
+        validators: {
+          notEmpty: {
+            message: "O nome é obrigatório e não pode estar vazio",
+          },
+        },
+      },
+      email: {
+        validators: {
+          notEmpty: {
+            message: "O endereço de email é obrigatório e não pode estar vazio",
+          },
+          emailAddress: {
+            message: "A entrada não é um endereço de email válido",
+          },
+        },
+      },
+      password: {
+        validators: {
+          notEmpty: {
+            message: "A senha é obrigatória e não pode estar vazia",
+          },
+          stringLength: {
+            min: 6,
+            message: "A senha deve ter pelo menos 6 caracteres",
+          },
+          identical: {
+            field: "password_confirmation",
+            message: "A senha e sua confirmação não são iguais",
+          },
+        },
+      },
+      password_confirmation: {
+        validators: {
+          notEmpty: {
+            message:
+              "A confirmação da senha é obrigatória e não pode estar vazia",
+          },
+          identical: {
+            field: "password",
+            message: "A senha e sua confirmação não são iguais",
+          },
+        },
+      },
+    },
+  });
+});

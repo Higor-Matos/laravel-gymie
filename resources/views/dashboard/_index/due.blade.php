@@ -5,7 +5,7 @@
                 <td><a href="{{ action('ExpensesController@edit',['id' => $due->id]) }}">{{ $due->name }}</a></td>
                 <td><a href="{{ action('ExpensesController@edit',['id' => $due->id]) }}">{{ $due->amount }}</a></td>
                 <td>
-                    <a href="{{ action('ExpensesController@edit',['id' => $due->id]) }}">{{ $due->due_date->format('Y-m-d') }}</a>
+                    <a href="{{ action('ExpensesController@edit',['id' => $due->id]) }}">{{ $due->due_date->format('d/m/Y') }}</a>
                 </td>
                 <td><a class="btn btn-info btn-xs btn pull-right"
                        href="{{ action('ExpensesController@paid',['id' => $due->id]) }}">Pay</a></td>

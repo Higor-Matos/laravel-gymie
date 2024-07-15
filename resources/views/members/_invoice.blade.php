@@ -36,7 +36,7 @@
 
                     <div class="col-sm-3">
                         <div class="form-group">
-                            {!! Form::label('taxes_amount',sprintf('Imposto @ %s %%',Utilities::getSetting('taxes'))) !!}
+                            {!! Form::label('taxes_amount',sprintf('Adicional' ,Utilities::getSetting('taxes'))) !!}
                             <div class="input-group">
                                 <div class="input-group-addon">R$</div>
                                 {!! Form::text('taxes_amount',0,['class'=>'form-control', 'id' => 'taxes_amount','readonly' => 'readonly']) !!}

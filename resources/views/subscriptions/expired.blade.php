@@ -39,7 +39,7 @@
                                             <div id="subscription-daterangepicker"
                                                  class="gymie-daterangepicker btn bg-grey-50 daterange-padding no-border color-grey-600 hidden-xs no-shadow">
                                                 <i class="ion-calendar margin-right-10"></i>
-                                                <span>{{$drp_placeholder}}</span>
+                                                <span>Selecione uma data</span>
                                                 <i class="ion-ios-arrow-down margin-left-5"></i>
                                             </div>
 
@@ -102,8 +102,8 @@
                                             <td><a href="{{ action('MembersController@show',['id' => $expired->member->id]) }}">{{ $expired->member->name}}</a>
                                             </td>
                                             <td>{{ $expired->plan->plan_name}}</td>
-                                            <td>{{ $expired->start_date->format('Y-m-d')}}</td>
-                                            <td>{{ $expired->end_date->format('Y-m-d')}}</td>
+                                            <td>{{ $expired->start_date->format('d/m/Y')}}</td>
+                                            <td>{{ $expired->end_date->format('d/m/Y')}}</td>
                                             <td class="text-center">
                                                 {!! Form::Open(['method' => 'POST','action' => ['SubscriptionsController@cancelSubscription',$expired->id]]) !!}
                                                 <div class="btn-group">

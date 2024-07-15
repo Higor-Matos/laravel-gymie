@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="utf-8">
@@ -8,7 +8,7 @@
     <meta content="" name="description"/>
     <meta content="" name="author"/>
 
-    <title>Gymie - Login</title>
+    <title>The Black's Thai - Login</title>
 
     <!-- BEGIN CORE FRAMEWORK -->
     <link href="{{ URL::asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"/>
@@ -65,10 +65,12 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-dark bg-light-green-500 padding-10 btn-block color-white"><i class="ion-log-in"></i> Entrar</button>
+                <button type="submit" class="btn btn-dark padding-10 btn-block color-white" style="background-color: #8B0000; color: white;">
+                    <i class="ion-log-in"></i> Entrar
+                </button>
             </div>
         </form>
-        <div class="panel-footer padding-md no-margin no-border bg-grey-900 text-center color-white">&copy; 2016 Gymie por LUBUS</div>
+        <div class="panel-footer padding-md no-margin no-border bg-grey-900 text-center color-white">&copy; <?php echo date('Y'); ?> Adaptado por Higor de Deus.</div>
     </div>
 </div>
 

@@ -1,5 +1,5 @@
 <?php
-$count = App\Subscription::where('status',0)->count();
+$count = App\Subscription::where('status', 0)->count();
 ?>
 <div class="panel bg-grey-500">
     <div class="panel-body padding-15-20">
@@ -15,7 +15,7 @@ $count = App\Subscription::where('status',0)->count();
             <div class="clearfix"></div>
 
             <div class="pull-left">
-                <div class="display-block color-grey-50 font-weight-600">Membership Due</div>
+                <div class="display-block color-grey-50 font-weight-600">Assinaturas Vencidas</div>
             </div>
         </div>
     </div>

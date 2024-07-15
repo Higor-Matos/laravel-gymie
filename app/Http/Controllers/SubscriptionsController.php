@@ -77,7 +77,7 @@ class SubscriptionsController extends Controller
         // For Tax calculation
         JavaScript::put([
           'taxes' => \Utilities::getSetting('taxes'),
-          'gymieToday' => Carbon::today()->format('Y-m-d'),
+          'gymieToday' => Carbon::today()->format('d/m/Y'),
           'servicesCount' => Service::count(),
       ]);
         list($invoice_number_mode, $invoiceCounter, $invoice_number) = $this->generateInvoiceNumber();
@@ -260,16 +260,16 @@ class SubscriptionsController extends Controller
     public function edit($id)
     {
         $subscription = Subscription::findOrFail($id);
-        // $carbonToday = Carbon::today()->format('Y-m-d');
-        // $subscriptionEndDate = $subscription->end_date->format('Y-m-d');
+        // $carbonToday = Carbon::today()->format('d/m/Y');
+        // $subscriptionEndDate = $subscription->end_date->format('d/m/Y');
         $diff = Carbon::today()->diffInDays($subscription->end_date);
-        //$gymieDiff = $diff->format('Y-m-d');
+        //$gymieDiff = $diff->format('d/m/Y');
         $gymieDiff = $subscription->end_date->addDays($diff);
 
         JavaScript::put([
-          'gymieToday' => Carbon::today()->format('Y-m-d'),
-          'gymieEndDate' => $subscription->end_date->format('Y-m-d'),
-          'gymieDiff' => $gymieDiff->format('Y-m-d'),
+          'gymieToday' => Carbon::today()->format('d/m/Y'),
+          'gymieEndDate' => $subscription->end_date->format('d/m/Y'),
+          'gymieDiff' => $gymieDiff->format('d/m/Y'),
       ]);
 
         return view('subscriptions.edit', compact('subscription'));
@@ -299,7 +299,7 @@ class SubscriptionsController extends Controller
         // Javascript Variables
         JavaScript::put([
             'taxes' => \Utilities::getSetting('taxes'),
-            'gymieToday' => Carbon::today()->format('Y-m-d'),
+            'gymieToday' => Carbon::today()->format('d/m/Y'),
             'servicesCount' => Service::count(),
             'currentServices' => $subscriptions->count(),
         ]);
@@ -371,7 +371,7 @@ class SubscriptionsController extends Controller
 
         JavaScript::put([
           'taxes' => \Utilities::getSetting('taxes'),
-          'gymieToday' => Carbon::today()->format('Y-m-d'),
+          'gymieToday' => Carbon::today()->format('d/m/Y'),
           'servicesCount' => Service::count(),
       ]);
 

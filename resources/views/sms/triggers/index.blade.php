@@ -2,14 +2,14 @@
 
 @section('content')
     <div class="rightside bg-grey-100">
-        <!-- BEGIN PAGE HEADING -->
+        <!-- INÍCIO DO CABEÇALHO DA PÁGINA -->
         <div class="page-head bg-grey-100 padding-top-15 no-padding-bottom">
             @include('flash::message')
-            <h1 class="page-title">SMS Triggers</h1>
+            <h1 class="page-title">Gatilhos de SMS</h1>
         </div>
 
         <div class="container-fluid">
-            <!-- Main row -->
+            <!-- Linha Principal -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel no-border ">
@@ -17,21 +17,21 @@
                             {!! Form::Open(['method' => 'POST','action' => ['SmsController@triggerUpdate']]) !!}
                             <div class="row margin-top-15 margin-bottom-15">
                                 <div class="col-xs-12 col-md-3 pull-right">
-                                    {!! Form::submit('Save', ['class' => 'btn btn-sm btn-primary pull-right']) !!}
+                                    {!! Form::submit('Salvar', ['class' => 'btn btn-sm btn-primary pull-right']) !!}
                                 </div>
                             </div>
 
                             @if($triggers->count() == 0)
-                                <h4 class="text-center padding-top-15">Sorry! No records found</h4>
+                                <h4 class="text-center padding-top-15">Desculpe! Nenhum registro encontrado</h4>
                             @else
 
                                 <table id="triggers" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
-                                        <th class="text-center">Name</th>
-                                        <th class="text-center">Message</th>
+                                        <th class="text-center">Nome</th>
+                                        <th class="text-center">Mensagem</th>
                                         <th class="text-center">Status</th>
-                                        <th class="text-center">On/Off</th>
+                                        <th class="text-center">Ativar/Desativar</th>
                                     </tr>
                                     </thead>
                                     <tbody>

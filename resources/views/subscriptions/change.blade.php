@@ -58,13 +58,13 @@
 
                                     <div class="col-sm-3">
                                         <div class="form-group plan-start-date">
-                                            {!! Form::text('plan[0][start_date]',$subscription->start_date->format('Y-m-d'),['class'=>'form-control datepicker-startdate childStartDate', 'id' => 'start_date_0', 'data-row-id' => '0','readonly']) !!}
+                                            {!! Form::text('plan[0][start_date]',$subscription->start_date->format('d/m/Y'),['class'=>'form-control datepicker-startdate childStartDate', 'id' => 'start_date_0', 'data-row-id' => '0','readonly']) !!}
                                         </div>
                                     </div>
 
                                     <div class="col-sm-3">
                                         <div class="form-group plan-end-date">
-                                            {!! Form::text('plan[0][end_date]',$subscription->end_date->format('Y-m-d'),['class'=>'form-control childEndDate', 'id' => 'end_date_0', 'readonly' => 'readonly','data-row-id' => '0']) !!}
+                                            {!! Form::text('plan[0][end_date]',$subscription->end_date->format('d/m/Y'),['class'=>'form-control childEndDate', 'id' => 'end_date_0', 'readonly' => 'readonly','data-row-id' => '0']) !!}
                                         </div>
                                     </div>
                                 </div> <!-- / Row -->
@@ -94,7 +94,7 @@
                                     <div class="form-group">
                                         {!! Form::label('subscription_amount','Taxa de inscrição na academia') !!}
                                         <div class="input-group">
-                                            <div class="input-group-addon"><i class="fa fa-inr"></i></div>
+                                            <div class="input-group-addon">R$</div>
                                             {!! Form::text('subscription_amount',$subscription->invoice->total,['class'=>'form-control', 'id' => 'subscription_amount','readonly' => 'readonly']) !!}
                                         </div>
                                     </div>
@@ -102,9 +102,9 @@
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        {!! Form::label('taxes_amount',sprintf('Imposto @ %s %%',Utilities::getSetting('taxes'))) !!}
+                                        {!! Form::label('taxes_amount',sprintf('Adicional',Utilities::getSetting('taxes'))) !!}
                                         <div class="input-group">
-                                            <div class="input-group-addon"><i class="fa fa-inr"></i></div>
+                                            <div class="input-group-addon">R$</div>
                                             {!! Form::text('taxes_amount',$subscription->invoice->tax,['class'=>'form-control', 'id' => 'taxes_amount','readonly' => 'readonly']) !!}
                                         </div>
                                     </div>
@@ -132,7 +132,7 @@
                                     <div class="form-group">
                                         {!! Form::label('discount_amount','Valor do Desconto') !!}
                                         <div class="input-group">
-                                            <div class="input-group-addon"><i class="fa fa-inr"></i></div>
+                                            <div class="input-group-addon">R$</div>
                                             {!! Form::text('discount_amount',$subscription->invoice->discount_amount,['class'=>'form-control', 'id' => 'discount_amount','readonly' => 'readonly']) !!}
                                         </div>
                                     </div>
@@ -162,7 +162,7 @@
                                     <div class="form-group">
                                         {!! Form::label('previous_payment','Já pago') !!}
                                         <div class="input-group">
-                                            <div class="input-group-addon"><i class="fa fa-inr"></i></div>
+                                            <div class="input-group-addon">R$</div>
                                             {!! Form::text('previous_payment',($already_paid == null ? '0' : $already_paid),['class'=>'form-control', 'id' => 'previous_payment']) !!}
                                         </div>
                                     </div>
@@ -172,7 +172,7 @@
                                     <div class="form-group">
                                         {!! Form::label('payment_amount','Valor Recebido') !!}
                                         <div class="input-group">
-                                            <div class="input-group-addon"><i class="fa fa-inr"></i></div>
+                                            <div class="input-group-addon">R$</div>
                                             {!! Form::text('payment_amount',null,['class'=>'form-control', 'id' => 'payment_amount', 'data-amounttotal' => '0']) !!}
                                         </div>
                                     </div>
@@ -182,7 +182,7 @@
                                     <div class="form-group">
                                         {!! Form::label('payment_amount_pending','Valor Pendente') !!}
                                         <div class="input-group">
-                                            <div class="input-group-addon"><i class="fa fa-inr"></i></div>
+                                            <div class="input-group-addon">R$</div>
                                             {!! Form::text('payment_amount_pending',null,['class'=>'form-control', 'id' => 'payment_amount_pending', 'readonly']) !!}
                                         </div>
                                     </div>
@@ -191,7 +191,13 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         {!! Form::label('mode','Modo') !!}
-                                        {!! Form::select('mode',array('1' => 'Dinheiro', '0' => 'Cheque'),1,['class'=>'form-control selectpicker show-tick show-menu-arrow', 'id' => 'mode']) !!}
+                                        {!! Form::select('mode',array(
+                                            '1' => 'Dinheiro',
+                                            '0' => 'Cheque',
+                                            '2' => 'PIX',
+                                            '3' => 'Cartão de Crédito',
+                                            '4' => 'Cartão de Débito'
+                                        ),1,['class'=>'form-control selectpicker show-tick show-menu-arrow', 'id' => 'mode']) !!}
                                     </div>
                                 </div>
 

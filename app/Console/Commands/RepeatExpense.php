@@ -39,7 +39,7 @@ class RepeatExpense extends Command
      */
     public function handle()
     {
-        $expenses = Expense::where('due_date', '=', Carbon::today()->format('Y-m-d'))->get();
+        $expenses = Expense::where('due_date', '=', Carbon::today()->format('d/m/Y'))->get();
 
         foreach ($expenses as $expense) {
             if ($expense->repeat == 1) {

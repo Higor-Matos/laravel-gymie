@@ -56,7 +56,7 @@ use Carbon\Carbon;
 
         <div class="col-sm-3">
             <div class="form-group plan-start-date">
-                {!! Form::text('plan[0][start_date]',Carbon::today()->format('Y-m-d'),['class'=>'form-control datepicker-startdate childStartDate', 'id' => 'start_date_0', 'data-row-id' => '0']) !!}
+                {!! Form::text('plan[0][start_date]',Carbon::today()->format('d/m/Y'),['class'=>'form-control datepicker-startdate childStartDate', 'id' => 'start_date_0', 'data-row-id' => '0']) !!}
             </div>
         </div>
 
