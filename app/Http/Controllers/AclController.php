@@ -19,7 +19,7 @@ class AclController extends Controller
     }
 
     /**
-     * CRUD functions for Users.
+     * Funções CRUD para Usuários.
      */
     public function userIndex()
     {
@@ -46,7 +46,7 @@ class AclController extends Controller
 
         $user->save();
 
-        // Adding Photo
+        // Adicionando Foto
         if ($request->hasFile('photo')) {
             $user->addMedia($request->file('photo'))->usingFileName('staff_'.$user->id.$request->photo->getClientOriginalExtension())->toCollection('staff');
         }
@@ -54,7 +54,7 @@ class AclController extends Controller
 
         $user->attachRole($request->role_id);
 
-        flash()->success('User was successfully created');
+        flash()->success('Usuário criado com sucesso');
 
         return redirect('user');
     }
@@ -93,7 +93,7 @@ class AclController extends Controller
             $user->attachRole($request->role_id);
         }
 
-        flash()->success('User details were successfully updated');
+        flash()->success('Detalhes do usuário atualizados com sucesso');
 
         return redirect('user');
     }
@@ -109,19 +109,19 @@ class AclController extends Controller
             $user->save();
 
             DB::commit();
-            flash()->success('User was successfully deleted');
+            flash()->success('Usuário deletado com sucesso');
 
             return redirect('user');
         } catch (Exception $e) {
             DB::rollback();
-            flash()->error('User was not deleted');
+            flash()->error('Usuário não foi deletado');
 
             return redirect('user');
         }
     }
 
     /**
-     * CRUD functions for Roles.
+     * Funções CRUD para Papeis.
      */
     public function roleIndex()
     {
@@ -151,12 +151,12 @@ class AclController extends Controller
             }
 
             DB::commit();
-            flash()->success('Role was successfully created');
+            flash()->success('Papel criado com sucesso');
 
             return redirect('user/role');
         } catch (Exception $e) {
             DB::rollback();
-            flash()->error('Role was not created');
+            flash()->error('Papel não foi criado');
 
             return redirect('user/role');
         }
@@ -175,7 +175,7 @@ class AclController extends Controller
     {
         DB::beginTransaction();
         try {
-            //Updating Role
+            // Atualizando Papel
             $role = Role::findOrFail($id);
 
             $role->update(['name' => $request->name,
@@ -183,7 +183,7 @@ class AclController extends Controller
                            'description' => $request->description,
                           ]);
 
-            //Updating permissions for the role
+            // Atualizando permissões para o papel
             $DBpermissions = PermissionRole::where('role_id', $id)->select('permission_id')->lists('permission_id');
             $ClientPermissions = collect($request->permissions);
 
@@ -201,12 +201,12 @@ class AclController extends Controller
             }
 
             DB::commit();
-            flash()->success('Role was successfully updated');
+            flash()->success('Papel atualizado com sucesso');
 
             return redirect('user/role');
         } catch (Exception $e) {
             DB::rollback();
-            flash()->error('Role was not updated');
+            flash()->error('Papel não foi atualizado');
 
             return redirect('user/role');
         }
@@ -220,19 +220,19 @@ class AclController extends Controller
             Role::where('id', $id)->delete();
 
             DB::commit();
-            flash()->success('Role was successfully deleted');
+            flash()->success('Papel deletado com sucesso');
 
             return redirect('user/role');
         } catch (Exception $e) {
             DB::rollback();
-            flash()->error('Role was not deleted');
+            flash()->error('Papel não foi deletado');
 
             return redirect('user/role');
         }
     }
 
     /**
-     * CRUD functions for Permissions.
+     * Funções CRUD para Permissões.
      */
     public function permissionIndex()
     {
@@ -254,7 +254,7 @@ class AclController extends Controller
                             'group_key' => $request->group_key,
                            ]);
 
-        flash()->success('Permission was successfully created');
+        flash()->success('Permissão criada com sucesso');
 
         return redirect('user/permission');
     }
@@ -276,7 +276,7 @@ class AclController extends Controller
                             'group_key' => $request->group_key,
                             ]);
 
-        flash()->success('Permission was successfully updated');
+        flash()->success('Permissão atualizada com sucesso');
 
         return redirect('user/permission');
     }
@@ -285,7 +285,7 @@ class AclController extends Controller
     {
         Permission::findOrFail($id)->delete();
 
-        flash()->success('Permission was successfully deleted');
+        flash()->success('Permissão deletada com sucesso');
 
         return redirect('user/permission');
     }
