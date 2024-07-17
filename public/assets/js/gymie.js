@@ -60,7 +60,7 @@ var gymie = (function ($) {
 
     /* --------------------------------- */
     /* Bootstrap Select
-/* --------------------------------- */
+		/* --------------------------------- */
     loadbsselect: function () {
       $("select").removeClass("show-menu-arrow");
       $(".selectpicker,select").selectpicker({
@@ -87,6 +87,7 @@ var gymie = (function ($) {
         format: "dd/mm/yyyy",
         autoclose: true,
         todayHighlight: true,
+        language: "pt-BR",
       });
     },
 
@@ -95,6 +96,7 @@ var gymie = (function ($) {
         format: "dd/mm/yyyy",
         autoclose: true,
         todayHighlight: true,
+        language: "pt-BR",
       });
     },
 
@@ -111,6 +113,7 @@ var gymie = (function ($) {
         todayHighlight: true,
         startDate: gymieEndDate,
         endDate: gymieDiff,
+        language: "pt-BR",
       });
     },
 
@@ -613,3 +616,11 @@ var gymie = (function ($) {
     },
   };
 })(jQuery);
+
+$(document).ready(function () {
+  gymie.loadcounter();
+  gymie.loadprogress();
+  gymie.loaddatepicker();
+  gymie.loaddaterangepicker();
+  gymie.loadbsselect();
+});

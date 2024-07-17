@@ -62,7 +62,7 @@
     <!-- BEGIN LEFTSIDE -->
     <div class="leftside hidden-print">
         <div class="sidebar">
-            <!-- BEGIN RPOFILE -->
+            <!-- BEGIN PROFILE -->
             <div class="nav-profile">
                 <div class="thumb">
                     <?php
@@ -84,7 +84,7 @@
                     <a href="{{url('auth/logout')}}" class="button"><i class="ion-log-out"></i></a>
                 @endif
             </div>
-            <!-- END RPOFILE -->
+            <!-- END PROFILE -->
             <!-- BEGIN NAV -->
             <div class="title">Navegação</div>
             <ul class="nav-sidebar">
@@ -305,6 +305,7 @@
 
 <!-- datepicker -->
 <script src="{{ URL::asset('assets/plugins/datepicker/js/bootstrap-datepicker.min.js') }}" type="text/javascript"></script>
+<script src="{{ URL::asset('assets/plugins/datepicker/locales/bootstrap-datepicker.pt-BR.min.js') }}" type="text/javascript"></script>
 
 <!--validator-->
 <script src="{{ URL::asset('assets/plugins/bootstrapValidator/bootstrapValidator.min.js') }}" type="text/javascript"></script>
@@ -328,6 +329,13 @@
         gymie.loaddatepicker();
         gymie.loaddaterangepicker();
         gymie.loadbsselect();
+
+        // Inicialize o Datepicker com o idioma pt-BR
+        $('.datepicker-default').datepicker({
+            format: 'dd/mm/yyyy',
+            language: 'pt-BR',
+            autoclose: true
+        });
     });
 
 </script>

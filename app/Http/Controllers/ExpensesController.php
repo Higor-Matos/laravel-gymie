@@ -6,6 +6,7 @@ use Auth;
 use App\Expense;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ExpensesController extends Controller
 {
@@ -14,11 +15,6 @@ class ExpensesController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Exibir uma lista do recurso.
-     *
-     * @return Response
-     */
     public function index(Request $request)
     {
         $expenses = Expense::indexQuery($request->category_id, $request->sort_field, $request->sort_direction, $request->drp_start, $request->drp_end)->search('"'.$request->input('search').'"')->paginate(10);
@@ -36,12 +32,6 @@ class ExpensesController extends Controller
         return view('expenses.index', compact('expenses', 'count', 'drp_placeholder'));
     }
 
-    /**
-     * Exibir o recurso especificado.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function show($id)
     {
         $expense = Expense::findOrFail($id);
@@ -49,23 +39,29 @@ class ExpensesController extends Controller
         return view('expenses.show', compact('expense'));
     }
 
-    /**
-     * Mostrar o formulário para criar um novo recurso.
-     *
-     * @return Response
-     */
     public function create()
     {
         return view('expenses.create');
     }
 
-    /**
-     * Armazenar um recurso recém-criado no armazenamento.
-     *
-     * @return Response
-     */
     public function store(Request $request)
     {
+        \Log::info($request->all());
+
+        // Validação
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'category_id' => 'required|exists:mst_expenses_categories,id',
+            'due_date' => 'required|date_format:d/m/Y',
+            'repeat' => 'required|integer',
+            'note' => 'required|string',
+            'amount' => 'required|numeric',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
         $expenseData = [
             'name' => $request->name,
             'category_id' => $request->category_id,
@@ -86,8 +82,6 @@ class ExpensesController extends Controller
             $expense->paid = \constPaymentStatus::Unpaid;
         }
 
-        $expense->createdBy()->associate(Auth::user());
-
         $expense->save();
         flash()->success('Despesa foi adicionada com sucesso');
 
@@ -103,8 +97,20 @@ class ExpensesController extends Controller
 
     public function update($id, Request $request)
     {
-        $expense = Expense::findOrFail($id);
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'category_id' => 'required|exists:mst_expenses_categories,id',
+            'due_date' => 'required|date_format:d/m/Y',
+            'repeat' => 'required|integer',
+            'note' => 'required|string',
+            'amount' => 'required|numeric',
+        ]);
 
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $expense = Expense::findOrFail($id);
         $expenseData = $request->all();
         $expenseData['due_date'] = Carbon::createFromFormat('d/m/Y', $request->due_date)->format('Y-m-d');
         $expense->update($expenseData);
@@ -118,7 +124,6 @@ class ExpensesController extends Controller
         }
 
         $expense->updatedBy()->associate(Auth::user());
-
         $expense->save();
         flash()->success('Despesa foi atualizada com sucesso');
 
