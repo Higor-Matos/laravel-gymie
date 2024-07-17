@@ -18,7 +18,7 @@
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <?php $member_code = App\Member::where('status', '=', '1')->pluck('member_code', 'id'); ?>
-                                        {!! Form::label('member_id','Código do Membro') !!}
+                                        {!! Form::label('member_id','Código do Aluno') !!}
                                         {!! Form::text('member_display', $subscription->member->member_code,['class'=> 'form-control', 'id' => 'member_display','readonly' => 'readonly']) !!}
                                         {!! Form::hidden('member_id', $subscription->member_id) !!}
                                     </div>

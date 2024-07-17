@@ -111,15 +111,15 @@
                 @permission(['manage-gymie','manage-members','view-member'])
                 <li class="nav-dropdown {{ Utilities::setActiveMenu('members*',true) }}">
                     <a href="#">
-                        <i class="ion-person-add"></i> <span>Membros</span>
+                        <i class="ion-person-add"></i> <span>Alunos</span>
                     </a>
                     <ul>
-                        <li class="{{ Utilities::setActiveMenu('members/all') }}"><a href="{{ action('MembersController@index') }}">Todos os Membros</a></li>
+                        <li class="{{ Utilities::setActiveMenu('members/all') }}"><a href="{{ action('MembersController@index') }}">Todos os Alunos</a></li>
                         @permission(['manage-gymie','manage-members','add-member'])
-                        <li class="{{ Utilities::setActiveMenu('members/create') }}"><a href="{{ action('MembersController@create') }}">Adicionar Membro</a></li>
+                        <li class="{{ Utilities::setActiveMenu('members/create') }}"><a href="{{ action('MembersController@create') }}">Adicionar Aluno</a></li>
                         @endpermission
-                        <li class="{{ Utilities::setActiveMenu('members/active') }}"><a href="{{ action('MembersController@active') }}">Membros Ativos</a></li>
-                        <li class="{{ Utilities::setActiveMenu('members/inactive') }}"><a href="{{ action('MembersController@inactive') }}">Membros Inativos</a>
+                        <li class="{{ Utilities::setActiveMenu('members/active') }}"><a href="{{ action('MembersController@active') }}">Alunos Ativos</a></li>
+                        <li class="{{ Utilities::setActiveMenu('members/inactive') }}"><a href="{{ action('MembersController@inactive') }}">Alunos Inativos</a>
                         </li>
                     </ul>
                 </li>
@@ -160,7 +160,7 @@
                                 <i class="fa fa-file"></i> <span>Relatórios</span>
                             </a>
                             <ul>
-                                <li class="{{-- Utilities::setActiveMenu('reports/members/*') --}}"><a href="{{-- action('ReportsController@gymMemberCharts') --}}">Membros</a></li>
+                                <li class="{{-- Utilities::setActiveMenu('reports/members/*') --}}"><a href="{{-- action('ReportsController@gymMemberCharts') --}}">Alunos</a></li>
                                 <li class="{{-- Utilities::setActiveMenu('reports/enquiries/*') --}}"><a href="{{-- action('ReportsController@enquiryCharts') --}}">Consultas</a></li>
                                 <li class="{{-- Utilities::setActiveMenu('reports/subscriptions/*') --}}"><a href="{{-- action('ReportsController@subscriptionCharts') --}}">Assinaturas</a></li>
                                 <li class="{{-- Utilities::setActiveMenu('reports/payments/*') --}}"><a href="{{-- action('ReportsController@paymentCharts') --}}">Pagamentos</a></li>                            
@@ -195,7 +195,7 @@
                         </li>
                         <li class="{{ Utilities::setActiveMenu('invoices/partial') }}"><a href="{{ action('InvoicesController@partial') }}">Faturas Parciais</a>
                         </li>
-                        <li class="{{ Utilities::setActiveMenu('invoices/overpaid') }}"><a href="{{ action('InvoicesController@overpaid') }}">Faturas Pagas a Maior</a></li>
+                        <li class="{{ Utilities::setActiveMenu('invoices/overpaid') }}"><a href="{{ action('InvoicesController@overpaid') }}">Faturas Pagas Adiantadas</a></li>
                     </ul>
                 </li>
                 @endpermission
@@ -203,7 +203,7 @@
                 @permission(['manage-gymie','manage-expenses','view-expense'])
                 <li class="nav-dropdown {{ Utilities::setActiveMenu('expenses*',true) }}">
                     <a href="#">
-                        <i class="fa fa-money"></i> <span>Despesas</span>
+                        <i class="fa fa-usd"></i> <span>Despesas</span>
                     </a>
                     <ul>
                         <li class="{{ Utilities::setActiveMenu('expenses/all') }}"><a href="{{ action('ExpensesController@index') }}">Todas as Despesas</a></li>
@@ -231,7 +231,7 @@
                         <li class="{{ Utilities::setActiveMenu('plans/create') }}"><a href="{{ action('PlansController@create') }}">Adicionar Plano</a></li>
                         @endpermission
                         @permission(['manage-gymie','manage-services','view-service'])
-                        <li class="{{ Utilities::setActiveMenu('plans/services/all') }}"><a href="{{ action('ServicesController@index') }}">Serviços do Ginásio</a>
+                        <li class="{{ Utilities::setActiveMenu('plans/services/all') }}"><a href="{{ action('ServicesController@index') }}">Serviços da Academia</a>
                         </li>
                         @endpermission
                         @permission(['manage-gymie','manage-services','add-service'])
@@ -252,7 +252,7 @@
                         <li class="{{ Utilities::setActiveMenu('user/create') }}"><a href="{{ action('AclController@createUser') }}"><i class="fa fa-list"></i>
                                 Adicionar novo usuário</a></li>
                         <li class="{{ Utilities::setActiveMenu('user/role') }}"><a href="{{ action('AclController@roleIndex') }}"><i class="fa fa-list"></i>
-                                Papéis</a></li>
+                                Funções</a></li>
                         @role('Gymie')
                         <li class="{{ Utilities::setActiveMenu('user/permission') }}"><a href="{{ action('AclController@permissionIndex') }}"><i
                                         class="fa fa-list"></i> Permissões</a></li>

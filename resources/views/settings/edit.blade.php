@@ -31,15 +31,29 @@
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        {!! Form::label('financial_start','Início do Ano Financeiro') !!}
-                                        {!! Form::text('financial_start', \Carbon\Carbon::parse($settings['financial_start'])->format('d/m/Y'),['class'=>'form-control datepicker-default', 'id' => 'financial_start']) !!}
+                                        {!! Form::label('financial_start','Inicio do Sistema') !!}
+                                        <?php
+                                            try {
+                                                $financial_start = \Carbon\Carbon::createFromFormat('Y-m-d', $settings['financial_start'])->format('d/m/Y');
+                                            } catch (\Exception $e) {
+                                                $financial_start = $settings['financial_start'];
+                                            }
+                                        ?>
+                                        {!! Form::text('financial_start', $financial_start, ['class'=>'form-control datepicker-default', 'id' => 'financial_start']) !!}
                                     </div>
                                 </div>
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        {!! Form::label('financial_end','Fim do Ano Financeiro') !!}
-                                        {!! Form::text('financial_end', \Carbon\Carbon::parse($settings['financial_end'])->format('d/m/Y'),['class'=>'form-control datepicker-default', 'id' => 'financial_end']) !!}
+                                        {!! Form::label('financial_end','Fim do Sistema') !!}
+                                        <?php
+                                            try {
+                                                $financial_end = \Carbon\Carbon::createFromFormat('Y-m-d', $settings['financial_end'])->format('d/m/Y');
+                                            } catch (\Exception $e) {
+                                                $financial_end = $settings['financial_end'];
+                                            }
+                                        ?>
+                                        {!! Form::text('financial_end', $financial_end, ['class'=>'form-control datepicker-default', 'id' => 'financial_end']) !!}
                                     </div>
                                 </div>
                             </div>
@@ -143,12 +157,12 @@
                 </div>
             </div>
 
-            <!-- Configurações de Membro -->
+            <!-- Configurações de Aluno -->
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel no-border">
                         <div class="panel-title">
-                            <div class="panel-head font-size-15"><i class="fa fa-users"></i> Membro</div>
+                            <div class="panel-head font-size-15"><i class="fa fa-users"></i> Aluno</div>
                         </div>
 
                         <div class="panel-body">
@@ -157,21 +171,21 @@
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                {!! Form::label('member_prefix','Prefixo do Membro') !!}
+                                                {!! Form::label('member_prefix','Prefixo do Aluno') !!}
                                                 {!! Form::text('member_prefix',$settings['member_prefix'],['class'=>'form-control', 'id' => 'member_prefix']) !!}
                                             </div>
                                         </div>
 
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                {!! Form::label('member_last_number','Último Número do Membro') !!}
+                                                {!! Form::label('member_last_number','Último Número do Aluno') !!}
                                                 {!! Form::text('member_last_number',$settings['member_last_number'],['class'=>'form-control', 'id' => 'member_last_number']) !!}
                                             </div>
                                         </div>
 
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                {!! Form::label('member_number_mode','Modo de Numeração do Membro') !!}
+                                                {!! Form::label('member_number_mode','Modo de Numeração do Aluno') !!}
                                                 {!! Form::select('member_number_mode',array('0' => 'Manual', '1' => 'Automático'),$settings['member_number_mode'],['class'=>'form-control selectpicker show-tick show-menu-arrow', 'id' => 'member_number_mode']) !!}
                                             </div>
                                         </div>
@@ -199,17 +213,25 @@
                                             <div class="form-group">
                                                 {!! Form::label('admission_fee','Taxa de Admissão') !!}
                                                 <div class="input-group">
-                                                    <div class="input-group-addon"><i class="fa fa-money"></i></div>
-                                                    {!! Form::text('admission_fee', number_format($settings['admission_fee'], 2, ',', '.'),['class'=>'form-control', 'id' => 'admission_fee']) !!}
+                                                    <div class="input-group-addon"><i class="fa fa-usd"></i></div>
+                                                    <?php
+                                                        $admission_fee = str_replace(',', '.', $settings['admission_fee']);
+                                                        $admission_fee = is_numeric($admission_fee) ? (float) $admission_fee : 0.00;
+                                                    ?>
+                                                    {!! Form::text('admission_fee', number_format($admission_fee, 2, ',', '.'), ['class'=>'form-control', 'id' => 'admission_fee']) !!}
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                {!! Form::label('taxes','Adicionals') !!}
+                                                {!! Form::label('taxes','Adicionais') !!}
                                                 <div class="input-group">
-                                                    {!! Form::text('taxes', number_format($settings['taxes'], 2, ',', '.'),['class'=>'form-control', 'id' => 'taxes']) !!}
+                                                <?php
+                                                    $taxes = str_replace(',', '.', $settings['taxes']);
+                                                    $taxes = is_numeric($taxes) ? (float) $taxes : 0.00;
+                                                ?>
+                                                {!! Form::text('taxes', number_format($taxes, 2, ',', '.'), ['class'=>'form-control', 'id' => 'taxes']) !!}
                                                     <div class="input-group-addon"><i class="fa fa-percent"></i></div>
                                                 </div>
                                             </div>

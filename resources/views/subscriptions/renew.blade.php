@@ -21,7 +21,7 @@
             {!! Form::Open(['url' => 'subscriptions','id'=>'subscriptionsform']) !!}
             {!! Form::hidden('invoiceCounter',$invoiceCounter) !!}
 
-        <!-- Detalhes do Membro -->
+        <!-- Detalhes do Aluno -->
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel no-border">
@@ -34,7 +34,7 @@
                                 <div class="col-sm-5">
                                     <div class="form-group">
                                         <?php $member_code = App\Member::where('status', '=', '1')->lists('member_code', 'id'); ?>
-                                        {!! Form::label('member_id','Código do Membro') !!}
+                                        {!! Form::label('member_id','Código do Aluno') !!}
                                         {!! Form::select('member_id',$member_code,$member_id,['class'=>'form-control selectpicker show-tick show-menu-arrow','id'=>'member_id','data-live-search' => 'true']) !!}
                                     </div>
                                 </div>
@@ -156,7 +156,7 @@
                                     <div class="form-group">
                                         {!! Form::label('taxes_amount',sprintf('Adicional',Utilities::getSetting('taxes'))) !!}
                                         <div class="input-group">
-                                            <div class="input-group-addon"><i class="fa fa-money"></i></div>
+                                            <div class="input-group-addon"><i class="fa fa-usd"></i></div>
                                             {!! Form::text('taxes_amount',0,['class'=>'form-control', 'id' => 'taxes_amount','readonly' => 'readonly']) !!}
                                         </div>
                                     </div>
@@ -184,7 +184,7 @@
                                     <div class="form-group">
                                         {!! Form::label('discount_amount','Valor do Desconto') !!}
                                         <div class="input-group">
-                                            <div class="input-group-addon"><i class="fa fa-money"></i></div>
+                                            <div class="input-group-addon"><i class="fa fa-usd"></i></div>
                                             {!! Form::text('discount_amount',null,['class'=>'form-control', 'id' => 'discount_amount','readonly' => 'readonly']) !!}
                                         </div>
                                     </div>

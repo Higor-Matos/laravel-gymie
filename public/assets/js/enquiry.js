@@ -145,8 +145,8 @@ $(document).ready(function () {
             message: "A entrada não é um número válido",
           },
           stringLength: {
-            max: 10,
-            message: "Deve ter menos de 11 caracteres",
+            max: 15,
+            message: "Deve ter menos de 15 caracteres",
           },
         },
       },

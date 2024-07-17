@@ -20,12 +20,12 @@
 
             {!! Form::open(['url' => 'members','id'=>'membersform','files'=>'true']) !!}
 
-            <!-- Detalhes do Membro -->
+            <!-- Detalhes do Aluno -->
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel no-border">
                         <div class="panel-title">
-                            <div class="panel-head font-size-20">Informe os detalhes do membro</div>
+                            <div class="panel-head font-size-20">Informe os detalhes do Aluno</div>
                         </div>
                         <div class="panel-body">
                             @include('members.form')

@@ -13,7 +13,7 @@ use Carbon\Carbon;
                 $memberArray[$member['id']] = $member['member_code'].' - '.$member['name'];
             }
             ?>
-            {!! Form::label('member_id','Código do Membro') !!}
+            {!! Form::label('member_id','Código do Aluno') !!}
             {!! Form::select('member_id',$memberArray,null,['class'=>'form-control selectpicker show-tick show-menu-arrow','id'=>'member_id','data-live-search' => 'true']) !!}
         </div>
     </div>

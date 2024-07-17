@@ -30,7 +30,7 @@ class SubscriptionsController extends Controller
         $count = $subscriptionTotal->count();
 
         if (! $request->has('drp_start') or ! $request->has('drp_end')) {
-            $drp_placeholder = 'Select daterange filter';
+            $drp_placeholder = 'Selecione o filtro de intervalo de datas';
         } else {
             $drp_placeholder = $request->drp_start.' - '.$request->drp_end;
         }
@@ -46,7 +46,7 @@ class SubscriptionsController extends Controller
         $count = $expirings->total();
 
         if (! $request->has('drp_start') or ! $request->has('drp_end')) {
-            $drp_placeholder = 'Select daterange filter';
+            $drp_placeholder = 'Selecione o filtro de intervalo de datas';
         } else {
             $drp_placeholder = $request->drp_start.' - '.$request->drp_end;
         }
@@ -62,7 +62,7 @@ class SubscriptionsController extends Controller
         $count = $allExpired->total();
 
         if (! $request->has('drp_start') or ! $request->has('drp_end')) {
-            $drp_placeholder = 'Select daterange filter';
+            $drp_placeholder = 'Selecione o filtro de intervalo de datas';
         } else {
             $drp_placeholder = $request->drp_start.' - '.$request->drp_end;
         }
@@ -74,7 +74,7 @@ class SubscriptionsController extends Controller
 
     public function create()
     {
-        // For Tax calculation
+        // Para cálculo de impostos
         JavaScript::put([
           'taxes' => \Utilities::getSetting('taxes'),
           'gymieToday' => Carbon::today()->format('d/m/Y'),
@@ -90,7 +90,7 @@ class SubscriptionsController extends Controller
         DB::beginTransaction();
 
         try {
-            //Helper function to set Payment status
+            // Função auxiliar para definir o status do pagamento
             $invoice_total = $request->admission_amount + $request->subscription_amount + $request->taxes_amount - $request->discount_amount;
             $paymentStatus = \constPaymentStatus::Unpaid;
             $pending = $invoice_total - $request->payment_amount;
@@ -107,7 +107,7 @@ class SubscriptionsController extends Controller
                 }
             }
 
-            // Storing Invoice
+            // Armazenando a fatura
             $invoiceData = ['invoice_number'=> $request->invoice_number,
                                      'member_id'=> $request->member_id,
                                      'total'=> $invoice_total,
@@ -125,7 +125,7 @@ class SubscriptionsController extends Controller
             $invoice->updatedBy()->associate(Auth::user());
             $invoice->save();
 
-            // Storing subscription
+            // Armazenando a assinatura
             foreach ($request->plan as $plan) {
                 $subscriptionData = ['member_id'=> $request->member_id,
                                             'invoice_id'=> $invoice->id,
@@ -140,7 +140,7 @@ class SubscriptionsController extends Controller
                 $subscription->updatedBy()->associate(Auth::user());
                 $subscription->save();
 
-                //Adding subscription to invoice(Invoice Details)
+                // Adicionando assinatura à fatura (Detalhes da fatura)
                 $detailsData = ['invoice_id'=> $invoice->id,
                                        'plan_id'=> $plan['id'],
                                        'item_amount'=> $plan['price'], ];
@@ -151,7 +151,7 @@ class SubscriptionsController extends Controller
                 $invoice_details->save();
             }
 
-            //Payment Details
+            // Detalhes do pagamento
             $paymentData = ['invoice_id'=> $invoice->id,
                                    'payment_amount'=> $request->payment_amount,
                                    'mode'=> $request->mode,
@@ -163,7 +163,7 @@ class SubscriptionsController extends Controller
             $payment_details->save();
 
             if ($request->mode == 0) {
-                // Store Cheque Details
+                // Armazenar detalhes do cheque
                 $chequeData = ['payment_id'=> $payment_details->id,
                                     'number'=> $request->number,
                                     'date'=> $request->date,
@@ -175,7 +175,7 @@ class SubscriptionsController extends Controller
                 $cheque_details->save();
             }
 
-            // Set the subscription status of the 'Renewed' subscription to Renew
+            // Definir o status da assinatura da assinatura 'Renovada' para Renovar
             if ($request->has('previousSubscriptions')) {
                 Subscription::where('invoice_id', $invoice->id)->update(['is_renewal' => '1']);
 
@@ -187,12 +187,12 @@ class SubscriptionsController extends Controller
                 }
             }
 
-            //Updating Numbering Counters
+            // Atualizando contadores de numeração
             Setting::where('key', '=', 'invoice_last_number')->update(['value' => $request->invoiceCounter]);
             $sender_id = \Utilities::getSetting('sms_sender_id');
             $gym_name = \Utilities::getSetting('gym_name');
 
-            //SMS Trigger
+            // Disparo de SMS
             if ($invoice->status == \constPaymentStatus::Paid) {
                 if ($request->mode == 0) {
                     $sms_trigger = SmsTrigger::where('alias', '=', 'payment_with_cheque')->first();
@@ -244,18 +244,18 @@ class SubscriptionsController extends Controller
             }
 
             DB::commit();
-            flash()->success('Subscription was successfully created');
+            flash()->success('Assinatura foi criada com sucesso');
 
             return redirect(action('SubscriptionsController@index'));
         } catch (\Exception $e) {
             DB::rollback();
-            flash()->error('Error while creating the Subscription');
+            flash()->error('Erro ao criar a assinatura');
 
             return redirect(action('SubscriptionsController@index'));
         }
     }
 
-    //End of store method
+    // Fim do método store
 
     public function edit($id)
     {
@@ -282,7 +282,7 @@ class SubscriptionsController extends Controller
         $subscription->update($request->all());
         $subscription->updatedBy()->associate(Auth::user());
         $subscription->save();
-        flash()->success('Subscription details were successfully updated');
+        flash()->success('Os detalhes da assinatura foram atualizados com sucesso');
 
         return redirect('subscriptions/all');
     }
@@ -290,13 +290,13 @@ class SubscriptionsController extends Controller
     public function renew($id, Request $request)
     {
 
-        //Get Numbering mode
+        // Obter o modo de numeração
         list($invoice_number_mode, $invoiceCounter, $invoice_number) = $this->generateInvoiceNumber();
 
         $subscriptions = Subscription::where('invoice_id', $id)->get();
         $member_id = $subscriptions->pluck('member_id')->first();
 
-        // Javascript Variables
+        // Variáveis de JavaScript
         JavaScript::put([
             'taxes' => \Utilities::getSetting('taxes'),
             'gymieToday' => Carbon::today()->format('d/m/Y'),
@@ -318,12 +318,12 @@ class SubscriptionsController extends Controller
             $subscription->member->update(['status' => \constStatus::InActive]);
 
             DB::commit();
-            flash()->success('Subscription was successfully cancelled');
+            flash()->success('Assinatura foi cancelada com sucesso');
 
             return redirect('subscriptions/expired');
         } catch (Exception $e) {
             DB::rollback();
-            flash()->error('Error while cancelling the Subscription');
+            flash()->error('Erro ao cancelar a assinatura');
 
             return redirect('subscriptions/expired');
         }
@@ -384,7 +384,7 @@ class SubscriptionsController extends Controller
 
         try {
             DB::beginTransaction();
-            //Helper function to set Payment status
+            // Função auxiliar para definir o status do pagamento
             $invoice_total = $request->admission_amount + $request->subscription_amount + $request->taxes_amount - $request->discount_amount;
             $paymentStatus = \constPaymentStatus::Unpaid;
             $total_paid = $request->payment_amount + $request->previous_payment;
@@ -420,13 +420,12 @@ class SubscriptionsController extends Controller
                                         'status'=> \constSubscription::onGoing,
                                         'is_renewal'=>'0', ]);
 
-                //Adding subscription to invoice(Invoice Details)
-
+                // Adicionando assinatura à fatura (Detalhes da fatura)
                 InvoiceDetail::where('invoice_id', $subscription->invoice_id)->update(['plan_id'=> $plan['id'],
                                                                                          'item_amount'=> $plan['price'], ]);
             }
 
-            //Payment Details
+            // Detalhes do pagamento
             $paymentData = ['invoice_id'=> $subscription->invoice_id,
                                    'payment_amount'=> $request->payment_amount,
                                    'mode'=> $request->mode,
@@ -438,7 +437,7 @@ class SubscriptionsController extends Controller
             $payment_details->save();
 
             if ($request->mode == 0) {
-                // Store Cheque Details
+                // Armazenar detalhes do cheque
                 $chequeData = ['payment_id'=> $payment_details->id,
                                     'number'=> $request->number,
                                     'date'=> $request->date,
@@ -451,12 +450,12 @@ class SubscriptionsController extends Controller
             }
 
             DB::commit();
-            flash()->success('Subscription was successfully changed');
+            flash()->success('Assinatura foi alterada com sucesso');
 
             return redirect(action('MembersController@show', ['id' => $subscription->member_id]));
         } catch (\Exception $e) {
             DB::rollback();
-            flash()->error('Error while changing the Subscription');
+            flash()->error('Erro ao alterar a assinatura');
 
             return back();
         }
@@ -467,10 +466,10 @@ class SubscriptionsController extends Controller
      */
     private function generateInvoiceNumber()
     {
-        //Get Numbering mode
+        // Obter o modo de numeração
         $invoiceNumberMode = \Utilities::getSetting('invoice_number_mode');
 
-        //Generating Invoice number
+        // Gerando o número da fatura
         if ($invoiceNumberMode == \constNumberingMode::Auto) {
             $invoiceCounter = \Utilities::getSetting('invoice_last_number') + 1;
             $invoiceNumber = \Utilities::getSetting('invoice_prefix').$invoiceCounter;
@@ -482,3 +481,4 @@ class SubscriptionsController extends Controller
         return [$invoiceNumberMode, $invoiceCounter, $invoiceNumber];
     }
 }
+?>

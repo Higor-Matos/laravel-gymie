@@ -53,7 +53,7 @@
 
                                         <div class="col-sm-2">
                                             {!! Form::label('sort_field','Ordenar por') !!}
-                                            {!! Form::select('sort_field',array('created_at' => 'Data','payment_amount' => 'Valor','mode' => 'Modo','member_name' => 'Nome do Membro','member_code' => 'Código do Membro','invoice_number' => 'Número da Fatura'),old('sort_field'),['class' => 'form-control selectpicker show-tick show-menu-arrow', 'id' => 'sort_field']) !!}
+                                            {!! Form::select('sort_field',array('created_at' => 'Data','payment_amount' => 'Valor','mode' => 'Modo','member_name' => 'Nome do Aluno','member_code' => 'Código do Aluno','invoice_number' => 'Número da Fatura'),old('sort_field'),['class' => 'form-control selectpicker show-tick show-menu-arrow', 'id' => 'sort_field']) !!}
                                         </div>
 
                                         <div class="col-sm-2">
@@ -87,7 +87,7 @@
                                     <thead>
                                     <tr>
                                         <th>Número da Fatura</th>
-                                        <th>Nome do Membro</th>
+                                        <th>Nome do Aluno</th>
                                         <th>Valor</th>
                                         <th>Modo</th>
                                         <th>Data</th>

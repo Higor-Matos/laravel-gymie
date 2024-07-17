@@ -18,7 +18,7 @@
                                 @permission(['manage-gymie','manage-enquiries','edit-enquiry'])
                                 <a href="#" class="mark-enquiry-as btn btn-sm btn-primary active pull-right margin-right-5"
                                    data-goto-url="{{ url('enquiries/'.$enquiry->id.'/markMember') }}" data-record-id="{{$enquiry->id}}"><i
-                                            class="fa fa-user"></i> Marcar como membro</a>
+                                            class="fa fa-user"></i> Marcar como Aluno</a>
                                 <a href="#" class="mark-enquiry-as btn btn-sm btn-primary active pull-right margin-right-5"
                                    data-goto-url="{{ url('enquiries/'.$enquiry->id.'/lost') }}" data-record-id="{{$enquiry->id}}"><i
                                             class="fa fa-times"></i> Marcar como perdido</a>

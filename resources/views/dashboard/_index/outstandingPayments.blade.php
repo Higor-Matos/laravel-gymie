@@ -10,7 +10,7 @@ $sum = App\Invoice::sum('pending_amount');
                      data-to="{{ $sum }}" data-speed="500" data-refresh-interval="10"></div>
             </div>
             <div class="pull-right">
-                <i class="font-size-24 color-red-100 fa fa-money"></i>
+                <i class="font-size-24 color-red-100 fa fa-usd"></i>
             </div>
 
             <div class="clearfix"></div>

@@ -13,7 +13,7 @@
                 <div class="col-md-12"><!-- Main Col -->
                     <div class="panel no-border ">
                         <div class="panel-title">
-                            <div class="panel-head font-size-20">Detalhes do Membro</div>
+                            <div class="panel-head font-size-20">Detalhes do Aluno</div>
                             <div class="pull-right no-margin">
                                 @permission(['manage-gymie','manage-members','edit-member'])
                                 <a class="btn btn-primary" href="{{ action('MembersController@edit',['id' => $member->id]) }}">
@@ -93,7 +93,7 @@
 
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <label>Código do Membro</label>
+                                                    <label>Código do Aluno</label>
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <span class="show-data">{{$member->member_code}}</span>
@@ -142,7 +142,7 @@
                                             <hr class="margin-top-0 margin-bottom-10">
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <label>Membro Desde</label>
+                                                    <label>Aluno Desde</label>
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <span class="show-data">{{$member->created_at->format('d/m/Y')}}</span>
@@ -250,12 +250,12 @@
                 </div>
             </div>
 
-            <!--######################### Histórico de assinaturas do membro ################################# -->
+            <!--######################### Histórico de assinaturas do Aluno ################################# -->
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel no-border ">
                         <div class="panel-title">
-                            <div class="panel-head font-size-20">Histórico de assinaturas do membro</div>
+                            <div class="panel-head font-size-20">Histórico de assinaturas do Aluno</div>
                         </div>
                         <div class="panel-body">
                             <table id="_payment" class="table table-bordered table-striped">

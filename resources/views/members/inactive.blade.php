@@ -7,15 +7,15 @@
         <!-- CABEÇALHO DA PÁGINA -->
         <div class="page-head bg-grey-100 padding-top-15 no-padding-bottom">
             @include('flash::message')
-            <h1 class="page-title no-line-height">Membros Inativos
-                <small>Detalhes de todos os membros inativos da academia</small>
+            <h1 class="page-title no-line-height">Alunos Inativos
+                <small>Detalhes de todos os Alunos inativos da academia</small>
             </h1>
             @permission(['manage-gymie','pagehead-stats'])
             <h1 class="font-size-30 text-right color-blue-grey-600 animated fadeInDown total-count pull-right"><span data-toggle="counter" data-start="0"
                                                                                                                      data-from="0" data-to="{{ $count }}"
                                                                                                                      data-speed="600"
                                                                                                                      data-refresh-interval="10"></span>
-                <small class="color-blue-grey-600 display-block margin-top-5 font-size-14">Membros Inativos</small>
+                <small class="color-blue-grey-600 display-block margin-top-5 font-size-14">Alunos Inativos</small>
             </h1>
             @endpermission
         </div><!-- / CABEÇALHO DA PÁGINA -->
@@ -48,7 +48,7 @@
 
                                         <div class="col-sm-2">
                                             {!! Form::label('sort_field','Ordenar por') !!}
-                                            {!! Form::select('sort_field',array('created_at' => 'Data','name' => 'Nome', 'member_code' => 'Código do membro', 'plan_name' => 'Plano', 'status' => 'Status'),old('sort_field'),['class' => 'form-control selectpicker show-tick show-menu-arrow', 'id' => 'sort_field']) !!}
+                                            {!! Form::select('sort_field',array('created_at' => 'Data','name' => 'Nome', 'member_code' => 'Código do Aluno', 'plan_name' => 'Plano', 'status' => 'Status'),old('sort_field'),['class' => 'form-control selectpicker show-tick show-menu-arrow', 'id' => 'sort_field']) !!}
                                         </div>
 
                                         <div class="col-sm-2">
@@ -87,7 +87,7 @@
                                         <th>Nome</th>
                                         <th>Contato</th>
                                         <th>Plano</th>
-                                        <th>Membro desde</th>
+                                        <th>Aluno desde</th>
                                         <th>Status</th>
                                         <th class="text-center">Ações</th>
                                     </tr>
@@ -135,7 +135,7 @@
                                                         <li>
                                                             @permission(['manage-gymie','manage-members','delete-member'])
                                                             <a href="#" class="delete-record" data-delete-url="{{ url('members/'.$member->id.'/archive') }}"
-                                                               data-record-id="{{$member->id}}">Excluir membro</a>
+                                                               data-record-id="{{$member->id}}">Excluir Aluno</a>
                                                             @endpermission
                                                         </li>
                                                     </ul>

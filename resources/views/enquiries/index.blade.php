@@ -10,7 +10,7 @@
         <h1 class="page-title no-line-height">Consultas
             @permission(['manage-gymie','manage-enquiries','add-enquiry'])
             <a href="{{ action('EnquiriesController@create') }}" class="page-head-btn btn-sm btn-primary active" role="button">Adicionar Novo</a>
-            <small>Detalhes de todas as consultas do ginásio</small>
+            <small>Detalhes de todas as consultas da Academia</small>
         </h1>
         @permission(['manage-gymie','pagehead-stats'])
         <h1 class="font-size-30 text-right color-blue-grey-600 animated fadeInDown total-count pull-right"><span data-toggle="counter" data-start="0"
@@ -129,7 +129,7 @@
                                                     @if($enquiry->status == 1)
                                                         <li>
                                                             <a href="{{ action('MembersController@transfer',['id' => $enquiry->id]) }}">Transferir para
-                                                                membro</a>
+                                                                Aluno</a>
                                                         </li>
                                                     @endif
                                                     @endpermission
@@ -139,7 +139,7 @@
                                                         <li>
                                                             <a href="#" class="mark-enquiry-as"
                                                                data-goto-url="{{ url('enquiries/'.$enquiry->id.'/markMember') }}"
-                                                               data-record-id="{{$enquiry->id}}">Marcar como membro</a>
+                                                               data-record-id="{{$enquiry->id}}">Marcar como Aluno</a>
                                                         </li>
                                                         <li>
                                                             <a href="#" class="mark-enquiry-as" data-goto-url="{{ url('enquiries/'.$enquiry->id.'/lost') }}"

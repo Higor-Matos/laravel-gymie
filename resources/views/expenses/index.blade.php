@@ -16,7 +16,7 @@
                                                                                                                      data-from="0" data-to="{{ $count }}"
                                                                                                                      data-speed="600"
                                                                                                                      data-refresh-interval="10"></span>
-                <small class="color-blue-grey-600 display-block margin-top-5 font-size-14">Despesa Total</small>
+                <small class="color-blue-grey-600 display-block margin-top-5 font-size-14">Despesa Total do Período</small>
             </h1>
             @endpermission
             @endpermission

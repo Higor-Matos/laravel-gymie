@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-sm-6">
         <div class="form-group">
-            {!! Form::label('member_code', 'Código do Membro') !!}
+            {!! Form::label('member_code', 'Código do Aluno') !!}
             {!! Form::text('member_code', $member_code, ['class'=>'form-control', 'id' => 'member_code', ($member_number_mode == \constNumberingMode::Auto ? 'readonly' : '')]) !!}
         </div>
     </div>
@@ -71,7 +71,7 @@
 <div class="row">
     <div class="col-sm-6">
         <div class="form-group">
-            {!! Form::label('proof_name', 'Nome do Comprovante') !!}
+            {!! Form::label('proof_name', 'Forma de pagamento preferencial') !!}
             {!! Form::text('proof_name', null, ['class'=>'form-control', 'id' => 'proof_name']) !!}
         </div>
     </div>
@@ -83,17 +83,17 @@
         ?>
         <div class="col-sm-4">
             <div class="form-group">
-                {!! Form::label('proof_photo', 'Foto do Comprovante') !!}
+                {!! Form::label('proof_photo', 'Foto do Comprovante de Pagamento') !!}
                 {!! Form::file('proof_photo', ['class'=>'form-control', 'id' => 'proof_photo']) !!}
             </div>
         </div>
         <div class="col-sm-2">
-            <img alt="Foto do Comprovante" class="pull-right" src="{{ $image }}"/>
+            <img alt="Foto do Comprovante de Pagamento" class="pull-right" src="{{ $image }}"/>
         </div>
     @else
         <div class="col-sm-6">
             <div class="form-group">
-                {!! Form::label('proof_photo', 'Foto do Comprovante') !!}
+                {!! Form::label('proof_photo', 'Foto do Comprovante de Pagamento') !!}
                 {!! Form::file('proof_photo', ['class'=>'form-control', 'id' => 'proof_photo']) !!}
             </div>
         </div>
@@ -142,7 +142,7 @@
     <div class="col-sm-6">
         <div class="form-group">
             {!! Form::label('source', 'Como ficou sabendo de nós?', ['class'=>'control-label']) !!}
-            {!! Form::select('source', ['0' => 'Promoções', '1' => 'Boca a Boca', '2' => 'Outros'], null, ['class' => 'form-control selectpicker show-tick show-menu-arrow', 'id' => 'source']) !!}
+            {!! Form::select('source', ['0' => 'Promoções', '1' => 'Boca a Boca', '2' => 'Redes Sociais', '2' => 'Outros'], null, ['class' => 'form-control selectpicker show-tick show-menu-arrow', 'id' => 'source']) !!}
         </div>
     </div>
 </div>

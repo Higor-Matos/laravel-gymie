@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'members' => 'Membros',
+    'members' => 'Alunos',
     'add' => 'Adicionar',
     'expiring' => 'Expirando',
     'expired' => 'Expirados',
@@ -18,7 +18,7 @@ return [
     'sms_log' => 'Registro de SMS',
     'sms_balance' => 'Saldo de SMS',
     'request_sms' => 'Solicitar mais SMS',
-    'members_per_plan' => 'Membros por Plano',
+    'members_per_plan' => 'Alunos por Plano',
     'no_data' => 'Sem Dados',
     'registration_trend' => 'Tendência de Registro',
     'confirm_sms_request' => 'Confirmar solicitação de novo pacote de SMS',

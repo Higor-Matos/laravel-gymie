@@ -15,7 +15,7 @@ $count = App\Member::where('status',0)->count();
             <div class="clearfix"></div>
 
             <div class="pull-left">
-                <div class="display-block color-amber-50 font-weight-600">Membros Inativos</div>
+                <div class="display-block color-amber-50 font-weight-600">Alunos Inativos</div>
             </div>
         </div>
     </div>

@@ -50,9 +50,9 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
-                {!! Form::label('amount','Valor (sem Adicionals)') !!}
+                {!! Form::label('amount','Valor (sem Adicionais)') !!}
                 <div class="input-group">
-                    <div class="input-group-addon"><i class="fa fa-money"></i></div>
+                    <div class="input-group-addon"><i class="fa fa-usd"></i></div>
                     {!! Form::text('amount',null,['class'=>'form-control', 'id' => 'amount']) !!}
                 </div>
             </div>

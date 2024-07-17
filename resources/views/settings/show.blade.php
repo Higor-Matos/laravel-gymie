@@ -31,14 +31,14 @@
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label>Início do Ano Financeiro</label>
+                                        <label>Inicio do Sistema</label>
                                         <p>{{ \Carbon\Carbon::parse($settings['financial_start'])->format('d/m/Y') }}</p>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label>Fim do Ano Financeiro</label>
+                                        <label>Fim do Sistema</label>
                                         <p>{{ \Carbon\Carbon::parse($settings['financial_end'])->format('d/m/Y') }}</p>
                                     </div>
                                 </div>
@@ -131,12 +131,12 @@
                 </div> <!-- / Coluna Principal -->
             </div> <!-- / Linha Principal -->
 
-            <!-- Configurações de Membro -->
+            <!-- Configurações de Aluno -->
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel no-border">
                         <div class="panel-title bg-white">
-                            <div class="panel-head font-size-18"><i class="fa fa-users"></i> Membro</div>
+                            <div class="panel-head font-size-18"><i class="fa fa-users"></i> Aluno</div>
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -145,21 +145,21 @@
                                     <div class="row"> <!-- Linha Interna -->
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <label>Prefixo do Código do Membro</label>
+                                                <label>Prefixo do Código do Aluno</label>
                                                 <p>{{ $settings['member_prefix'] }}</p>
                                             </div>
                                         </div>
 
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <label>Último Número do Membro</label>
+                                                <label>Último Número do Aluno</label>
                                                 <p>{{ $settings['member_last_number'] }}</p>
                                             </div>
                                         </div>
 
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <label>Modo de Numeração do Membro</label>
+                                                <label>Modo de Numeração do Aluno</label>
                                                 <p>{{ Utilities::getMode($settings['member_number_mode']) }}</p>
                                             </div>
                                         </div>

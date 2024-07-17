@@ -18,7 +18,7 @@
                         <div class="form-group">
                             {!! Form::label('subscription_amount','Taxa de inscrição na academia') !!}
                             <div class="input-group">
-                                <div class="input-group-addon"><i class="fa fa-money"></i></div>
+                                <div class="input-group-addon"><i class="fa fa-usd"></i></div>
                                 {!! Form::text('subscription_amount',null,['class'=>'form-control', 'id' => 'subscription_amount','readonly' => 'readonly']) !!}
                             </div>
                         </div>
@@ -28,7 +28,7 @@
                         <div class="form-group">
                             {!! Form::label('taxes_amount',sprintf('Adicional',Utilities::getSetting('taxes'))) !!}
                             <div class="input-group">
-                                <div class="input-group-addon"><i class="fa fa-money"></i></div>
+                                <div class="input-group-addon"><i class="fa fa-usd"></i></div>
                                 {!! Form::text('taxes_amount',0,['class'=>'form-control', 'id' => 'taxes_amount','readonly' => 'readonly']) !!}
                             </div>
                         </div>
@@ -56,7 +56,7 @@
                         <div class="form-group">
                             {!! Form::label('discount_amount','Valor do Desconto') !!}
                             <div class="input-group">
-                                <div class="input-group-addon"><i class="fa fa-money"></i></div>
+                                <div class="input-group-addon"><i class="fa fa-usd"></i></div>
                                 {!! Form::text('discount_amount',null,['class'=>'form-control', 'id' => 'discount_amount','readonly' => 'readonly']) !!}
                             </div>
                         </div>

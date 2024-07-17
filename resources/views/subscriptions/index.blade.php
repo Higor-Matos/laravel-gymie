@@ -100,8 +100,8 @@
                                 <table id="subscriptions" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
-                                        <th>Código do Membro</th>
-                                        <th>Nome do Membro</th>
+                                        <th>Código do Aluno</th>
+                                        <th>Nome do Aluno</th>
                                         <th>Nome do Plano</th>
                                         <th>Data de Início</th>
                                         <th>Data de Término</th>

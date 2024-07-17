@@ -53,7 +53,7 @@ use Carbon\Carbon;
 
                         <div class="col-sm-3">
                             <div class="form-group plan-end-date">
-                                {!! Form::text('plan[0][end_date]',null,['class'=>'form-control childEndDate', 'id' => 'end_date_0', 'readonly' => 'readonly','data-row-id' => '0']) !!}
+                                {!! Form::text('plan[0][end_date]', '0',['class'=>'form-control childEndDate', 'id' => 'end_date_0', 'data-row-id' => '0']) !!}
                             </div>
                         </div>
 

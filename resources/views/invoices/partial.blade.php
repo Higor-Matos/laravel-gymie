@@ -47,7 +47,7 @@
 
                                         <div class="col-sm-2">
                                             {!! Form::label('sort_field','Ordenar por') !!}
-                                            {!! Form::select('sort_field',array('created_at' => 'Data','invoice_number' => 'Número da fatura','member_name' => 'Nome do membro','total' => 'Valor total','pending_amount' => 'Valor pendente'),old('sort_field'),['class' => 'form-control selectpicker show-tick show-menu-arrow', 'id' => 'sort_field']) !!}
+                                            {!! Form::select('sort_field',array('created_at' => 'Data','invoice_number' => 'Número da fatura','member_name' => 'Nome do Aluno','total' => 'Valor total','pending_amount' => 'Valor pendente'),old('sort_field'),['class' => 'form-control selectpicker show-tick show-menu-arrow', 'id' => 'sort_field']) !!}
                                         </div>
 
                                         <div class="col-sm-2">
@@ -81,7 +81,7 @@
                                     <thead>
                                     <tr>
                                         <th>Número da Fatura</th>
-                                        <th>Nome do Membro</th>
+                                        <th>Nome do Aluno</th>
                                         <th>Valor Total</th>
                                         <th>Pendente</th>
                                         <th>Desconto</th>

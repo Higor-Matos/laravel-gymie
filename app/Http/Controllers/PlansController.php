@@ -14,7 +14,7 @@ class PlansController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Exibe uma lista dos recursos.
      *
      * @return Response
      */
@@ -27,7 +27,7 @@ class PlansController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Exibe o recurso especificado.
      *
      * @param  int  $id
      * @return Response
@@ -40,7 +40,7 @@ class PlansController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Mostra o formulário para criar um novo recurso.
      *
      * @return Response
      */
@@ -50,13 +50,13 @@ class PlansController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Armazena um recurso recém-criado.
      *
      * @return Response
      */
     public function store(Request $request)
     {
-        //Model Validation
+        // Validação do Modelo
         $this->validate($request, ['plan_code' => 'unique:mst_plans,plan_code',
                                    'plan_name' => 'unique:mst_plans,plan_name', ]);
 
@@ -67,7 +67,7 @@ class PlansController extends Controller
 
         $plan->save();
 
-        flash()->success('Plan was successfully created');
+        flash()->success('Plano foi criado com sucesso');
 
         return redirect('plans');
     }
@@ -86,7 +86,7 @@ class PlansController extends Controller
         $plan->update($request->all());
         $plan->updatedBy()->associate(Auth::user());
         $plan->save();
-        flash()->success('Plan details were successfully updated');
+        flash()->success('Detalhes do plano foram atualizados com sucesso');
 
         return redirect('plans/all');
     }

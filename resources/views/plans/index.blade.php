@@ -53,7 +53,7 @@
                                         <th>Nome do Plano</th>
                                         <th>Nome do Serviço</th>
                                         <th>Detalhes do Plano</th>
-                                        <th>Dias</th>
+                                        <th>Dias por Semana</th>
                                         <th>Valor</th>
                                         <th>Status</th>
                                         <th class="text-center">Ações</th>
@@ -95,7 +95,7 @@
                                                             <a href="#"
                                                                class="delete-record"
                                                                data-dependency="{{ $dependency }}"
-                                                               data-dependency-message="Você tem membros atribuídos a este plano, exclua-os ou atribua-os a um novo plano"
+                                                               data-dependency-message="Você tem Alunos atribuídos a este plano, exclua-os ou atribua-os a um novo plano"
                                                                data-delete-url="{{ url('plans/'.$plan->id.'/archive') }}"
                                                                data-record-id="{{$plan->id}}">
                                                                 Excluir plano

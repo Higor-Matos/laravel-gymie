@@ -12,7 +12,7 @@ $("#membersform").bootstrapValidator({
     member_code: {
       validators: {
         notEmpty: {
-          message: "O código do membro é obrigatório e não pode estar vazio",
+          message: "O código do Aluno é obrigatório e não pode estar vazio",
         },
       },
     },
@@ -80,7 +80,8 @@ $("#membersform").bootstrapValidator({
     proof_name: {
       validators: {
         notEmpty: {
-          message: "O nome do comprovante é obrigatório e não pode estar vazio",
+          message:
+            "O Forma de pagamento preferencial é obrigatório e não pode estar vazio",
         },
         stringLength: {
           max: 50,
@@ -153,14 +154,15 @@ $("#membersform").bootstrapValidator({
         },
       },
     },
-    admission_amount: {
-      validators: {
-        notEmpty: {
-          message: "O valor de admissão é obrigatório e não pode estar vazio",
-        },
-        regexp: {
-          regexp: /^[0-9\.]+$/,
-          message: "A entrada não é um valor válido",
+      admission_amount: {
+        validators: {
+          notEmpty: {
+            message: "O valor de admissão é obrigatório e não pode estar vazio",
+          },
+          regexp: {
+            regexp: /^(NaN|[0-9\.]+)$/,
+            message: "A entrada não é um valor válido",
+          },
         },
       },
     },
@@ -228,8 +230,8 @@ $("#membersform").bootstrapValidator({
           message: "A entrada não é um número válido",
         },
         stringLength: {
-          max: 10,
-          message: "Deve ter menos de 10 caracteres",
+          max: 15,
+          message: "Deve ter menos de 15 caracteres",
         },
       },
     },
@@ -243,8 +245,8 @@ $("#membersform").bootstrapValidator({
           message: "A entrada não é um número válido",
         },
         stringLength: {
-          max: 10,
-          message: "Deve ter menos de 10 caracteres",
+          max: 15,
+          message: "Deve ter menos de 15 caracteres",
         },
       },
     },

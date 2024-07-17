@@ -11,7 +11,7 @@
 
                     <div class="panel no-border">
                         <div class="panel-title">
-                            <div class="panel-head font-size-20">Informe os detalhes do membro</div>
+                            <div class="panel-head font-size-20">Informe os detalhes do Aluno</div>
                         </div>
                         <div class="panel-body">
 

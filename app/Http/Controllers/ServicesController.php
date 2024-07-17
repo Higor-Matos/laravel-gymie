@@ -14,7 +14,7 @@ class ServicesController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Exibe uma lista dos recursos.
      *
      * @return Response
      */
@@ -27,7 +27,7 @@ class ServicesController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Exibe o recurso especificado.
      *
      * @param  int  $id
      * @return Response
@@ -40,7 +40,7 @@ class ServicesController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Mostra o formulário para criar um novo recurso.
      *
      * @return Response
      */
@@ -50,13 +50,13 @@ class ServicesController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Armazena um recurso recém-criado.
      *
      * @return Response
      */
     public function store(Request $request)
     {
-        //Model Validation
+        // Validação do Modelo
         $this->validate($request, ['name' => 'unique:mst_services,name']);
 
         $service = new Service($request->all());
@@ -66,7 +66,7 @@ class ServicesController extends Controller
 
         $service->save();
 
-        flash()->success('Service was successfully created');
+        flash()->success('Serviço foi criado com sucesso');
 
         return redirect('plans/services/all');
     }
@@ -85,7 +85,7 @@ class ServicesController extends Controller
         $service->update($request->all());
         $service->updatedBy()->associate(Auth::user());
         $service->save();
-        flash()->success('Service details were successfully updated');
+        flash()->success('Detalhes do serviço foram atualizados com sucesso');
 
         return redirect('plans/services/all');
     }

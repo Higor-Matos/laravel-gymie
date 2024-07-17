@@ -54,6 +54,11 @@ class SettingsController extends Controller
                 }
             }
 
+            // Parse dates if necessary
+            if (in_array($key, ['financial_start', 'financial_end'])) {
+                $value = \Carbon\Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d');
+            }
+
             Setting::where('key', '=', $key)->update(['value' => $value]);
         }
 
@@ -61,5 +66,4 @@ class SettingsController extends Controller
 
         return redirect('settings/edit');
     }
-
 }

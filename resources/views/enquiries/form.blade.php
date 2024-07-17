@@ -82,7 +82,7 @@
             <div class="col-sm-12">
                 <div class="form-group">
                     {!! Form::label('source','Como você soube sobre nós?',['class'=>'control-label']) !!}
-                    {!! Form::select('source',array('0' => 'Promoções', '1' => 'Boca a Boca', '2' => 'Outros'),null,['class' => 'form-control selectpicker show-tick show-menu-arrow', 'id' => 'source']) !!}
+                    {!! Form::select('source',array('0' => 'Promoções', '1' => 'Boca a Boca', '2' => 'Redes Sociais', '2' => 'Outros'),null,['class' => 'form-control selectpicker show-tick show-menu-arrow', 'id' => 'source']) !!}
                 </div>
             </div>
             <div class="col-sm-12">

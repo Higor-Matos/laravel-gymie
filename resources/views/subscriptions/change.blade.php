@@ -15,7 +15,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-sm-3">
-                                    {!! Form::label('member_id','Código do Membro') !!}
+                                    {!! Form::label('member_id','Código do Aluno') !!}
                                 </div>
 
                                 <div class="col-sm-3">

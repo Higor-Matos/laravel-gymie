@@ -14,10 +14,11 @@ class ExpensesController extends Controller
         $this->middleware('auth');
     }
 
-    /* Display a listing of the resource.
-    *
-    * @return Response
-    */
+    /**
+     * Exibir uma lista do recurso.
+     *
+     * @return Response
+     */
     public function index(Request $request)
     {
         $expenses = Expense::indexQuery($request->category_id, $request->sort_field, $request->sort_direction, $request->drp_start, $request->drp_end)->search('"'.$request->input('search').'"')->paginate(10);
@@ -25,7 +26,7 @@ class ExpensesController extends Controller
         $count = $expenseTotal->sum('amount');
 
         if (! $request->has('drp_start') or ! $request->has('drp_end')) {
-            $drp_placeholder = 'Select daterange filter';
+            $drp_placeholder = 'Selecione o filtro de intervalo de datas';
         } else {
             $drp_placeholder = $request->drp_start.' - '.$request->drp_end;
         }
@@ -36,12 +37,12 @@ class ExpensesController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Exibir o recurso especificado.
      *
      * @param  int  $id
      * @return Response
      */
-    public function show()
+    public function show($id)
     {
         $expense = Expense::findOrFail($id);
 
@@ -49,7 +50,7 @@ class ExpensesController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Mostrar o formulário para criar um novo recurso.
      *
      * @return Response
      */
@@ -59,18 +60,20 @@ class ExpensesController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Armazenar um recurso recém-criado no armazenamento.
      *
      * @return Response
      */
     public function store(Request $request)
     {
-        $expenseData = ['name' => $request->name,
-                             'category_id' => $request->category_id,
-                             'due_date' => $request->due_date,
-                             'repeat' => $request->repeat,
-                             'note' => $request->note,
-                             'amount' => $request->amount, ];
+        $expenseData = [
+            'name' => $request->name,
+            'category_id' => $request->category_id,
+            'due_date' => Carbon::createFromFormat('d/m/Y', $request->due_date)->format('Y-m-d'),
+            'repeat' => $request->repeat,
+            'note' => $request->note,
+            'amount' => $request->amount,
+        ];
 
         $expense = new Expense($expenseData);
         $expense->createdBy()->associate(Auth::user());
@@ -86,7 +89,7 @@ class ExpensesController extends Controller
         $expense->createdBy()->associate(Auth::user());
 
         $expense->save();
-        flash()->success('Expense was successfully added');
+        flash()->success('Despesa foi adicionada com sucesso');
 
         return redirect('expenses/all');
     }
@@ -102,11 +105,13 @@ class ExpensesController extends Controller
     {
         $expense = Expense::findOrFail($id);
 
-        $expense->update($request->all());
+        $expenseData = $request->all();
+        $expenseData['due_date'] = Carbon::createFromFormat('d/m/Y', $request->due_date)->format('Y-m-d');
+        $expense->update($expenseData);
 
-        if ($request->due_date == Carbon::today()) {
+        if ($request->due_date == Carbon::today()->format('d/m/Y')) {
             $expense->paid = \constPaymentStatus::Paid;
-        } elseif ($request->due_date != Carbon::today() && $expense->paid == \constPaymentStatus::Paid) {
+        } elseif ($request->due_date != Carbon::today()->format('d/m/Y') && $expense->paid == \constPaymentStatus::Paid) {
             $expense->paid = \constPaymentStatus::Paid;
         } else {
             $expense->paid = \constPaymentStatus::Unpaid;
@@ -115,7 +120,7 @@ class ExpensesController extends Controller
         $expense->updatedBy()->associate(Auth::user());
 
         $expense->save();
-        flash()->success('Expense was successfully updated');
+        flash()->success('Despesa foi atualizada com sucesso');
 
         return redirect('expenses/all');
     }
@@ -124,7 +129,7 @@ class ExpensesController extends Controller
     {
         Expense::where('id', '=', $id)->update(['paid' => \constPaymentStatus::Paid]);
 
-        flash()->success('Expense was successfully paid');
+        flash()->success('Despesa foi paga com sucesso');
 
         return redirect('expenses/all');
     }

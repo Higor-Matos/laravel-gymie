@@ -21,7 +21,7 @@
             {!! Form::Open(['url' => 'subscriptions','id'=>'subscriptionsform']) !!}
             {!! Form::hidden('invoiceCounter',$invoiceCounter) !!}
 
-        <!-- Detalhes do Membro -->
+        <!-- Detalhes do Aluno -->
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel no-border">

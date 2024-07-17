@@ -9,7 +9,7 @@
             <h1 class="page-title no-line-height">Categorias de Despesa
                 @permission(['manage-gymie','manage-expenseCategories','add-expenseCategory'])
                 <a href="{{ action('ExpenseCategoriesController@create') }}" class="page-head-btn btn-sm btn-primary active" role="button">Adicionar Nova</a>
-                <small>Detalhes de todas as categorias de despesas do ginásio</small>
+                <small>Detalhes de todas as categorias de despesas da Academia</small>
             </h1>
             @permission(['manage-gymie','pagehead-stats'])
             <h1 class="font-size-30 text-right color-blue-grey-600 animated fadeInDown total-count pull-right"><span data-toggle="counter" data-start="0"

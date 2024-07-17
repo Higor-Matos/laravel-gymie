@@ -125,7 +125,7 @@ var gymie = (function ($) {
         data: JSON.parse(jsRegistraionsCount),
         xkey: "month",
         ykeys: ["registrations"],
-        labels: ["Membros"],
+        labels: ["Alunos"],
         hideHover: "auto",
         lineColors: ["#27ae60"],
       });

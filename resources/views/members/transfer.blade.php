@@ -24,12 +24,12 @@
             {!! Form::hidden('transfer_id',$enquiry->id) !!}
             {!! Form::hidden('memberCounter',$memberCounter) !!}
             {!! Form::hidden('invoiceCounter',$invoiceCounter) !!}
-        <!-- Detalhes do Membro -->
+        <!-- Detalhes do Aluno -->
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel no-border">
                         <div class="panel-title">
-                            <div class="panel-head font-size-20">Insira os detalhes do membro</div>
+                            <div class="panel-head font-size-20">Insira os detalhes do Aluno</div>
                         </div>
 
                         <div class="panel-body">
@@ -112,7 +112,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        {!! Form::label('member_code','Código do Membro') !!}
+                                        {!! Form::label('member_code','Código do Aluno') !!}
                                         {!! Form::text('member_code',$member_code,['class'=>'form-control', 'id' => 'member_code', ($member_number_mode == \constNumberingMode::Auto ? 'readonly' : '')]) !!}
                                     </div>
                                 </div>
@@ -150,7 +150,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         {!! Form::label('source','Como você soube sobre nós?',['class'=>'control-label']) !!}
-                                        {!! Form::select('source',array('0' => 'Promoções', '1' => 'Boca a Boca', '2' => 'Outros'),$enquiry->source,['class' => 'form-control selectpicker show-tick show-menu-arrow', 'id' => 'source']) !!}
+                                        {!! Form::select('source',array('0' => 'Promoções', '1' => 'Boca a Boca', '2' => 'Redes Sociais', '2' => 'Outros'),$enquiry->source,['class' => 'form-control selectpicker show-tick show-menu-arrow', 'id' => 'source']) !!}
                                     </div>
                                 </div>
                             </div>

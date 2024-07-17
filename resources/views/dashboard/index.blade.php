@@ -9,7 +9,7 @@
             @permission(['manage-gymie','view-dashboard-quick-stats'])
             <!-- Estatísticas Rápidas  -->
             <div class="row margin-top-10">
-                <!-- Total de Membros -->
+                <!-- Total de Alunos -->
                 <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
                     @include('dashboard._index.totalMembers')
                 </div>
@@ -19,12 +19,12 @@
                     @include('dashboard._index.registeredThisMonth')
                 </div>
 
-                <!-- Membros Inativos -->
+                <!-- Alunos Inativos -->
                 <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
                     @include('dashboard._index.inActiveMembers')
                 </div>
 
-                <!-- Membros Expirados -->
+                <!-- Alunos Expirados -->
                 <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
                     @include('dashboard._index.expiredMembers')
                 </div>
@@ -41,13 +41,13 @@
             </div>
             @endpermission
 
-            <!-- Visualizações Rápidas de Membros -->
+            <!-- Visualizações Rápidas de Alunos -->
             <div class="row"> <!--Linha Principal-->
                 @permission(['manage-gymie','view-dashboard-members-tab'])
-                <div class="col-lg-6">
+                <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="panel">
                         <div class="panel-title">
-                            <div class="panel-head"><i class="fa fa-users"></i><a href="{{ action('MembersController@index') }}">Membros</a></div>
+                            <div class="panel-head"><i class="fa fa-users"></i><a href="{{ action('MembersController@index') }}">Alunos</a></div>
                             <div class="pull-right"><a href="{{ action('MembersController@create') }}" class="btn-sm btn-primary active" role="button"><i
                                             class="fa fa-user-plus"></i> Adicionar</a></div>
                         </div>
@@ -89,7 +89,7 @@
 
                 @permission(['manage-gymie','view-dashboard-enquiries-tab'])
                 <!--Visualização Rápida de Consultas-->
-                <div class="col-lg-6">
+                <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="panel">
                         <div class="panel-title">
                             <div class="panel-head"><i class="fa fa-phone"></i><a href="{{ action('EnquiriesController@index') }}">Consultas</a></div>
@@ -125,12 +125,12 @@
             @permission(['manage-gymie','view-dashboard-expense-tab'])
             <div class="row">
                 <!--Visualização Rápida de Despesas-->
-                <div class="col-lg-6">
+                <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="panel">
                         <div class="panel-title">
-                            <div class="panel-head"><i class="fa fa-money"></i><a href="{{ action('ExpensesController@index') }}">Despesas</a></div>
+                            <div class="panel-head"><i class="fa fa-usd"></i><a href="{{ action('ExpensesController@index') }}">Despesas</a></div>
                             <div class="pull-right"><a href="{{ action('ExpensesController@create') }}" class="btn-sm btn-primary active" role="button">
-                                    <i class="fa fa-money"></i> Adicionar</a>
+                                    <i class="fa fa-usd"></i> Adicionar</a>
                             </div>
                         </div>
 
@@ -156,54 +156,15 @@
                 </div>
                 @endpermission
 
-                <div class="col-lg-6">
-                    <div class="panel">
-                        <div class="panel-title">
-                            <div class="panel-head"><i class="fa fa-credit-card-alt" aria-hidden="true"></i>Cheques</div>
-                        </div>
-
-                        <div class="panel-body with-nav-tabs">
-                            <!-- Cabeçalhos de Abas -->
-                            <ul class="nav nav-tabs">
-                                <li class="active"><a href="#recieved" data-toggle="tab">Recebidos<span
-                                                class="label label-warning margin-left-5">{{ $recievedChequesCount }}</span></a></li>
-                                <li><a href="#deposited" data-toggle="tab">Depositados<span
-                                                class="label label-primary margin-left-5">{{ $depositedChequesCount }}</span></a></li>
-                                <li><a href="#bounced" data-toggle="tab">Devolvidos<span class="label label-danger margin-left-5">{{ $bouncedChequesCount }}</span></a>
-                                </li>
-                            </ul>
-
-                            <!-- Conteúdo das Abas -->
-                            <div class="tab-content">
-                                <div class="tab-pane fade in active" id="recieved">
-                                    @include('dashboard._index.receivedCheque', ['recievedCheques' =>  $recievedCheques])
-                                </div>
-
-                                <div class="tab-pane fade" id="deposited">
-                                    @include('dashboard._index.depositedCheques', ['depositedCheques' =>  $depositedCheques])
-                                </div>
-
-                                <div class="tab-pane fade" id="bounced">
-                                    @include('dashboard._index.bouncedCheques', ['bouncedCheques' =>  $bouncedCheques])
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            @permission(['manage-gymie','view-dashboard-charts'])
-            <div class="row">
-                <div class="col-lg-6">
+                @permission(['manage-gymie','view-dashboard-charts'])
+                <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="panel">
                         <div class="panel-title">
                             <div class="panel-head"><i class="fa fa-comments-o"></i>Registro de SMS</div>
                         </div>
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-lg-5">
+                                <div class="col-lg-5 col-md-5 col-sm-6">
                                     <div class="panel bg-light-blue-400">
                                         <div class="panel-body padding-15-20">
                                             <div class="clearfix">
@@ -227,7 +188,7 @@
                                     </div>
                                 </div>
                                 @if($smsRequestSetting == 0)
-                                    <div class="col-lg-7">
+                                    <div class="col-lg-7 col-md-7 col-sm-6">
                                         <button class="btn btn-labeled btn-success pull-right margin-top-20" data-toggle="modal" data-target="#smsRequestModal"
                                                 data-id="smsRequestModal"><span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>Solicitar mais SMS
                                         </button>
@@ -238,11 +199,16 @@
                         </div>
                     </div>
                 </div>
+                @endpermission
 
-                <div class="col-lg-6">
+            </div>
+
+            @permission(['manage-gymie','view-dashboard-charts'])
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="panel bg-white">
                         <div class="panel-title">
-                            <div class="panel-head">Membros por Plano</div>
+                            <div class="panel-head">Alunos por Plano</div>
                         </div>
                         <div class="panel-body padding-top-10">
                             @if(!empty($membersPerPlan))
@@ -256,10 +222,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="panel bg-white">
                         <div class="panel-title bg-transparent no-border">
                             <div class="panel-head">Tendência de Registro</div>

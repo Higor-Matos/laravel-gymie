@@ -49,7 +49,7 @@ $senderIds = explode(',', \Utilities::getSetting('sender_id_list'));
         <div class="col-sm-6">
             <div class="form-group">
                 {!! Form::label('send_to','Enviar para') !!}
-                {!! Form::select('send_to[]',array('0' => 'Membros ativos', '1' => 'Membros inativos', '2' => 'Consultas de leads', '3' => 'Consultas perdidas'),null,['class'=>'form-control selectpicker show-tick show-menu-arrow','multiple' => 'multiple', 'id' => 'send_to']) !!}
+                {!! Form::select('send_to[]',array('0' => 'Alunos ativos', '1' => 'Alunos inativos', '2' => 'Consultas de leads', '3' => 'Consultas perdidas'),null,['class'=>'form-control selectpicker show-tick show-menu-arrow','multiple' => 'multiple', 'id' => 'send_to']) !!}
             </div>
         </div>
     </div>

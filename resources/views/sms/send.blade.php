@@ -40,12 +40,12 @@
                                         {!! Form::label('send_to','Enviar Para') !!} </br>
                                         <div class="checkbox checkbox-theme display-inline-block">
                                             <input type="checkbox" name="send[]" id="activeMembers" value="0">
-                                            <label for="activeMembers" class="padding-left-30">Membros ativos</label>
+                                            <label for="activeMembers" class="padding-left-30">Alunos ativos</label>
                                         </div>
 
                                         <div class="checkbox checkbox-theme display-inline-block">
                                             <input type="checkbox" name="send[]" id="inactiveMembers" value="1">
-                                            <label for="inactiveMembers" class="padding-left-30">Membros inativos</label>
+                                            <label for="inactiveMembers" class="padding-left-30">Alunos inativos</label>
                                         </div>
 
                                         <div class="checkbox checkbox-theme display-inline-block margin-right-5">

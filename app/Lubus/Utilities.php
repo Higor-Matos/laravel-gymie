@@ -156,23 +156,23 @@ class Utilities
     {
         switch ($repeat) {
         case '0':
-            return 'Never Repeat';
+            return 'Nunca Repetir';
             break;
 
         case '1':
-            return 'Every Day';
+            return 'Todos os Dias';
             break;
 
         case '2':
-            return 'Every Week';
+            return 'Toda Semana';
             break;
 
         case '3':
-            return 'Every Month';
+            return 'Todo Mês';
             break;
 
         default:
-            return 'Every Year';
+            return 'Todo Ano';
             break;
     }
     }
@@ -240,15 +240,19 @@ class Utilities
     {
         switch ($source) {
         case '1':
-            return 'Word of mouth';
+            return 'Boca a Boca';
             break;
 
         case '2':
-            return 'Others';
+            return 'Redes Sociais';
+            break;
+        
+        case '3':
+            return 'Outros';
             break;
 
         default:
-            return 'Promotions';
+            return 'Promoções';
             break;
     }
     }
@@ -328,19 +332,19 @@ class Utilities
     {
         switch ($status) {
         case '1':
-            return 'Paid';
+            return 'Pago';
             break;
 
         case '2':
-            return 'Partial';
+            return 'Parcial';
             break;
 
         case '3':
-            return 'Overpaid';
+            return 'Excedido';
             break;
 
         default:
-            return 'Unpaid';
+            return 'Não Pago';
             break;
     }
     }

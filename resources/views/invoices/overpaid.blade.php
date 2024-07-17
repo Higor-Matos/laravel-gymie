@@ -7,14 +7,14 @@
         <div class="page-head bg-grey-100 padding-top-15 no-padding-bottom">
             @include('flash::message')
             <h1 class="page-title no-line-height">Faturas
-                <small>Detalhes de todas as faturas pagas em excesso</small>
+                <small>Detalhes de todas as faturas pagas adiantadas</small>
             </h1>
             @permission(['manage-gymie','pagehead-stats'])
             <h1 class="font-size-30 text-right color-blue-grey-600 animated fadeInDown total-count pull-right"><span data-toggle="counter" data-start="0"
                                                                                                                      data-from="0" data-to="{{ $count }}"
                                                                                                                      data-speed="600"
                                                                                                                      data-refresh-interval="10"></span>
-                <small class="color-blue-grey-600 display-block margin-top-5 font-size-14">Faturas Pagas em Excesso</small>
+                <small class="color-blue-grey-600 display-block margin-top-5 font-size-14">Faturas pagas adiantadas</small>
             </h1>
             @endpermission
         </div><!-- / PageHead -->
@@ -47,7 +47,7 @@
 
                                         <div class="col-sm-2">
                                             {!! Form::label('sort_field','Ordenar por') !!}
-                                            {!! Form::select('sort_field',array('created_at' => 'Data','invoice_number' => 'Número da Fatura','member_name' => 'Nome do Membro','total' => 'Valor Total','pending_amount' => 'Valor Pendente'),old('sort_field'),['class' => 'form-control selectpicker show-tick show-menu-arrow', 'id' => 'sort_field']) !!}
+                                            {!! Form::select('sort_field',array('created_at' => 'Data','invoice_number' => 'Número da Fatura','member_name' => 'Nome do Aluno','total' => 'Valor Total','pending_amount' => 'Valor Pendente'),old('sort_field'),['class' => 'form-control selectpicker show-tick show-menu-arrow', 'id' => 'sort_field']) !!}
                                         </div>
 
                                         <div class="col-sm-2">
@@ -82,7 +82,7 @@
                                     <thead>
                                     <tr>
                                         <th>Número da Fatura</th>
-                                        <th>Nome do Membro</th>
+                                        <th>Nome do Aluno</th>
                                         <th>Valor Total</th>
                                         <th>Pendente</th>
                                         <th>Desconto</th>
