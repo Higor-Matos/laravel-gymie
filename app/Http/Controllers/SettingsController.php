@@ -37,33 +37,41 @@ class SettingsController extends Controller
 
         // Update All Settings
         foreach ($settings as $key => $value) {
-            if ($key == 'gym_logo' && $request->hasFile('gym_logo')) {
-                $file = $request->file('gym_logo');
-                
-                try {
-                    // Process the image
-                    $image = $manager->make($file->getRealPath());
+            try {
+                if ($key == 'gym_logo' && $request->hasFile('gym_logo')) {
+                    $file = $request->file('gym_logo');
                     
-                    // Save the image
-                    $image->encode('jpg', 75)->save(public_path('/assets/img/gym/gym_logo.jpg'));
+                    try {
+                        // Process the image
+                        $image = $manager->make($file->getRealPath());
+                        
+                        // Save the image
+                        $image->encode('jpg', 75)->save(public_path('/assets/img/gym/gym_logo.jpg'));
 
-                    // Set the value to the file name for the database
-                    $value = 'gym_logo.jpg';
-                } catch (\Exception $e) {
-                    return back()->withErrors(['gym_logo' => 'Erro ao processar a imagem: ' . $e->getMessage()]);
+                        // Set the value to the file name for the database
+                        $value = 'gym_logo.jpg';
+                    } catch (\Exception $e) {
+                        return back()->withErrors(['gym_logo' => 'Erro ao processar a imagem: ' . $e->getMessage()]);
+                    }
                 }
-            }
 
-            // Parse dates if necessary
-            if (in_array($key, ['financial_start', 'financial_end'])) {
-                $value = \Carbon\Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d');
-            }
+                // Parse dates if necessary
+                if (in_array($key, ['financial_start', 'financial_end'])) {
+                    if (empty($value)) {
+                        throw new \InvalidArgumentException("Data missing");
+                    }
+                    $value = \Carbon\Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d');
+                }
 
-            Setting::where('key', '=', $key)->update(['value' => $value]);
+                Setting::where('key', '=', $key)->update(['value' => $value]);
+            } catch (\Exception $e) {
+                return back()->withErrors(['error' => 'Whoops, looks like something went wrong.']);
+            }
         }
 
         flash()->success('Configurações foram atualizadas com sucesso');
 
         return redirect('settings/edit');
     }
+
 }
