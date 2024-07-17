@@ -17,11 +17,22 @@ class ExpensesController extends Controller
 
     public function index(Request $request)
     {
-        $expenses = Expense::indexQuery($request->category_id, $request->sort_field, $request->sort_direction, $request->drp_start, $request->drp_end)->search('"'.$request->input('search').'"')->paginate(10);
-        $expenseTotal = Expense::indexQuery($request->category_id, $request->sort_field, $request->sort_direction, $request->drp_start, $request->drp_end)->search('"'.$request->input('search').'"')->get();
+        $startDate = null;
+        $endDate = null;
+
+        if ($request->has('drp_start') && $request->has('drp_end')) {
+            $startDate = Carbon::createFromFormat('d/m/Y', $request->drp_start)->format('Y-m-d');
+            $endDate = Carbon::createFromFormat('d/m/Y', $request->drp_end)->format('Y-m-d');
+        }
+
+        $expensesQuery = Expense::indexQuery($request->category_id, $request->sort_field, $request->sort_direction, $startDate, $endDate)
+                                ->search('"'.$request->input('search').'"');
+
+        $expenses = $expensesQuery->paginate(10);
+        $expenseTotal = $expensesQuery->get();
         $count = $expenseTotal->sum('amount');
 
-        if (! $request->has('drp_start') or ! $request->has('drp_end')) {
+        if (!$request->has('drp_start') || !$request->has('drp_end')) {
             $drp_placeholder = 'Selecione o filtro de intervalo de datas';
         } else {
             $drp_placeholder = $request->drp_start.' - '.$request->drp_end;
