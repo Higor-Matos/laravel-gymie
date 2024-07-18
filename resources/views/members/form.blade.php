@@ -79,7 +79,7 @@
     @if(isset($member))
         <?php
         $media = $member->getMedia('proof');
-        $image = ($media->isEmpty() ? 'https://placeholdit.imgix.net/~text?txtsize=18&txt=NA&w=70&h=70' : url($media[0]->getUrl('form')));
+        $image = ($media->isEmpty() ? 'http://clipart-library.com/images_k/money-icon-transparent-background/money-icon-transparent-background-25.png' : url($media[0]->getUrl('form')));
         ?>
         <div class="col-sm-4">
             <div class="form-group">
@@ -88,7 +88,7 @@
             </div>
         </div>
         <div class="col-sm-2">
-            <img alt="Foto do Comprovante de Pagamento" class="pull-right" src="{{ $image }}"/>
+            <img alt="Foto do Comprovante de Pagamento" class="pull-right" src="{{ $image }}" style="width:40px; height: 40px; margin-right: auto; margin-left: auto;"/>
         </div>
     @else
         <div class="col-sm-6">
@@ -104,7 +104,7 @@
     @if(isset($member))
         <?php
         $media = $member->getMedia('profile');
-        $image = ($media->isEmpty() ? 'https://placeholdit.imgix.net/~text?txtsize=18&txt=NA&w=70&h=70' : url($media[0]->getUrl('form')));
+        $image = ($media->isEmpty() ? 'https://www.pngall.com/wp-content/uploads/12/Avatar-PNG-Images-HD.png' : url($media[0]->getUrl('form')));
         ?>
         <div class="col-sm-4">
             <div class="form-group">
@@ -113,7 +113,7 @@
             </div>
         </div>
         <div class="col-sm-2">
-            <img alt="Foto de Perfil" class="pull-right" src="{{ $image }}"/>
+            <img alt="Foto de Perfil" class="pull-right" src="{{ $image }}" style="width: 50px; height: 50px; margin-right: auto; margin-left: auto;"/>
         </div>
     @else
         <div class="col-sm-6">

@@ -108,19 +108,19 @@ class Utilities
             break;
 
         case '2':
-            return 'Body Building';
+            return 'Preparo Físico';
             break;
 
         case '3':
-            return 'Fatloss';
+            return 'Perda de Gordura';
             break;
 
         case '4':
-            return 'Weightgain';
+            return 'Ganho de Peso';
             break;
 
         case '5':
-            return 'Others';
+            return 'Outros';
             break;
 
         default:
@@ -262,15 +262,15 @@ class Utilities
     {
         switch ($status) {
         case '0':
-            return 'Inactive';
+            return 'Inativo';
             break;
 
         case '2':
-            return 'Archived';
+            return 'Arquivado';
             break;
 
         default:
-            return 'Active';
+            return 'Ativo';
             break;
     }
     }
@@ -443,11 +443,11 @@ class Utilities
     {
         switch ($gender) {
         case 'm':
-            return 'Homem';
+            return 'Masculino';
             break;
 
         case 'f':
-            return 'Mulher';
+            return 'Feminino';
             break;
     }
     }

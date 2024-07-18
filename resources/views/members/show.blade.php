@@ -65,9 +65,9 @@
                                             </div>
                                             <?php
                                             $images = $member->getMedia('profile');
-                                            $profileImage = ($images->isEmpty() ? 'https://placeholdit.imgix.net/~text?txtsize=22&txt=NA&w=200&h=180' : url($images[0]->getUrl()));
+                                            $profileImage = ($images->isEmpty() ? 'https://www.pngall.com/wp-content/uploads/12/Avatar-PNG-Images-HD.png' : url($images[0]->getUrl()));
                                             ?>
-                                            <img class="AutoFitResponsive" src="{{ $profileImage }}"/>
+                                            <img class="AutoFitResponsive" src="{{ $profileImage }}" style="width: 50px; height: 50px; margin-right: auto; margin-left: auto;"/>
                                         </div>
 
 

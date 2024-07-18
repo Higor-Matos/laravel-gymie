@@ -69,9 +69,9 @@
                     $user = Auth::user();
                     if ($user) {
                         $media = method_exists($user, 'getMedia') ? $user->getMedia() : collect();
-                        $image = ($media->isEmpty() ? 'https://placeholdit.imgix.net/~text?txtsize=18&txt=NA&w=50&h=50' : url($media[0]->getUrl('thumb')));
+                        $image = ($media->isEmpty() ? 'https://dragonball.guru/wp-content/uploads/2021/03/goten-profile-pic-400x400.png' : url($media[0]->getUrl('thumb')));
                     } else {
-                        $image = 'https://placeholdit.imgix.net/~text?txtsize=18&txt=NA&w=50&h=50';
+                        $image = 'https://www.pngall.com/wp-content/uploads/12/Avatar-PNG-Images-HD.png';
                     }
                     ?>
                     <img src="{{ $image }}" class="img-circle" alt=""/>

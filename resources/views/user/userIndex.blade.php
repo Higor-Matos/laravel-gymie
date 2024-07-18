@@ -7,7 +7,7 @@
         <div class="page-head bg-grey-100">
             @include('flash::message')
             <h1 class="page-title">Usuários</h1>
-            <a href="{{ action('AclController@createUser') }}" class="btn btn-primary active pull-right" role="button"> Adicionar</a></h1>
+            <a href="{{ action('AclController@createUser') }}" class="btn btn-primary active pull-right" role="button"> Adicionar</a>
         </div>
 
         <div class="container-fluid">
@@ -30,15 +30,15 @@
                                 </thead>
                                 <tbody>
 
-                                <tr>
-                                    @foreach ($users as $user)
-                                        <?php
-                                        $media = $user->getMedia('staff');
-                                        $image = ($media->isEmpty() ? 'https://placeholdit.imgix.net/~text?txtsize=18&txt=NA&w=50&h=50' : url($media[0]->getUrl('thumb')));
-                                        ?>
-                                        <td class="text-center"><img src="{{ $image }}"></td>
-                                        <td class="text-center">{{ $user->name}}</td>
-                                        <td class="text-center">{{ $user->email}}</td>
+                                @foreach ($users as $user)
+                                    <?php
+                                    $media = $user->getMedia('staff');
+                                    $image = ($media->isEmpty() ? 'https://dragonball.guru/wp-content/uploads/2021/03/goten-profile-pic-400x400.png' : url($media[0]->getUrl('thumb')));
+                                    ?>
+                                    <tr>
+                                        <td class="text-center"><img src="{{ $image }}" alt="Foto do usuário" width="50" height="50"></td>
+                                        <td class="text-center">{{ $user->name }}</td>
+                                        <td class="text-center">{{ $user->email }}</td>
                                         <td class="text-center">{{ $user->roleUser->role->name }}</td>
 
                                         <td class="text-center">
@@ -50,7 +50,7 @@
                                                 </button>
                                                 <ul class="dropdown-menu" role="menu">
                                                     <li>
-                                                        <a href="{{ action('AclController@editUser',['id' => $user->id]) }}">
+                                                        <a href="{{ action('AclController@editUser', ['id' => $user->id]) }}">
                                                             Editar detalhes
                                                         </a>
                                                     </li>
@@ -63,10 +63,8 @@
                                                 </ul>
                                             </div>
                                         </td>
-                                </tr>
-
+                                    </tr>
                                 @endforeach
-
 
                                 </tbody>
                             </table>

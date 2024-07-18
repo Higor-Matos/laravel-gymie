@@ -33,7 +33,16 @@ class MembersController extends Controller
      */
     public function index(Request $request)
     {
-        $members = Member::indexQuery($request->sort_field, $request->sort_direction, $request->drp_start, $request->drp_end)->search('"'.$request->input('search').'"')->paginate(10);
+        // Converte as datas de início e fim para o formato Y-m-d
+        if ($request->has('drp_start') && $request->has('drp_end')) {
+            $drp_start = Carbon::createFromFormat('d/m/Y', $request->drp_start)->format('Y-m-d');
+            $drp_end = Carbon::createFromFormat('d/m/Y', $request->drp_end)->format('Y-m-d');
+        } else {
+            $drp_start = null;
+            $drp_end = null;
+        }
+
+        $members = Member::indexQuery($request->sort_field, $request->sort_direction, $drp_start, $drp_end)->search('"'.$request->input('search').'"')->paginate(10);
         $count = $members->total();
 
         $drp_placeholder = $this->drpPlaceholder($request);
@@ -45,7 +54,16 @@ class MembersController extends Controller
 
     public function active(Request $request)
     {
-        $members = Member::active($request->sort_field, $request->sort_direction, $request->drp_start, $request->drp_end)->search('"'.$request->input('search').'"')->paginate(10);
+        // Converte as datas de início e fim para o formato Y-m-d
+        if ($request->has('drp_start') && $request->has('drp_end')) {
+            $drp_start = Carbon::createFromFormat('d/m/Y', $request->drp_start)->format('Y-m-d');
+            $drp_end = Carbon::createFromFormat('d/m/Y', $request->drp_end)->format('Y-m-d');
+        } else {
+            $drp_start = null;
+            $drp_end = null;
+        }
+
+        $members = Member::active($request->sort_field, $request->sort_direction, $drp_start, $drp_end)->search('"'.$request->input('search').'"')->paginate(10);
         $count = $members->total();
 
         $drp_placeholder = $this->drpPlaceholder($request);
@@ -57,7 +75,16 @@ class MembersController extends Controller
 
     public function inactive(Request $request)
     {
-        $members = Member::inactive($request->sort_field, $request->sort_direction, $request->drp_start, $request->drp_end)->search('"'.$request->input('search').'"')->paginate(10);
+        // Converte as datas de início e fim para o formato Y-m-d
+        if ($request->has('drp_start') && $request->has('drp_end')) {
+            $drp_start = Carbon::createFromFormat('d/m/Y', $request->drp_start)->format('Y-m-d');
+            $drp_end = Carbon::createFromFormat('d/m/Y', $request->drp_end)->format('Y-m-d');
+        } else {
+            $drp_start = null;
+            $drp_end = null;
+        }
+
+        $members = Member::inactive($request->sort_field, $request->sort_direction, $drp_start, $drp_end)->search('"'.$request->input('search').'"')->paginate(10);
         $count = $members->total();
 
         $drp_placeholder = $this->drpPlaceholder($request);
@@ -204,7 +231,6 @@ class MembersController extends Controller
         }
     }
 
-
     // Fim de novo membro
 
     // Fim do método store
@@ -239,9 +265,9 @@ class MembersController extends Controller
             'email' => 'unique:mst_members,email,'.$member->id,
             'contact' => 'unique:mst_members,contact,'.$member->id,
             'member_code' => 'unique:mst_members,member_code,'.$member->id,
-            'DOB' => 'date_format:Y-m-d',
-            'photo' => 'required|image|max:2048',
-            'proof_photo' => 'required|image|max:2048',
+            'DOB' => 'date_format:d/m/Y',
+            'photo' => 'image|max:2048', // Removido o 'required'
+            'proof_photo' => 'image|max:2048', // Removido o 'required'
         ]);
 
         Log::info('Validação dos dados do membro concluída');
@@ -292,7 +318,6 @@ class MembersController extends Controller
             return redirect(action('MembersController@edit', ['id' => $id]));
         }
     }
-
 
     /**
      * Arquivar um recurso no armazenamento.
