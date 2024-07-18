@@ -25,7 +25,6 @@
                             <div class="panel-head">Insira os detalhes do usuário</div>
                         </div>
 
-
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-sm-6">
@@ -46,8 +45,8 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                    {!! Form::label('status','Status') !!}
-                                    <!--0 para inativo, 1 para ativo-->
+                                        {!! Form::label('status','Status') !!}
+                                        <!--0 para inativo, 1 para ativo-->
                                         {!! Form::select('status',array('1' => 'Ativo', '0' => 'Inativo'),null,['class' => 'form-control selectpicker show-tick show-menu-arrow', 'id' => 'status']) !!}
                                     </div>
                                 </div>
@@ -118,11 +117,9 @@
 
                     {!! Form::Close() !!}
 
-
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
 @stop

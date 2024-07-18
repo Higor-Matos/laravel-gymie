@@ -443,11 +443,11 @@ class Utilities
     {
         switch ($gender) {
         case 'm':
-            return 'Male';
+            return 'Homem';
             break;
 
         case 'f':
-            return 'Female';
+            return 'Mulher';
             break;
     }
     }
