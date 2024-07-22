@@ -15,12 +15,45 @@ use App\Subscription;
 use App\InvoiceDetail;
 use App\PaymentDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class SubscriptionsController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    /**
+     * Converte a data do formato brasileiro para o formato global.
+     *
+     * @param string $date
+     * @return string
+     */
+    private function convertDateToGlobal($date)
+    {
+        if (!$date) {
+            return null;
+        }
+
+        $dateArray = explode('/', $date);
+        return $dateArray[2] . '-' . $dateArray[1] . '-' . $dateArray[0];
+    }
+
+    /**
+     * Converte a data do formato global para o formato brasileiro.
+     *
+     * @param string $date
+     * @return string
+     */
+    private function convertDateToBrazilian($date)
+    {
+        if (!$date) {
+            return null;
+        }
+
+        $dateArray = explode('-', $date);
+        return $dateArray[2] . '/' . $dateArray[1] . '/' . $dateArray[0];
     }
 
     public function index(Request $request)
@@ -90,6 +123,13 @@ class SubscriptionsController extends Controller
         DB::beginTransaction();
 
         try {
+            // Converte as datas antes de salvar
+            $plans = $request->input('plan');
+            foreach ($plans as &$plan) {
+                $plan['start_date'] = $this->convertDateToGlobal($plan['start_date']);
+                $plan['end_date'] = $this->convertDateToGlobal($plan['end_date']);
+            }
+
             // Função auxiliar para definir o status do pagamento
             $invoice_total = $request->admission_amount + $request->subscription_amount + $request->taxes_amount - $request->discount_amount;
             $paymentStatus = \constPaymentStatus::Unpaid;
@@ -108,17 +148,19 @@ class SubscriptionsController extends Controller
             }
 
             // Armazenando a fatura
-            $invoiceData = ['invoice_number'=> $request->invoice_number,
-                                     'member_id'=> $request->member_id,
-                                     'total'=> $invoice_total,
-                                     'status'=> $paymentStatus,
-                                     'pending_amount'=> $pending,
-                                     'discount_amount'=> $request->discount_amount,
-                                     'discount_percent'=> $request->discount_percent,
-                                     'discount_note'=> $request->discount_note,
-                                     'tax'=> $request->taxes_amount,
-                                     'additional_fees'=> $request->additional_fees,
-                                     'note'=>' ', ];
+            $invoiceData = [
+                'invoice_number'=> $request->invoice_number,
+                'member_id'=> $request->member_id,
+                'total'=> $invoice_total,
+                'status'=> $paymentStatus,
+                'pending_amount'=> $pending,
+                'discount_amount'=> $request->discount_amount,
+                'discount_percent'=> $request->discount_percent,
+                'discount_note'=> $request->discount_note,
+                'tax'=> $request->taxes_amount,
+                'additional_fees'=> $request->additional_fees,
+                'note'=> ' ',
+            ];
 
             $invoice = new Invoice($invoiceData);
             $invoice->createdBy()->associate(Auth::user());
@@ -126,14 +168,16 @@ class SubscriptionsController extends Controller
             $invoice->save();
 
             // Armazenando a assinatura
-            foreach ($request->plan as $plan) {
-                $subscriptionData = ['member_id'=> $request->member_id,
-                                            'invoice_id'=> $invoice->id,
-                                            'plan_id'=> $plan['id'],
-                                            'start_date'=> $plan['start_date'],
-                                            'end_date'=> $plan['end_date'],
-                                            'status'=> \constSubscription::onGoing,
-                                            'is_renewal'=>'0', ];
+            foreach ($plans as $plan) {
+                $subscriptionData = [
+                    'member_id'=> $request->member_id,
+                    'invoice_id'=> $invoice->id,
+                    'plan_id'=> $plan['id'],
+                    'start_date'=> $plan['start_date'],
+                    'end_date'=> $plan['end_date'],
+                    'status'=> \constSubscription::onGoing,
+                    'is_renewal'=> '0',
+                ];
 
                 $subscription = new Subscription($subscriptionData);
                 $subscription->createdBy()->associate(Auth::user());
@@ -141,9 +185,11 @@ class SubscriptionsController extends Controller
                 $subscription->save();
 
                 // Adicionando assinatura à fatura (Detalhes da fatura)
-                $detailsData = ['invoice_id'=> $invoice->id,
-                                       'plan_id'=> $plan['id'],
-                                       'item_amount'=> $plan['price'], ];
+                $detailsData = [
+                    'invoice_id'=> $invoice->id,
+                    'plan_id'=> $plan['id'],
+                    'item_amount'=> $plan['price'],
+                ];
 
                 $invoice_details = new InvoiceDetail($detailsData);
                 $invoice_details->createdBy()->associate(Auth::user());
@@ -152,10 +198,12 @@ class SubscriptionsController extends Controller
             }
 
             // Detalhes do pagamento
-            $paymentData = ['invoice_id'=> $invoice->id,
-                                   'payment_amount'=> $request->payment_amount,
-                                   'mode'=> $request->mode,
-                                   'note'=> ' ', ];
+            $paymentData = [
+                'invoice_id'=> $invoice->id,
+                'payment_amount'=> $request->payment_amount,
+                'mode'=> $request->mode,
+                'note'=> ' ',
+            ];
 
             $payment_details = new PaymentDetail($paymentData);
             $payment_details->createdBy()->associate(Auth::user());
@@ -164,10 +212,12 @@ class SubscriptionsController extends Controller
 
             if ($request->mode == 0) {
                 // Armazenar detalhes do cheque
-                $chequeData = ['payment_id'=> $payment_details->id,
-                                    'number'=> $request->number,
-                                    'date'=> $request->date,
-                                    'status'=> \constChequeStatus::Recieved, ];
+                $chequeData = [
+                    'payment_id'=> $payment_details->id,
+                    'number'=> $request->number,
+                    'date'=> $this->convertDateToGlobal($request->date),
+                    'status'=> \constChequeStatus::Recieved,
+                ];
 
                 $cheque_details = new ChequeDetail($chequeData);
                 $cheque_details->createdBy()->associate(Auth::user());
@@ -249,6 +299,7 @@ class SubscriptionsController extends Controller
             return redirect(action('SubscriptionsController@index'));
         } catch (\Exception $e) {
             DB::rollback();
+            Log::error('Erro ao criar a assinatura: ' . $e->getMessage(), ['exception' => $e]);
             flash()->error('Erro ao criar a assinatura');
 
             return redirect(action('SubscriptionsController@index'));
@@ -260,10 +311,12 @@ class SubscriptionsController extends Controller
     public function edit($id)
     {
         $subscription = Subscription::findOrFail($id);
-        // $carbonToday = Carbon::today()->format('d/m/Y');
-        // $subscriptionEndDate = $subscription->end_date->format('d/m/Y');
+
+        // Converte as datas ao recuperar
+        $subscription->start_date = $this->convertDateToBrazilian($subscription->start_date);
+        $subscription->end_date = $this->convertDateToBrazilian($subscription->end_date);
+
         $diff = Carbon::today()->diffInDays($subscription->end_date);
-        //$gymieDiff = $diff->format('d/m/Y');
         $gymieDiff = $subscription->end_date->addDays($diff);
 
         JavaScript::put([
@@ -279,6 +332,12 @@ class SubscriptionsController extends Controller
     {
         $subscription = Subscription::findOrFail($id);
 
+        // Converte as datas antes de atualizar
+        $request->merge([
+            'start_date' => $this->convertDateToGlobal($request->start_date),
+            'end_date' => $this->convertDateToGlobal($request->end_date),
+        ]);
+
         $subscription->update($request->all());
         $subscription->updatedBy()->associate(Auth::user());
         $subscription->save();
@@ -289,12 +348,17 @@ class SubscriptionsController extends Controller
 
     public function renew($id, Request $request)
     {
-
         // Obter o modo de numeração
         list($invoice_number_mode, $invoiceCounter, $invoice_number) = $this->generateInvoiceNumber();
 
         $subscriptions = Subscription::where('invoice_id', $id)->get();
         $member_id = $subscriptions->pluck('member_id')->first();
+
+        // Converte as datas ao recuperar
+        foreach ($subscriptions as $subscription) {
+            $subscription->start_date = $this->convertDateToBrazilian($subscription->start_date);
+            $subscription->end_date = $this->convertDateToBrazilian($subscription->end_date);
+        }
 
         // Variáveis de JavaScript
         JavaScript::put([
@@ -384,6 +448,12 @@ class SubscriptionsController extends Controller
 
         try {
             DB::beginTransaction();
+            // Converte as datas antes de atualizar
+            foreach ($request->plan as &$plan) {
+                $plan['start_date'] = $this->convertDateToGlobal($plan['start_date']);
+                $plan['end_date'] = $this->convertDateToGlobal($plan['end_date']);
+            }
+
             // Função auxiliar para definir o status do pagamento
             $invoice_total = $request->admission_amount + $request->subscription_amount + $request->taxes_amount - $request->discount_amount;
             $paymentStatus = \constPaymentStatus::Unpaid;
@@ -440,7 +510,7 @@ class SubscriptionsController extends Controller
                 // Armazenar detalhes do cheque
                 $chequeData = ['payment_id'=> $payment_details->id,
                                     'number'=> $request->number,
-                                    'date'=> $request->date,
+                                    'date'=> $this->convertDateToGlobal($request->date),
                                     'status'=> \constChequeStatus::Recieved, ];
 
                 $cheque_details = new ChequeDetail($chequeData);
@@ -455,6 +525,7 @@ class SubscriptionsController extends Controller
             return redirect(action('MembersController@show', ['id' => $subscription->member_id]));
         } catch (\Exception $e) {
             DB::rollback();
+            Log::error('Erro ao alterar a assinatura: ' . $e->getMessage(), ['exception' => $e]);
             flash()->error('Erro ao alterar a assinatura');
 
             return back();
