@@ -21,7 +21,7 @@ services:
           memory: 512M
 
   mysql:
-    image: mysql:5.7
+    image: mariadb:latest
     container_name: laravel_gymie_db
     restart: unless-stopped
     environment:
