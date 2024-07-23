@@ -26,8 +26,10 @@ RUN apt-get update && apt-get install -y \
     iproute2 \
     lsof \
     strace \
-    htop \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+    htop
+
+# Clean up the apt cache to reduce the image size
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install necessary PHP extensions with JPEG support for GD
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
@@ -46,7 +48,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 COPY . /var/www
 
 # Set ownership and permissions for the copied files
-RUN chown -R www-data:www-data /var/www && chmod -R 755 /var/www/storage /var/www/bootstrap/cache
+COPY --chown=www-data:www-data . /var/www
 
 # Create PHP-FPM log directory and set permissions
 RUN mkdir -p /var/log/php-fpm && chown -R www-data:www-data /var/log/php-fpm
@@ -58,6 +60,9 @@ RUN echo "pm.max_requests = 500" >> /usr/local/etc/php-fpm.d/www.conf
 RUN echo "request_slowlog_timeout = 5s" >> /usr/local/etc/php-fpm.d/www.conf
 RUN echo "slowlog = /var/log/php-fpm/www-slow.log" >> /usr/local/etc/php-fpm.d/www.conf
 RUN echo "rlimit_files = 65535" >> /usr/local/etc/php-fpm.d/www.conf
+
+# Set permissions for Laravel directories
+RUN chown -R www-data:www-data /var/www && chmod -R 755 /var/www/storage /var/www/bootstrap/cache
 
 # Switch to the www-data user
 USER www-data
