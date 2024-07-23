@@ -64,10 +64,25 @@ services:
           cpus: '0.25'
           memory: 256M
 
+  portainer:
+    image: portainer/portainer-ce
+    container_name: portainer
+    restart: unless-stopped
+    command: -H unix:///var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    ports:
+      - "9000:9000"
+    networks:
+      - laravel_gymie
+
 networks:
   laravel_gymie:
     driver: bridge
 
 volumes:
   mysql_data:
+    driver: local
+  portainer_data:
     driver: local
