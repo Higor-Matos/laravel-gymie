@@ -8,6 +8,7 @@ use App\Invoice;
 use App\SmsTrigger;
 use App\ChequeDetail;
 use App\PaymentDetail;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PaymentsController extends Controller
@@ -17,14 +18,52 @@ class PaymentsController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * Converte a data do formato brasileiro para o formato global.
+     *
+     * @param string $date
+     * @return string
+     */
+    private function convertDateToGlobal($date)
+    {
+        if (!$date) {
+            return null;
+        }
+
+        return Carbon::createFromFormat('d/m/Y', $date)->format('Y-m-d');
+    }
+
+    /**
+     * Converte a data do formato global para o formato brasileiro.
+     *
+     * @param string $date
+     * @return string
+     */
+    private function convertDateToBrazilian($date)
+    {
+        if (!$date) {
+            return null;
+        }
+
+        return Carbon::createFromFormat('Y-m-d', $date)->format('d/m/Y');
+    }
+
     public function index(Request $request)
     {
-        $payment_details = PaymentDetail::indexQuery($request->sort_field, $request->sort_direction, $request->drp_start, $request->drp_end)->search('"'.$request->input('search').'"')->paginate(10);
-        $paymentTotal = PaymentDetail::indexQuery($request->sort_field, $request->sort_direction, $request->drp_start, $request->drp_end)->search('"'.$request->input('search').'"')->get();
+        $startDate = null;
+        $endDate = null;
+
+        if ($request->has('drp_start') && $request->has('drp_end')) {
+            $startDate = $this->convertDateToGlobal($request->drp_start);
+            $endDate = $this->convertDateToGlobal($request->drp_end);
+        }
+
+        $payment_details = PaymentDetail::indexQuery($request->sort_field, $request->sort_direction, $startDate, $endDate)->search('"'.$request->input('search').'"')->paginate(10);
+        $paymentTotal = PaymentDetail::indexQuery($request->sort_field, $request->sort_direction, $startDate, $endDate)->search('"'.$request->input('search').'"')->get();
         $count = $paymentTotal->sum('payment_amount');
 
         if (! $request->has('drp_start') or ! $request->has('drp_end')) {
-            $drp_placeholder = 'Select daterange filter';
+            $drp_placeholder = 'Selecione o filtro de intervalo de datas';
         } else {
             $drp_placeholder = $request->drp_start.' - '.$request->drp_end;
         }
@@ -43,17 +82,17 @@ class PaymentsController extends Controller
     {
         DB::beginTransaction();
         try {
-            // Storing Payment Details
+            // Armazenando Detalhes do Pagamento
             $payment_detail = new PaymentDetail($request->all());
             $payment_detail->createdBy()->associate(Auth::user());
             $payment_detail->updatedBy()->associate(Auth::user());
             $payment_detail->save();
 
             if ($request->mode == \constPaymentMode::Cheque) {
-                // Store Cheque Details
+                // Armazenar Detalhes do Cheque
                 $chequeData = ['payment_id'=> $payment_detail->id,
                                   'number'=> $request->number,
-                                  'date'=> $request->date,
+                                  'date'=> $this->convertDateToGlobal($request->date),
                                   'status'=> \constChequeStatus::Recieved, ];
 
                 $cheque_details = new ChequeDetail($chequeData);
@@ -61,7 +100,7 @@ class PaymentsController extends Controller
                 $cheque_details->updatedBy()->associate(Auth::user());
                 $cheque_details->save();
             } elseif ($request->mode == \constPaymentMode::Cash) {
-                // Updating Invoice Status and amounts
+                // Atualizando Status e Valores da Fatura
                 $invoice_total = $payment_detail->invoice->total;
                 $payment_total = PaymentDetail::where('invoice_id', $payment_detail->invoice_id)->sum('payment_amount');
                 $amount_due = $invoice_total - $payment_total;
@@ -71,14 +110,14 @@ class PaymentsController extends Controller
                 $payment_detail->invoice->save();
             }
 
-            //If cheque reissued , set the status of the previous cheque detail to Reissued
+            // Se o cheque foi reemitido, define o status do detalhe do cheque anterior como Reissued
             if ($request->has('previousPayment')) {
                 $cheque_detail = ChequeDetail::where('payment_id', $request->previousPayment)->first();
                 $cheque_detail->status = \constChequeStatus::Reissued;
                 $cheque_detail->save();
             }
 
-            // SMS Trigger
+            // Disparo de SMS
             $sender_id = \Utilities::getSetting('sms_sender_id');
             $gym_name = \Utilities::getSetting('gym_name');
 
@@ -100,12 +139,12 @@ class PaymentsController extends Controller
             }
 
             DB::commit();
-            flash()->success('Payment Details were successfully stored');
+            flash()->success('Detalhes do pagamento foram armazenados com sucesso');
 
             return redirect(action('InvoicesController@show', ['id' => $payment_detail->invoice_id]));
         } catch (Exception $e) {
             DB::rollback();
-            flash()->error('Payment Details weren\'t stored succesfully');
+            flash()->error('Os detalhes do pagamento não foram armazenados com sucesso');
 
             return redirect('payments/all');
         }
@@ -124,22 +163,22 @@ class PaymentsController extends Controller
         DB::beginTransaction();
 
         try {
-            // Storing Payment Details
+            // Armazenando Detalhes do Pagamento
             $payment_detail = PaymentDetail::findOrFail($id);
             $payment_detail->update($request->all());
             $payment_detail->updatedBy()->associate(Auth::user());
             $payment_detail->save();
 
             if ($request->mode == \constPaymentMode::Cheque) {
-                // Store Cheque Details
+                // Armazenar Detalhes do Cheque
                 $cheque_detail = ChequeDetail::where('payment_id', $id)->first();
                 $cheque_detail->update(['number' => $request->number,
-                                      'date' => $request->date,
+                                      'date' => $this->convertDateToGlobal($request->date),
                                     ]);
                 $cheque_detail->updatedBy()->associate(Auth::user());
                 $cheque_detail->save();
             } elseif ($request->mode == \constPaymentMode::Cash) {
-                // Updating Invoice Status and amounts
+                // Atualizando Status e Valores da Fatura
                 $invoice_total = $payment_detail->invoice->total;
                 $payment_total = PaymentDetail::where('invoice_id', $payment_detail->invoice_id)->sum('payment_amount');
                 $amount_due = $invoice_total - $payment_total;
@@ -151,12 +190,12 @@ class PaymentsController extends Controller
             }
 
             DB::commit();
-            flash()->success('Payment Details were successfully updated');
+            flash()->success('Detalhes do pagamento foram atualizados com sucesso');
 
             return redirect(action('InvoicesController@show', ['id' => $payment_detail->invoice_id]));
         } catch (Exception $e) {
             DB::rollback();
-            flash()->error('Payment Details weren\'t updated succesfully');
+            flash()->error('Os detalhes do pagamento não foram atualizados com sucesso');
 
             return redirect('payments');
         }
@@ -203,7 +242,7 @@ class PaymentsController extends Controller
     {
         ChequeDetail::where('payment_id', $id)->update(['status' => \constChequeStatus::Deposited]);
 
-        flash()->success('Cheque has been marked as deposited');
+        flash()->success('Cheque foi marcado como depositado');
 
         return back();
     }
@@ -214,13 +253,13 @@ class PaymentsController extends Controller
         try {
             $payment_detail = PaymentDetail::findOrFail($id);
 
-            // Updating cheque status
+            // Atualizando status do cheque
             $cheque_detail = ChequeDetail::where('payment_id', $id)->first();
             $cheque_detail->status = \constChequeStatus::Cleared;
             $cheque_detail->updatedBy()->associate(Auth::user());
             $cheque_detail->save();
 
-            // Updating Invoice Status and amounts
+            // Atualizando Status e Valores da Fatura
             $invoice_total = $payment_detail->invoice->total;
 
             $payment_total = PaymentDetail::leftJoin('trn_cheque_details', 'trn_payment_details.id', '=', 'trn_cheque_details.payment_id')
@@ -234,12 +273,12 @@ class PaymentsController extends Controller
             $payment_detail->invoice->save();
 
             DB::commit();
-            flash()->success('Cheque has been marked as cleared');
+            flash()->success('Cheque foi marcado como compensado');
 
             return back();
         } catch (Exception $e) {
             DB::rollback();
-            flash()->error('Error while marking the cheque as cleared');
+            flash()->error('Erro ao marcar o cheque como compensado');
 
             return back();
         }
@@ -249,7 +288,7 @@ class PaymentsController extends Controller
     {
         ChequeDetail::where('payment_id', $id)->update(['status' => \constChequeStatus::Bounced]);
 
-        flash()->success('Cheque has been marked as bounced');
+        flash()->success('Cheque foi marcado como devolvido');
 
         return back();
     }
@@ -261,3 +300,4 @@ class PaymentsController extends Controller
         return view('payments.reissue', compact('payment_detail'));
     }
 }
+?>
