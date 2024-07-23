@@ -36,8 +36,7 @@ class SubscriptionsController extends Controller
             return null;
         }
 
-        $dateArray = explode('/', $date);
-        return $dateArray[2] . '-' . $dateArray[1] . '-' . $dateArray[0];
+        return Carbon::createFromFormat('d/m/Y', $date)->format('Y-m-d');
     }
 
     /**
@@ -52,14 +51,21 @@ class SubscriptionsController extends Controller
             return null;
         }
 
-        $dateArray = explode('-', $date);
-        return $dateArray[2] . '/' . $dateArray[1] . '/' . $dateArray[0];
+        return Carbon::createFromFormat('Y-m-d', $date)->format('d/m/Y');
     }
 
     public function index(Request $request)
     {
-        $subscriptions = Subscription::indexQuery($request->sort_field, $request->sort_direction, $request->drp_start, $request->drp_end, $request->plan_name)->search('"'.$request->input('search').'"')->paginate(10);
-        $subscriptionTotal = Subscription::indexQuery($request->sort_field, $request->sort_direction, $request->drp_start, $request->drp_end, $request->plan_name)->search('"'.$request->input('search').'"')->get();
+        $startDate = null;
+        $endDate = null;
+
+        if ($request->has('drp_start') && $request->has('drp_end')) {
+            $startDate = $this->convertDateToGlobal($request->drp_start);
+            $endDate = $this->convertDateToGlobal($request->drp_end);
+        }
+
+        $subscriptions = Subscription::indexQuery($request->sort_field, $request->sort_direction, $startDate, $endDate, $request->plan_name)->search('"'.$request->input('search').'"')->paginate(10);
+        $subscriptionTotal = Subscription::indexQuery($request->sort_field, $request->sort_direction, $startDate, $endDate, $request->plan_name)->search('"'.$request->input('search').'"')->get();
         $count = $subscriptionTotal->count();
 
         if (! $request->has('drp_start') or ! $request->has('drp_end')) {
@@ -75,7 +81,15 @@ class SubscriptionsController extends Controller
 
     public function expiring(Request $request)
     {
-        $expirings = Subscription::expiring($request->sort_field, $request->sort_direction, $request->drp_start, $request->drp_end)->search('"'.$request->input('search').'"')->paginate(10);
+        $startDate = null;
+        $endDate = null;
+
+        if ($request->has('drp_start') && $request->has('drp_end')) {
+            $startDate = $this->convertDateToGlobal($request->drp_start);
+            $endDate = $this->convertDateToGlobal($request->drp_end);
+        }
+
+        $expirings = Subscription::expiring($request->sort_field, $request->sort_direction, $startDate, $endDate)->search('"'.$request->input('search').'"')->paginate(10);
         $count = $expirings->total();
 
         if (! $request->has('drp_start') or ! $request->has('drp_end')) {
@@ -91,7 +105,15 @@ class SubscriptionsController extends Controller
 
     public function expired(Request $request)
     {
-        $allExpired = Subscription::expired($request->sort_field, $request->sort_direction, $request->drp_start, $request->drp_end)->search('"'.$request->input('search').'"')->paginate(10);
+        $startDate = null;
+        $endDate = null;
+
+        if ($request->has('drp_start') && $request->has('drp_end')) {
+            $startDate = $this->convertDateToGlobal($request->drp_start);
+            $endDate = $this->convertDateToGlobal($request->drp_end);
+        }
+
+        $allExpired = Subscription::expired($request->sort_field, $request->sort_direction, $startDate, $endDate)->search('"'.$request->input('search').'"')->paginate(10);
         $count = $allExpired->total();
 
         if (! $request->has('drp_start') or ! $request->has('drp_end')) {

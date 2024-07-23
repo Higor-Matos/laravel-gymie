@@ -354,19 +354,19 @@ class Utilities
     {
         switch ($status) {
         case '0':
-            return 'Expired';
+            return 'Expirado';
             break;
 
         case '2':
-            return 'Renewed';
+            return 'Renovado';
             break;
 
         case '3':
-            return 'Cancelled';
+            return 'Cancelado';
             break;
 
         default:
-            return 'OnGoing';
+            return 'Em Andamento';
             break;
     }
     }
