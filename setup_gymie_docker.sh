@@ -95,6 +95,10 @@ docker-compose exec app sh -c "echo '<?php phpinfo(); ?>' > /var/www/html/test.p
 echo "Adding cron job for scheduled tasks..."
 (crontab -l 2>/dev/null; echo "* * * * * cd $PROJECT_PATH && docker-compose exec app php artisan schedule:run >> /dev/null 2>&1") | crontab -
 
+# Create robots.txt file
+echo "Creating robots.txt file..."
+echo -e "User-agent: *\nDisallow: /admin/\nDisallow: /login/" > /var/www/public/robots.txt
+
 echo "Laravel Gymie setup complete. Use the following credentials to log in:"
 echo "Email: admin@gymie.in"
 echo "Password: password"
