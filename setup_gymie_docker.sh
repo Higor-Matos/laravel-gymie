@@ -43,6 +43,16 @@ if [ "$MYSQL_READY" = false ]; then
     exit 1
 fi
 
+# Check if the database exists
+DB_EXISTS=$(docker-compose exec mysql sh -c "mysql -u$DB_USERNAME -p$DB_PASSWORD -e 'SHOW DATABASES LIKE \"$DB_DATABASE\";'")
+
+if [ "$DB_EXISTS" ]; then
+    echo "Database $DB_DATABASE already exists. Skipping creation."
+else
+    echo "Database $DB_DATABASE does not exist. Creating database..."
+    docker-compose exec mysql sh -c "mysql -u$DB_USERNAME -p$DB_PASSWORD -e 'CREATE DATABASE $DB_DATABASE;'"
+fi
+
 # Create necessary directories and set permissions
 echo "Creating necessary directories and setting permissions..."
 docker-compose exec app sh -c "mkdir -p /var/www/vendor && chown -R www-data:www-data /var/www/vendor"
@@ -71,9 +81,11 @@ sed -i "s/DB_PASSWORD=.*/DB_PASSWORD=$DB_PASSWORD/" .env
 echo "Generating application key..."
 docker-compose exec app php artisan key:generate
 
-# Run migrations and seed the database
-echo "Running migrations and seeding the database..."
-docker-compose exec app php artisan migrate --seed
+# Run migrations and seed the database if the database was newly created
+if [ ! "$DB_EXISTS" ]; then
+    echo "Running migrations and seeding the database..."
+    docker-compose exec app php artisan migrate --seed
+fi
 
 # Set permissions for storage and cache inside container
 echo "Setting permissions for storage and cache inside the container..."
