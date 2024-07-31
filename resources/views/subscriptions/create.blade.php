@@ -60,8 +60,8 @@
 @stop
 
 @section('footer_scripts')
-    <script src="{{ URL::asset('assets/js/subscription.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('assets/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.min.js') }}" charset="UTF-8"></script>
+    <script src="{{ secure_asset('assets/js/subscription.js') }}" type="text/javascript"></script>
+    <script src="{{ secure_asset('assets/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.min.js') }}" charset="UTF-8"></script>
 @stop
 
 @section('footer_script_init')

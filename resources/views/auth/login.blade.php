@@ -11,23 +11,23 @@
     <title>The Black's Thai - Login</title>
 
     <!-- BEGIN CORE FRAMEWORK -->
-    <link href="{{ URL::asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"/>
-    <link href="{{ URL::asset('assets/plugins/ionicons/css/ionicons.min.css') }}" rel="stylesheet"/>
-    <link href="{{ URL::asset('assets/plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet"/>
+    <link href="{{ secure_asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"/>
+    <link href="{{ secure_asset('assets/plugins/ionicons/css/ionicons.min.css') }}" rel="stylesheet"/>
+    <link href="{{ secure_asset('assets/plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet"/>
     <!-- END CORE FRAMEWORK -->
 
     <!-- BEGIN PLUGIN STYLES -->
-    <link href="{{ URL::asset('assets/plugins/animate/animate.css') }}" rel="stylesheet"/>
-    <link href="{{ URL::asset('assets/plugins/bootstrapValidator/bootstrapValidator.min.css') }}" rel="stylesheet"/>
+    <link href="{{ secure_asset('assets/plugins/animate/animate.css') }}" rel="stylesheet"/>
+    <link href="{{ secure_asset('assets/plugins/bootstrapValidator/bootstrapValidator.min.css') }}" rel="stylesheet"/>
     <!-- END PLUGIN STYLES -->
 
     <!-- BEGIN THEME STYLES -->
-    <link href="{{ URL::asset('assets/css/material.css') }}" rel="stylesheet"/>
-    <link href="{{ URL::asset('assets/css/style.css') }}" rel="stylesheet"/>
-    <link href="{{ URL::asset('assets/css/plugins.css') }}" rel="stylesheet"/>
-    <link href="{{ URL::asset('assets/css/helpers.css') }}" rel="stylesheet"/>
-    <link href="{{ URL::asset('assets/css/responsive.css') }}" rel="stylesheet"/>
-    <link href="{{ URL::asset('assets/css/mystyle.css') }}" rel="stylesheet"/>
+    <link href="{{ secure_asset('assets/css/material.css') }}" rel="stylesheet"/>
+    <link href="{{ secure_asset('assets/css/style.css') }}" rel="stylesheet"/>
+    <link href="{{ secure_asset('assets/css/plugins.css') }}" rel="stylesheet"/>
+    <link href="{{ secure_asset('assets/css/helpers.css') }}" rel="stylesheet"/>
+    <link href="{{ secure_asset('assets/css/responsive.css') }}" rel="stylesheet"/>
+    <link href="{{ secure_asset('assets/css/mystyle.css') }}" rel="stylesheet"/>
     <!-- END THEME STYLES -->
 </head>
 <body class="auth-page height-auto bg-grey-600">
@@ -75,19 +75,19 @@
 </div>
 
 <!-- Javascript -->
-<script src="{{ URL::asset('assets/plugins/jquery-1.11.1.min.js') }}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/plugins/slimScroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/js/core.js') }}" type="text/javascript"></script>
+<script src="{{ secure_asset('assets/plugins/jquery-1.11.1.min.js') }}" type="text/javascript"></script>
+<script src="{{ secure_asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
+<script src="{{ secure_asset('assets/plugins/slimScroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
+<script src="{{ secure_asset('assets/js/core.js') }}" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 
 <!-- bootstrap validator -->
-<script src="{{ URL::asset('assets/plugins/bootstrapValidator/bootstrapValidator.min.js') }}" type="text/javascript"></script>
+<script src="{{ secure_asset('assets/plugins/bootstrapValidator/bootstrapValidator.min.js') }}" type="text/javascript"></script>
 
 <!-- Login Validators -->
-<script src="{{ URL::asset('assets/js/login.js') }}" type="text/javascript"></script>
+<script src="{{ secure_asset('assets/js/login.js') }}" type="text/javascript"></script>
 
 <!-- gymie -->
-<script src="{{ URL::asset('assets/js/gymie.js') }}" type="text/javascript"></script>
+<script src="{{ secure_asset('assets/js/gymie.js') }}" type="text/javascript"></script>
 </body>
 </html>

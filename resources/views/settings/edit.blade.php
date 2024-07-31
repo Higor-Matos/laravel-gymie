@@ -308,7 +308,7 @@
 @stop
 
 @section('footer_scripts')
-    <script src="{{ URL::asset('assets/js/setting.js') }}" type="text/javascript"></script>
+    <script src="{{ secure_asset('assets/js/setting.js') }}" type="text/javascript"></script>
 @stop
 
 @section('footer_script_init')

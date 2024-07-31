@@ -11,33 +11,33 @@
     <title>The Black's Thai</title>
 
     <!-- BEGIN CORE FRAMEWORK -->
-    <link href="{{ URL::asset('assets/plugins/bootstrap/css/bootstrap.css') }}" rel="stylesheet"/>
-    <link href="{{ URL::asset('assets/plugins/ionicons/css/ionicons.min.css') }}" rel="stylesheet"/>
-    <link href="{{ URL::asset('assets/plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet"/>
+    <link href="{{ secure_asset('assets/plugins/bootstrap/css/bootstrap.css') }}" rel="stylesheet"/>
+    <link href="{{ secure_asset('assets/plugins/ionicons/css/ionicons.min.css') }}" rel="stylesheet"/>
+    <link href="{{ secure_asset('assets/plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet"/>
     <!-- END CORE FRAMEWORK -->
 
     <!-- BEGIN PLUGIN STYLES -->
-    <link href="{{ URL::asset('assets/plugins/animate/animate.css') }}" rel="stylesheet"/>
-    <link href="{{ URL::asset('assets/plugins/morris/morris.css') }}" rel="stylesheet"/>
-    <link href="{{ URL::asset('assets/plugins/bootstrap-slider/css/slider.css') }}" rel="stylesheet"/>
-    <link href="{{ URL::asset('assets/plugins/datepicker/css/bootstrap-datepicker.css') }}" rel="stylesheet"/>
-    <link href="{{ URL::asset('assets/plugins/rickshaw/rickshaw.min.css') }}" rel="stylesheet"/>
-    <link href="{{ URL::asset('assets/plugins/jquery-jvectormap/jquery-jvectormap-1.2.2.css') }}" rel="stylesheet"/>
-    <link href="{{ URL::asset('assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css') }}" rel="stylesheet"/>
-    <link href="{{ URL::asset('assets/plugins/bootstrapValidator/bootstrapValidator.min.css') }}" rel="stylesheet"/>
-    <link href="{{ URL::asset('assets/plugins/sweetalert/sweetalert.css') }}" rel="stylesheet"/>
-    <link href="{{ URL::asset('assets/plugins/bootstrap-select/css/bootstrap-select.min.css') }}" rel="stylesheet"/>
-    <link href="{{ URL::asset('assets/plugins/bootstrap-tokenfield/css/bootstrap-tokenfield.min.css') }}" rel="stylesheet"/>
+    <link href="{{ secure_asset('assets/plugins/animate/animate.css') }}" rel="stylesheet"/>
+    <link href="{{ secure_asset('assets/plugins/morris/morris.css') }}" rel="stylesheet"/>
+    <link href="{{ secure_asset('assets/plugins/bootstrap-slider/css/slider.css') }}" rel="stylesheet"/>
+    <link href="{{ secure_asset('assets/plugins/datepicker/css/bootstrap-datepicker.css') }}" rel="stylesheet"/>
+    <link href="{{ secure_asset('assets/plugins/rickshaw/rickshaw.min.css') }}" rel="stylesheet"/>
+    <link href="{{ secure_asset('assets/plugins/jquery-jvectormap/jquery-jvectormap-1.2.2.css') }}" rel="stylesheet"/>
+    <link href="{{ secure_asset('assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css') }}" rel="stylesheet"/>
+    <link href="{{ secure_asset('assets/plugins/bootstrapValidator/bootstrapValidator.min.css') }}" rel="stylesheet"/>
+    <link href="{{ secure_asset('assets/plugins/sweetalert/sweetalert.css') }}" rel="stylesheet"/>
+    <link href="{{ secure_asset('assets/plugins/bootstrap-select/css/bootstrap-select.min.css') }}" rel="stylesheet"/>
+    <link href="{{ secure_asset('assets/plugins/bootstrap-tokenfield/css/bootstrap-tokenfield.min.css') }}" rel="stylesheet"/>
     <!-- END PLUGIN STYLES -->
 
     <!-- BEGIN THEME STYLES -->
-    <link href="{{ URL::asset('assets/css/material.css') }}" rel="stylesheet"/>
-    <link href="{{ URL::asset('assets/css/style.css') }}" rel="stylesheet"/>
-    <link href="{{ URL::asset('assets/css/plugins.css') }}" rel="stylesheet"/>
-    <link href="{{ URL::asset('assets/css/helpers.css') }}" rel="stylesheet"/>
-    <link href="{{ URL::asset('assets/css/responsive.css') }}" rel="stylesheet"/>
-    <link href="{{ URL::asset('assets/css/mystyle.css') }}" rel="stylesheet"/>
-    <link href="{{ URL::asset('assets/css/print.css') }}" media="print" rel="stylesheet"/>
+    <link href="{{ secure_asset('assets/css/material.css') }}" rel="stylesheet"/>
+    <link href="{{ secure_asset('assets/css/style.css') }}" rel="stylesheet"/>
+    <link href="{{ secure_asset('assets/css/plugins.css') }}" rel="stylesheet"/>
+    <link href="{{ secure_asset('assets/css/helpers.css') }}" rel="stylesheet"/>
+    <link href="{{ secure_asset('assets/css/responsive.css') }}" rel="stylesheet"/>
+    <link href="{{ secure_asset('assets/css/mystyle.css') }}" rel="stylesheet"/>
+    <link href="{{ secure_asset('assets/css/print.css') }}" media="print" rel="stylesheet"/>
     <!-- END THEME STYLES -->
     @include('_jsVariables')
     @yield('header_scripts')
@@ -286,29 +286,29 @@
 <!-- BEGIN JAVASCRIPTS -->
 
 <!-- BEGIN CORE PLUGINS -->
-<script src="{{ URL::asset('assets/plugins/jquery-1.11.1.min.js') }}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/plugins/pace/pace.min.js') }}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/plugins/slimScroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/plugins/bootstrap-select/js/bootstrap-select.min.js') }}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/plugins/bootstrap-tokenfield/bootstrap-tokenfield.min.js') }}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/plugins/sweetalert/sweetalert.min.js') }}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/js/core.js') }}" type="text/javascript"></script>
+<script src="{{ secure_asset('assets/plugins/jquery-1.11.1.min.js') }}" type="text/javascript"></script>
+<script src="{{ secure_asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
+<script src="{{ secure_asset('assets/plugins/pace/pace.min.js') }}" type="text/javascript"></script>
+<script src="{{ secure_asset('assets/plugins/slimScroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
+<script src="{{ secure_asset('assets/plugins/bootstrap-select/js/bootstrap-select.min.js') }}" type="text/javascript"></script>
+<script src="{{ secure_asset('assets/plugins/bootstrap-tokenfield/bootstrap-tokenfield.min.js') }}" type="text/javascript"></script>
+<script src="{{ secure_asset('assets/plugins/sweetalert/sweetalert.min.js') }}" type="text/javascript"></script>
+<script src="{{ secure_asset('assets/js/core.js') }}" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 
 <!-- datepicker -->
-<script src="{{ URL::asset('assets/plugins/bootstrap-daterangepicker/moment.min.js') }}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/plugins/bootstrap-daterangepicker/daterangepicker.js') }}" type="text/javascript"></script>
+<script src="{{ secure_asset('assets/plugins/bootstrap-daterangepicker/moment.min.js') }}" type="text/javascript"></script>
+<script src="{{ secure_asset('assets/plugins/bootstrap-daterangepicker/daterangepicker.js') }}" type="text/javascript"></script>
 
 <!-- counter -->
-<script src="{{ URL::asset('assets/plugins/jquery-countTo/jquery.countTo.js') }}" type="text/javascript"></script>
+<script src="{{ secure_asset('assets/plugins/jquery-countTo/jquery.countTo.js') }}" type="text/javascript"></script>
 
 <!-- datepicker -->
-<script src="{{ URL::asset('assets/plugins/datepicker/js/bootstrap-datepicker.min.js') }}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/plugins/datepicker/locales/bootstrap-datepicker.pt-BR.min.js') }}" type="text/javascript"></script>
+<script src="{{ secure_asset('assets/plugins/datepicker/js/bootstrap-datepicker.min.js') }}" type="text/javascript"></script>
+<script src="{{ secure_asset('assets/plugins/datepicker/locales/bootstrap-datepicker.pt-BR.min.js') }}" type="text/javascript"></script>
 
 <!--validator-->
-<script src="{{ URL::asset('assets/plugins/bootstrapValidator/bootstrapValidator.min.js') }}" type="text/javascript"></script>
+<script src="{{ secure_asset('assets/plugins/bootstrapValidator/bootstrapValidator.min.js') }}" type="text/javascript"></script>
 
 {{-- @include('_jsVariables') --}}
 
@@ -316,7 +316,7 @@
 @yield('footer_scripts')
 
 <!-- gymie -->
-<script src="{{ URL::asset('assets/js/gymie.js') }}" type="text/javascript"></script>
+<script src="{{ secure_asset('assets/js/gymie.js') }}" type="text/javascript"></script>
 
 @yield('footer_script_init')
 

@@ -272,8 +272,8 @@
 @stop
 
 @section('footer_scripts')
-    <script src="{{ URL::asset('assets/plugins/morris/raphael-2.1.0.min.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('assets/plugins/morris/morris.min.js') }}" type="text/javascript"></script>
+    <script src="{{ secure_asset('assets/plugins/morris/raphael-2.1.0.min.js') }}" type="text/javascript"></script>
+    <script src="{{ secure_asset('assets/plugins/morris/morris.min.js') }}" type="text/javascript"></script>
 @stop
 
 @section('footer_script_init')

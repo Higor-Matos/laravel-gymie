@@ -91,5 +91,5 @@
 
         @stop
         @section('footer_scripts')
-            <script src="{{ URL::asset('assets/js/payment.js') }}" type="text/javascript"></script>
+            <script src="{{ secure_asset('assets/js/payment.js') }}" type="text/javascript"></script>
 @stop

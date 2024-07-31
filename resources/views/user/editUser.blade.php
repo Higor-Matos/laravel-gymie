@@ -126,5 +126,5 @@
     </div>
 @stop
 @section('footer_scripts')
-    <script src="{{ URL::asset('assets/js/userUpdate.js') }}" type="text/javascript"></script>
+    <script src="{{ secure_asset('assets/js/userUpdate.js') }}" type="text/javascript"></script>
 @stop

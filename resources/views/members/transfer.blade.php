@@ -418,7 +418,7 @@
 
 @stop
 @section('footer_scripts')
-    <script src="{{ URL::asset('assets/js/member.js') }}" type="text/javascript"></script>
+    <script src="{{ secure_asset('assets/js/member.js') }}" type="text/javascript"></script>
 @stop
 @section('footer_script_init')
     <script type="text/javascript">
